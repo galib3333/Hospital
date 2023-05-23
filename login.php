@@ -1,4 +1,5 @@
 <?php
+session_start();
     $base_url="http://localhost/hospital/";
     require_once('class/crud.php');
     $mysqli=new crud;
@@ -16,7 +17,7 @@
     <meta name="robots" content="noindex,nofollow">
     <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= $base_url ?>assets/images/favicon.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="<?= $base_url ?>assets/images/favicon.png">
     <!-- Custom CSS -->
     <link href="<?= $base_url ?>assets/dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -46,46 +47,34 @@
         <!-- ============================================================== -->
         <div style="height:100vh" class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
             <div class="auth-box bg-dark border-top border-secondary">
-                <div>
+                <div id="loginform">
                     <div class="text-center pt-3 pb-3">
                         <span class="db"><img src="<?= $base_url ?>assets/images/logo.png" alt="logo" /></span>
                     </div>
                     <!-- Form -->
-                    <form class="form-horizontal mt-3" method="post" action="">
+                    <form class="form-horizontal mt-3" id="loginform" method="post" action="">
                         <div class="row pb-4">
                             <div class="col-12">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text bg-success text-white h-100" id="basic-addon1"><i class="ti-user"></i></span>
-                                    </div>
-                                    <input name="name" type="text" class="form-control form-control-lg" placeholder="Full Name" aria-label="Username" aria-describedby="basic-addon1" required>
-                                </div>
-                                <!-- email -->
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
                                         <span class="input-group-text bg-danger text-white h-100" id="basic-addon1"><i class="ti-email"></i></span>
                                     </div>
-                                    <input type="text" class="form-control form-control-lg" name="email" placeholder="Email Address" aria-label="Username" aria-describedby="basic-addon1" required>
+                                    <input type="email" class="form-control form-control-lg" name="email" placeholder="Email Address" aria-label="Email Address" aria-describedby="basic-addon1" required="">
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text bg-warning text-white h-100" id="basic-addon2"><i class="ti-pencil"></i></span>
                                     </div>
-                                    <input type="text" class="form-control form-control-lg" name="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text bg-info text-white h-100" id="basic-addon2"><i class="ti-pencil"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control form-control-lg" name="cpassword" placeholder=" Confirm Password" aria-label="Password" aria-describedby="basic-addon1" required>
+                                    <input type="text" class="form-control form-control-lg" name="password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="row border-top border-secondary">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <div class="pt-3 d-grid">
-                                        <button class="btn btn-block btn-lg btn-info" type="submit">Sign Up</button>
+                                    <div class="pt-3">
+                                        <a class="btn btn-info" id="to-recover" href="register.php"><i class="fa fa-lock me-1"></i> Not Registered?</a>
+                                        <button class="btn btn-success float-end text-white" type="submit">Login</button>
                                     </div>
                                 </div>
                             </div>
@@ -93,24 +82,28 @@
                     </form>
                     <?php
                         if($_POST){
-                        $pass=trim($_POST['password']);
-                        $cpass=trim($_POST['cpassword']);
-                        if($pass !== $cpass){
-                            echo "Both password are not same";
-                            exit;
-                        }
-                        $_POST['password']=sha1(md5($_POST['password']));
-                        unset($_POST['cpassword']);
-                        $rs=$mysqli->common_create('tbl_users',$_POST);
-                        if(!$rs['error']){
-                            echo "<script>window.location='login.php'</script>";
-                        }else{
-                            echo $rs['error'];
-                        }
+                            $where['email']=$_POST['email'];
+                            $where['password']=sha1(md5($_POST['password']));
+                            
+                            $rs=$mysqli->common_select('users','*',$where);
+                            if(!$rs['error']){
+                                
+                                if(isset($rs['data'][0])){
+                                $_SESSION['userid']=$rs['data'][0]->id;
+                                $_SESSION['email']=$rs['data'][0]->email;
+                                $_SESSION['username']=$rs['data'][0]->name;
+                                $_SESSION['contact_no']=$rs['data'][0]->contact_no;
+                                }
+                                print_r($rs['data']);
+                                echo "<script>window.location='dashboard.php'</script>";
+                            }else{
+                                echo $rs['error'];
+                            }
                         }
 
                     ?>
                 </div>
+                
             </div>
         </div>
         <!-- ============================================================== -->
@@ -139,8 +132,22 @@
     <!-- This page plugin js -->
     <!-- ============================================================== -->
     <script>
+
     $(".preloader").fadeOut();
+    // ============================================================== 
+    // Login and Recover Password 
+    // ============================================================== 
+    $('#to-recover').on("click", function() {
+        $("#loginform").slideUp();
+        $("#recoverform").fadeIn();
+    });
+    $('#to-login').click(function(){
+        
+        $("#recoverform").hide();
+        $("#loginform").fadeIn();
+    });
     </script>
+
 </body>
 
 </html>

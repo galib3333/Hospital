@@ -1,10 +1,10 @@
 <?php
-//   session_start();
-//   if(!isset($_SESSION['userid'])){
-//     echo "<script>window.location='login.php'</script>";
-//     exit;
-//   }
-    $base_url="http://localhost/hospital/";
+  session_start();
+  if(!isset($_SESSION['userid'])){
+    echo "<script>window.location='login.php'</script>";
+    exit;
+  }
+    $base_url="http://localhost/Hospital/";
     require_once('class/crud.php');
     $mysqli=new crud;
 ?>
@@ -26,9 +26,9 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?= $base_url ?>/assets/images/favicon.png">
     <!-- Custom CSS -->
-    <link href="<?= $base_url ?>/assets/libs/flot/css/float-chart.css" rel="stylesheet">
+    <link href="<?= $base_url ?>assets/libs/flot/css/float-chart.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="<?= $base_url ?>/assets/dist/css/style.min.css" rel="stylesheet">
+    <link href="<?= $base_url ?>assets/dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -127,7 +127,7 @@
                                 <a class="dropdown-item" href="javascript:void(0)"><i
                                         class="ti-settings me-1 ms-1"></i> Account Setting</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)"><i
+                                <a class="dropdown-item" href="<?= $base_url ?>logout.php"><i
                                         class="fa fa-power-off me-1 ms-1"></i> Logout</a>
                                 <div class="dropdown-divider"></div>
                                 <div class="ps-4 p-10"><a href="javascript:void(0)"
