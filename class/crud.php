@@ -3,7 +3,7 @@
         private $host='localhost';
         private $user='root';
         private $password='';
-        private $database='phpproject';
+        private $database='hms';
         private $connection;
 
         public function __construct(){
@@ -33,7 +33,7 @@
                 }
                 
             }else{
-                $error=$this->connection->error();
+                $error=$this->connection->error;
             }
             $return = array('data'=>$result,'error'=>$error);
             return $return;
@@ -53,7 +53,7 @@
             if($rs){
                 $result=$this->connection->insert_id;
             }else{
-                $error=$this->connection->error();
+                $error=$this->connection->error;
             }
             $return = array('data'=>$result,'error'=>$error);
             return $return;
@@ -82,7 +82,7 @@
             if($rs){
                 $result=$this->connection->affected_rows;
             }else{
-                $error=$this->connection->error();
+                $error=$this->connection->error;
             }
             $return = array('data'=>$result,'error'=>$error);
             return $return;
@@ -105,7 +105,7 @@
             if($rs){
                 $result=$this->connection->affected_rows;
             }else{
-                $error=$this->connection->error();
+                $error=$this->connection->error;
             }
             $return = array('data'=>$result,'error'=>$error);
             return $return;

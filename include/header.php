@@ -1,9 +1,9 @@
 <?php
-  session_start();
-  if(!isset($_SESSION['userid'])){
-    echo "<script>window.location='login.php'</script>";
-    exit;
-  }
+//   session_start();
+//   if(!isset($_SESSION['userid'])){
+//     echo "<script>window.location='login.php'</script>";
+//     exit;
+//   }
     $base_url="http://localhost/hospital/";
     require_once('class/crud.php');
     $mysqli=new crud;
@@ -22,7 +22,7 @@
     <meta name="description"
         content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
+    <title>Matrix </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?= $base_url ?>/assets/images/favicon.png">
     <!-- Custom CSS -->
