@@ -85,9 +85,6 @@
                     </div>
                 </form>
                 <?php
-                    include_once('crud.php');
-                    $crud = new crud();
-
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         // Retrieve form data
                         $name = $_POST['name'];
