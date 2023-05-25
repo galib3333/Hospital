@@ -32,7 +32,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Department List
-                        <a class="btn btn-primary btn-xs float-end" href="<?= $base_url?>department_create.php">Add New</a>
+                        <a class="btn btn-primary btn-xs float-end" href="<?= $base_url?>doctor_create.php">Add New</a>
                     </h5>
                     <div class="table-responsive">
                         <table id="zero_config" class="table table-striped table-bordered">
