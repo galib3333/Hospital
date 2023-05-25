@@ -1,4 +1,4 @@
-<?php 
+<?php
     $base_url="http://localhost/Hospital/";
     require_once('class/crud.php');
     $mysqli=new crud;
@@ -55,27 +55,27 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="department" class="col-sm-3 text-end control-label col-form-label">Designation :</label>
+                            <label for="designation" class="col-sm-3 text-end control-label col-form-label">Designation :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="department" name="department">
+                                <input type="text" class="form-control" id="designation" name="designation">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="department" class="col-sm-3 text-end control-label col-form-label">Specialist :</label>
+                            <label for="specialist" class="col-sm-3 text-end control-label col-form-label">Specialist :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="department" name="department">
+                                <input type="text" class="form-control" id="specialist" name="specialist">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="department" class="col-sm-3 text-end control-label col-form-label">Education :</label>
+                            <label for="education" class="col-sm-3 text-end control-label col-form-label">Education :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="department" name="department">
+                                <input type="text" class="form-control" id="education" name="education">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="department" class="col-sm-3 text-end control-label col-form-label">Fees :</label>
+                            <label for="fees" class="col-sm-3 text-end control-label col-form-label">Fees :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="department" name="department">
+                                <input type="text" class="form-control" id="fees" name="fees">
                             </div>
                         </div>
                     <div class="border-top">
@@ -85,7 +85,10 @@
                     </div>
                 </form>
                 <?php
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                echo '<pre>';
+                var_dump($_POST);
+                echo '</pre>';
+                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         // Retrieve form data
                         $name = $_POST['name'];
                         $email = $_POST['email'];
@@ -103,18 +106,23 @@
                             'designation' => $designation,
                             'specialist' => $specialist,
                             'education' => $education,
-                            'fees' => $fees
+                            'fees' => $fees,
+                            'updated_by' => null,
+                            'updated_at' => null,
+                            'deleted_at' => null,
+                            'created_by' => null,
+                            'created_at' => date('Y-m-d H:i:s')
                         );
                         
                         // Call the common_create method to insert the data
-                        $insertResult = $crud->common_create('doctors', $data);
+                        $rs = $mysqli->common_create('doctors', $data);
                         
                         // Check if the insertion was successful
-                        if ($insertResult['error']) {
+                        if ($rs['error']) {
                             // Handle the error
-                            echo "Error: " . $insertResult['error'];
+                            echo "Error: " . $rs['error'];
                         } else {
-                            $insertedId = $insertResult['data'];
+                            $insertedId = $rs['data'];
                             // Handle the successful insertion
                             echo "Data inserted successfully with ID: " . $insertedId;
                         }
