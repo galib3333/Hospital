@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2023 at 09:33 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: May 24, 2023 at 01:05 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `hms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `appointment`
+--
+
+CREATE TABLE `appointment` (
+  `app_id` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
+  `employ_id` int(11) NOT NULL,
+  `app_date` date NOT NULL,
+  `serial` varchar(255) NOT NULL,
+  `problem` text NOT NULL,
+  `approve` int(11) NOT NULL,
+  `updated_by` int(11) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -83,6 +104,97 @@ CREATE TABLE `doctors` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `patients`
+--
+
+CREATE TABLE `patients` (
+  `id` int(11) NOT NULL,
+  `patient_id` varchar(100) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `phone` varchar(30) NOT NULL,
+  `present_address` text NOT NULL,
+  `permanent_address` text NOT NULL,
+  `picture` varchar(255) NOT NULL,
+  `birth_date` date NOT NULL,
+  `sex` varchar(20) NOT NULL,
+  `blood_id` int(11) NOT NULL,
+  `updated_by` int(11) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `p_admit`
+--
+
+CREATE TABLE `p_admit` (
+  `admit_id` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
+  `father_name` varchar(255) DEFAULT NULL,
+  `mother_name` varchar(255) DEFAULT NULL,
+  `husband_name` varchar(255) DEFAULT NULL,
+  `marital_status` varchar(255) DEFAULT NULL,
+  `doctor_ref` varchar(255) DEFAULT NULL,
+  `problem` text DEFAULT NULL,
+  `admit_date` date NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `guardian` varchar(255) DEFAULT NULL,
+  `relation` varchar(255) DEFAULT NULL,
+  `conditions` text DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `p_medicine`
+--
+
+CREATE TABLE `p_medicine` (
+  `pres_medi_id` int(11) NOT NULL,
+  `prescription_id` int(11) NOT NULL,
+  `medicine_cat_id` int(11) NOT NULL,
+  `medicine_name` varchar(255) NOT NULL,
+  `dose` varchar(255) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `p_prescription`
+--
+
+CREATE TABLE `p_prescription` (
+  `prescription_id` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
+  `cc` varchar(255) NOT NULL,
+  `inv_id` int(11) NOT NULL,
+  `advice` varchar(255) NOT NULL,
+  `updated_by` int(11) NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `deleted_at` datetime NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -112,6 +224,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `contact_no`, `password`, `image`, `
 --
 
 --
+-- Indexes for table `appointment`
+--
+ALTER TABLE `appointment`
+  ADD PRIMARY KEY (`app_id`);
+
+--
 -- Indexes for table `departments`
 --
 ALTER TABLE `departments`
@@ -130,6 +248,30 @@ ALTER TABLE `doctors`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `patients`
+--
+ALTER TABLE `patients`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `p_admit`
+--
+ALTER TABLE `p_admit`
+  ADD PRIMARY KEY (`admit_id`);
+
+--
+-- Indexes for table `p_medicine`
+--
+ALTER TABLE `p_medicine`
+  ADD PRIMARY KEY (`pres_medi_id`);
+
+--
+-- Indexes for table `p_prescription`
+--
+ALTER TABLE `p_prescription`
+  ADD PRIMARY KEY (`prescription_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -139,6 +281,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `appointment`
+--
+ALTER TABLE `appointment`
+  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -157,6 +305,30 @@ ALTER TABLE `designations`
 --
 ALTER TABLE `doctors`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `patients`
+--
+ALTER TABLE `patients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `p_admit`
+--
+ALTER TABLE `p_admit`
+  MODIFY `admit_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `p_medicine`
+--
+ALTER TABLE `p_medicine`
+  MODIFY `pres_medi_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `p_prescription`
+--
+ALTER TABLE `p_prescription`
+  MODIFY `prescription_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
