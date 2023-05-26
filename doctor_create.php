@@ -80,14 +80,11 @@
                         </div>
                     <div class="border-top">
                         <div class="card-body">
-                            <button type="button" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </form>
                 <?php
-                    echo '<pre>';
-                    var_dump($_POST);
-                    echo '</pre>';
                     if($_POST){
                         $rs=$mysqli->common_create('doctors',$_POST);
                         if(!$rs['error']){

@@ -5,9 +5,9 @@
 <?php
   $where['id']=$_GET['id'];
   $data['deleted_at']=date('Y-m-d H:i:s');
-  $rs=$mysqli->common_update('departments',$data,$where);
+  $rs=$mysqli->common_update('doctors',$data,$where);
     if(!$rs['error']){
-      echo "<script>window.location='department_list.php'</script>";
+      echo "<script>window.location='doctor_list.php'</script>";
     }else{
         echo $rs['error'];
     }
