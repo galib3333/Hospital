@@ -7,12 +7,12 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Department</h4>
+            <h4 class="page-title">Doctors</h4>
             <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?= $base_url?>dashboard.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Department List</li>
+                        <li class="breadcrumb-item active" aria-current="page">Doctor's List</li>
                     </ol>
                 </nav>
             </div>
@@ -31,7 +31,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Department List
+                    <h5 class="card-title">Doctor's List
                         <a class="btn btn-primary btn-xs float-end" href="<?= $base_url?>doctor_create.php">Add New</a>
                     </h5>
                     <div class="table-responsive">
@@ -39,7 +39,13 @@
                             <thead>
                                 <tr>
                                     <th>#SL</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
                                     <th>Department</th>
+                                    <th>Designation</th>
+                                    <th>Specialist</th>
+                                    <th>Education</th>
+                                    <th>Fees</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -51,12 +57,18 @@
                                 ?>
                                     <tr>
                                         <td><?= $d->id ?></td>
+                                        <td><?= $d->name ?></td>
+                                        <td><?= $d->email ?></td>
                                         <td><?= $d->department ?></td>
+                                        <td><?= $d->designation ?></td>
+                                        <td><?= $d->specialist ?></td>
+                                        <td><?= $d->education ?></td>
+                                        <td><?= $d->fees ?></td>
                                         <td>
-                                        <a title="Update" href="department_edit.php?id=<?= $d->id ?>">
+                                        <a title="Update" href="doctor_edit.php?id=<?= $d->id ?>">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a title="Delete" class="text-danger" href="department_delete.php?id=<?= $d->id ?>">
+                                        <a title="Delete" class="text-danger" href="doctor_delete.php?id=<?= $d->id ?>">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                         </td>
