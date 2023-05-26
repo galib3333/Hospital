@@ -45,7 +45,7 @@
                             </thead>
                             <tbody>
                             <?php
-                                $data=$mysqli->common_select('departments');
+                                $data=$mysqli->common_select('doctors');
                                 if(!$data['error']){
                                     foreach($data['data'] as $d){
                                 ?>

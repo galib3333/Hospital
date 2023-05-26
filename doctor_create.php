@@ -85,46 +85,15 @@
                     </div>
                 </form>
                 <?php
-                echo '<pre>';
-                var_dump($_POST);
-                echo '</pre>';
-                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                        // Retrieve form data
-                        $name = $_POST['name'];
-                        $email = $_POST['email'];
-                        $department = $_POST['department'];
-                        $designation = $_POST['designation'];
-                        $specialist = $_POST['specialist'];
-                        $education = $_POST['education'];
-                        $fees = $_POST['fees'];
-                        
-                        // Prepare the data to be inserted
-                        $data = array(
-                            'name' => $name,
-                            'email' => $email,
-                            'department' => $department,
-                            'designation' => $designation,
-                            'specialist' => $specialist,
-                            'education' => $education,
-                            'fees' => $fees,
-                            'updated_by' => null,
-                            'updated_at' => null,
-                            'deleted_at' => null,
-                            'created_by' => null,
-                            'created_at' => date('Y-m-d H:i:s')
-                        );
-                        
-                        // Call the common_create method to insert the data
-                        $rs = $mysqli->common_create('doctors', $data);
-                        
-                        // Check if the insertion was successful
-                        if ($rs['error']) {
-                            // Handle the error
-                            echo "Error: " . $rs['error'];
-                        } else {
-                            $insertedId = $rs['data'];
-                            // Handle the successful insertion
-                            echo "Data inserted successfully with ID: " . $insertedId;
+                    echo '<pre>';
+                    var_dump($_POST);
+                    echo '</pre>';
+                    if($_POST){
+                        $rs=$mysqli->common_create('doctors',$_POST);
+                        if(!$rs['error']){
+                        echo "<script>window.location='doctor_list.php'</script>";
+                        }else{
+                            echo $rs['error'];
                         }
                     }
                 ?>       
