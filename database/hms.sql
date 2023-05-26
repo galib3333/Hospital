@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2023 at 01:05 PM
+-- Generation Time: May 26, 2023 at 06:26 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -89,8 +89,9 @@ INSERT INTO `designations` (`id`, `designation`, `deleted_at`) VALUES
 CREATE TABLE `doctors` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `designation_id` int(11) NOT NULL,
-  `department_id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `designation` varchar(255) NOT NULL,
+  `department` varchar(255) NOT NULL,
   `specialist` varchar(255) DEFAULT NULL,
   `education` varchar(255) DEFAULT NULL,
   `fees` decimal(10,2) DEFAULT NULL,
@@ -100,6 +101,14 @@ CREATE TABLE `doctors` (
   `created_by` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `doctors`
+--
+
+INSERT INTO `doctors` (`id`, `name`, `email`, `designation`, `department`, `specialist`, `education`, `fees`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
+(2, 'Reza', 'kamal@yahoo.com', 'sdfasdf', 'sdfsadf', 'sadfsadf', 'sdfsadf', 1000.00, NULL, NULL, '2023-05-26 18:12:02', NULL, NULL),
+(3, 'Reza', 'kamal@yahoo.com', 'hjkhjk', 'sdfsadf', 'uiouioui', 'rtyrtyrty', 9000.00, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -304,7 +313,7 @@ ALTER TABLE `designations`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `patients`
