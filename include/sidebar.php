@@ -39,7 +39,7 @@
                                     class="hide-menu">Patient </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item">
-                                    <a href="doctor_list.php" class="sidebar-link">
+                                    <a href="patient_list.php" class="sidebar-link">
                                         <span class="hide-menu"> Patient</span>
                                     </a>
                                 </li>
