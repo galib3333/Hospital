@@ -67,21 +67,44 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="specialist" class="col-sm-3 text-end control-label col-form-label">Specialist :</label>
+                            <label for="permanent_address" class="col-sm-3 text-end control-label col-form-label">Permanent Address :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="specialist" name="specialist">
+                                <input type="text" class="form-control" id="permanent_address" name="permanent_address">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="education" class="col-sm-3 text-end control-label col-form-label">Education :</label>
+                            <label for="picture" class="col-sm-3 text-end control-label col-form-label">Image :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="education" name="education">
+                                <input type="file" class="form-control" id="picture" name="picture">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="fees" class="col-sm-3 text-end control-label col-form-label">Fees :</label>
+                            <label for="birth_date" class="col-sm-3 text-end control-label col-form-label">Date of Birth :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="fees" name="fees">
+                                <input type="date" class="form-control" id="birth_date" name="birth_date">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                        <label for="sex" class="col-sm-3 text-end control-label col-form-label">Gender :</label>
+                            <div class="col-sm-9">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Male
+                                </label>
+                                </div>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                   Female
+                                </label>
+                                </div>
+                                <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                   Others
+                                </label>
+                                </div>
                             </div>
                         </div>
                     <div class="border-top">
