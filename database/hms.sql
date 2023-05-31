@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2023 at 01:05 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: May 27, 2023 at 09:44 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,6 +40,28 @@ CREATE TABLE `appointment` (
   `deleted_at` datetime NOT NULL,
   `created_by` int(11) NOT NULL,
   `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bill`
+--
+
+CREATE TABLE `bill` (
+  `id` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
+  `bill_date` date NOT NULL,
+  `bill_amount` decimal(10,2) NOT NULL,
+  `discount` decimal(10,2) NOT NULL,
+  `vat` decimal(10,2) NOT NULL,
+  `final_amount` decimal(10,2) NOT NULL,
+  `remark` varchar(255) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -89,8 +111,9 @@ INSERT INTO `designations` (`id`, `designation`, `deleted_at`) VALUES
 CREATE TABLE `doctors` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `designation_id` int(11) NOT NULL,
-  `department_id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `designation` varchar(255) NOT NULL,
+  `department` varchar(255) NOT NULL,
   `specialist` varchar(255) DEFAULT NULL,
   `education` varchar(255) DEFAULT NULL,
   `fees` decimal(10,2) DEFAULT NULL,
@@ -100,6 +123,15 @@ CREATE TABLE `doctors` (
   `created_by` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `doctors`
+--
+
+INSERT INTO `doctors` (`id`, `name`, `email`, `designation`, `department`, `specialist`, `education`, `fees`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
+(2, 'Reza', 'kamal@yahoo.com', 'sdfasdf', 'sdfsadf', 'sadfsadf', 'sdfsadf', '1000.00', NULL, NULL, '2023-05-26 18:12:02', NULL, NULL),
+(3, 'Reza', 'kamal@yahoo.com', 'hjkhjk', 'sdfsadf', 'uiouioui', 'rtyrtyrty', '9000.00', NULL, NULL, NULL, NULL, NULL),
+(4, 'Rahim', 'rahim@gmail.com', 'thgtse5e', 'gfrgrtg', 'gseyt5', 'MBBS', '500.00', NULL, NULL, '2023-05-27 06:29:49', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -125,6 +157,24 @@ CREATE TABLE `patients` (
   `deleted_at` datetime NOT NULL,
   `created_by` int(11) NOT NULL,
   `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `id` int(11) NOT NULL,
+  `bill_id` int(11) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `pay_date` datetime NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -195,6 +245,25 @@ CREATE TABLE `p_prescription` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `room`
+--
+
+CREATE TABLE `room` (
+  `id` int(11) NOT NULL,
+  `room_no` int(11) NOT NULL,
+  `room_type` varchar(255) NOT NULL,
+  `capacity` int(11) NOT NULL,
+  `room_rent` decimal(10,2) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -230,6 +299,12 @@ ALTER TABLE `appointment`
   ADD PRIMARY KEY (`app_id`);
 
 --
+-- Indexes for table `bill`
+--
+ALTER TABLE `bill`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `departments`
 --
 ALTER TABLE `departments`
@@ -254,6 +329,12 @@ ALTER TABLE `patients`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `p_admit`
 --
 ALTER TABLE `p_admit`
@@ -270,6 +351,12 @@ ALTER TABLE `p_medicine`
 --
 ALTER TABLE `p_prescription`
   ADD PRIMARY KEY (`prescription_id`);
+
+--
+-- Indexes for table `room`
+--
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -289,6 +376,12 @@ ALTER TABLE `appointment`
   MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `bill`
+--
+ALTER TABLE `bill`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
@@ -304,12 +397,18 @@ ALTER TABLE `designations`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -329,6 +428,12 @@ ALTER TABLE `p_medicine`
 --
 ALTER TABLE `p_prescription`
   MODIFY `prescription_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `room`
+--
+ALTER TABLE `room`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`

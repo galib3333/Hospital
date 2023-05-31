@@ -1,8 +1,3 @@
-<?php
-    $base_url="http://localhost/Hospital/";
-    require_once('class/crud.php');
-    $mysqli=new crud;
-?>
 <?php include_once('include/header.php'); ?>
 <?php include_once('include/sidebar.php'); ?>
 <!-- ============================================================== -->
@@ -16,7 +11,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#<?= $base_url?>dashboard.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Add a new doctor</li>
+                        <li class="breadcrumb-item active" aria-current="page">Doc's info Update</li>
                     </ol>
                 </nav>
             </div>
@@ -34,8 +29,19 @@
         <div class="col-md-12">
             <div class="card">
                 <form class="form-horizontal" action="" method="post">
+                <?php
+                  $where['id']=$_GET['id'];
+                  $data=$mysqli->common_select('patients','*',$where);
+                 
+                  if(!$data['error'] && count($data['data'])>0)
+                    $d=$data['data'][0];
+                  else{
+                    echo "<h2 class='text-danger text-center'>This url is not correct</h2>";
+                    
+                  }
+                ?>
                     <div class="card-body">
-                        <h4 class="card-title">Doctor's Information</h4>
+                        <h4 class="card-title">Patient's Information</h4>
                         <div class="form-group row">
                             <label for="name" class="col-sm-3 text-end control-label col-form-label">Name :</label>
                             <div class="col-sm-9">
@@ -78,6 +84,7 @@
                                 <input type="text" class="form-control" id="fees" name="fees">
                             </div>
                         </div>
+                    </div>
                     <div class="border-top">
                         <div class="card-body">
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -86,14 +93,15 @@
                 </form>
                 <?php
                     if($_POST){
-                        $rs=$mysqli->common_create('doctors',$_POST);
+                        $rs=$mysqli->common_update('patients',$_POST,$where);
+                        print_r($rs);
                         if(!$rs['error']){
-                        echo "<script>window.location='doctor_list.php'</script>";
+                        echo "<script>window.location='patient_list.php'</script>";
                         }else{
                             echo $rs['error'];
                         }
                     }
-                ?>       
+                ?>
             </div>
         </div>
     </div>
