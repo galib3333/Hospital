@@ -66,7 +66,7 @@
                                 <input type="text" class="form-control" id="present_address" name="present_address">
                             </div>
                         </div>
-                        <div class="form-group row">
+                     <div class="form-group row">
                             <label for="permanent_address" class="col-sm-3 text-end control-label col-form-label">Permanent Address :</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="permanent_address" name="permanent_address">
@@ -117,7 +117,8 @@
                     if($_POST){
                         $rs=$mysqli->common_create('patients',$_POST);
                         if(!$rs['error']){
-                        echo "<script>window.location='patient_list.php'</script>";
+                        echo "<script>window.location='patient_list.php'
+                        </script>";
                         }else{
                             echo $rs['error'];
                         }
