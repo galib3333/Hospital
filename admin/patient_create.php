@@ -32,6 +32,12 @@
                     <div class="card-body">
                         <h4 class="card-title">Patient's Information</h4>
                         <div class="form-group row">
+                            <label for="patient_id" class="col-sm-3 text-end control-label col-form-label">Patient's ID :</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="patient_id" name="patient_id">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="first_name" class="col-sm-3 text-end control-label col-form-label">First Name :</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="first_name" name="first_name">
