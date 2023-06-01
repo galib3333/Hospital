@@ -54,6 +54,8 @@
                                     <tr>
                                         <td><?= $d->id ?></td>
                                         <td><?= $d->designation_id ?></td>
+                                        <td><?= $d->desig_name ?></td>
+                                        <td><?= $d->desig_des ?></td>
                                         <td>
                                         <a title="Update" href="designation_edit.php?id=<?= $d->id ?>">
                                             <i class="fa fa-edit"></i>

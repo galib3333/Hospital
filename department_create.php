@@ -32,6 +32,12 @@
                     <div class="card-body">
                         <h4 class="card-title">Department Information</h4>
                         <div class="form-group row">
+                            <label for="department_id" class="col-sm-3 text-end control-label col-form-label">Department ID</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="department_id" name="department_id">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="dep_name" class="col-sm-3 text-end control-label col-form-label">Department Name</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="dep_name" name="dep_name">
