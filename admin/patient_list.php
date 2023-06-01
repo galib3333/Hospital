@@ -46,7 +46,6 @@
                                     <th>Phone</th>
                                     <th>Present Address</th>
                                     <th>Permanent Address</th>
-                                    <th>Image</th>
                                     <th>Date of Birth</th>
                                     <th>Gender</th>
                                     <th>Action</th>
@@ -68,7 +67,6 @@
                                         <td><?= $d->present_address ?></td>
                                         <td><?= $d->permanent_address
                                         ?></td>
-                                        <td><?= $d->picture ?></td>
                                         <td><?= $d->birth_date ?></td>
                                         <td><?= $d->sex ?></td>
                                         <td>
