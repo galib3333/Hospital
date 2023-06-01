@@ -39,7 +39,9 @@
                             <thead>
                                 <tr>
                                     <th>#SL</th>
-                                    <th>Designation</th>
+                                    <th>Designation ID</th>
+                                    <th>Designation Name</th>
+                                    <th>Designation Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -51,7 +53,7 @@
                                 ?>
                                     <tr>
                                         <td><?= $d->id ?></td>
-                                        <td><?= $d->designation ?></td>
+                                        <td><?= $d->designation_id ?></td>
                                         <td>
                                         <a title="Update" href="designation_edit.php?id=<?= $d->id ?>">
                                             <i class="fa fa-edit"></i>

@@ -32,15 +32,21 @@
                     <div class="card-body">
                         <h4 class="card-title">Department Information</h4>
                         <div class="form-group row">
-                            <label for="department" class="col-sm-3 text-end control-label col-form-label">Department</label>
+                            <label for="dep_name" class="col-sm-3 text-end control-label col-form-label">Department Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="department" name="department">
+                                <input type="text" class="form-control" id="dep_name" name="dep_name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="dep_des" class="col-sm-3 text-end control-label col-form-label">Department Description</label>
+                            <div class="col-sm-9">
+                                <textarea name="dep_des" id="dep_des" cols="30" rows="10" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="border-top">
                         <div class="card-body">
-                            <button type="button" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </form>

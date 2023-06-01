@@ -39,7 +39,9 @@
                             <thead>
                                 <tr>
                                     <th>#SL</th>
-                                    <th>Department</th>
+                                    <th>Department ID</th>
+                                    <th>Department Name</th>
+                                    <th>Department Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -51,7 +53,7 @@
                                 ?>
                                     <tr>
                                         <td><?= $d->id ?></td>
-                                        <td><?= $d->department ?></td>
+                                        <td><?= $d->department_id ?></td>
                                         <td>
                                         <a title="Update" href="department_edit.php?id=<?= $d->id ?>">
                                             <i class="fa fa-edit"></i>

@@ -55,15 +55,15 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="department" class="col-sm-3 text-end control-label col-form-label">Department :</label>
+                            <label for="department_id" class="col-sm-3 text-end control-label col-form-label">Department :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="department" name="department">
+                                <input type="text" class="form-control" id="department_id" name="department_id">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="designation" class="col-sm-3 text-end control-label col-form-label">Designation :</label>
+                            <label for="designation_id" class="col-sm-3 text-end control-label col-form-label">Designation :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="designation" name="designation">
+                                <input type="text" class="form-control" id="designation_id" name="designation_id">
                             </div>
                         </div>
                         <div class="form-group row">
