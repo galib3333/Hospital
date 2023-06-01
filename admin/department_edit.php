@@ -11,7 +11,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#<?= $base_url?>dashboard.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Department Create</li>
+                        <li class="breadcrumb-item active" aria-current="page">Department Update</li>
                     </ol>
                 </nav>
             </div>
@@ -29,14 +29,19 @@
         <div class="col-md-12">
             <div class="card">
                 <form class="form-horizontal" action="" method="post">
+                <?php
+                  $where['id']=$_GET['id'];
+                  $data=$mysqli->common_select('departments','*',$where);
+                 
+                  if(!$data['error'] && count($data['data'])>0)
+                    $d=$data['data'][0];
+                  else{
+                    echo "<h2 class='text-danger text-center'>This url is not correct</h2>";
+                    
+                  }
+                ?>
                     <div class="card-body">
                         <h4 class="card-title">Department Information</h4>
-                        <div class="form-group row">
-                            <label for="department_id" class="col-sm-3 text-end control-label col-form-label">Department ID</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="department_id" name="department_id">
-                            </div>
-                        </div>
                         <div class="form-group row">
                             <label for="dep_name" class="col-sm-3 text-end control-label col-form-label">Department Name</label>
                             <div class="col-sm-9">
@@ -58,7 +63,8 @@
                 </form>
                 <?php
                     if($_POST){
-                        $rs=$mysqli->common_create('departments',$_POST);
+                        $rs=$mysqli->common_update('departments',$_POST,$where);
+                        print_r($rs);
                         if(!$rs['error']){
                         echo "<script>window.location='department_list.php'</script>";
                         }else{

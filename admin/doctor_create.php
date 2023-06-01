@@ -1,8 +1,3 @@
-<?php
-    $base_url="http://localhost/Hospital/";
-    require_once('class/crud.php');
-    $mysqli=new crud;
-?>
 <?php include_once('include/header.php'); ?>
 <?php include_once('include/sidebar.php'); ?>
 <!-- ============================================================== -->
@@ -52,7 +47,13 @@
                         <label for="department_id" class="col-sm-3 text-end control-label col-form-label">Department:</label>
                             <div class="col-sm-9">
                                 <select class="form-control" id="department_id" name="department_id">
-                                    <option value="">Select Department</option>
+                                    <?php
+                                        $data=$mysqli->common_select('departments');
+                                        if(!$data['error']){
+                                            foreach($data['data'] as $d){
+                                    ?>
+                                        <option value="<?= $d->id ?>"><?= $d->dep_name ?></option>
+                                    <?php } } ?>
                                 </select>
                             </div>
                         </div>
@@ -60,7 +61,13 @@
                         <label for="designation_id" class="col-sm-3 text-end control-label col-form-label">Designation:</label>
                             <div class="col-sm-9">
                                 <select class="form-control" id="designation_id" name="designation_id">
-                                    <option value="">Select Designation</option>
+                                <?php
+                                        $data=$mysqli->common_select('designations');
+                                        if(!$data['error']){
+                                            foreach($data['data'] as $d){
+                                    ?>
+                                        <option value="<?= $d->id ?>"><?= $d->desig_name ?></option>
+                                    <?php } } ?>
                                 </select>
                             </div>
                         </div>

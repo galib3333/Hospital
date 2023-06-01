@@ -6,12 +6,12 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Department</h4>
+            <h4 class="page-title">Rooms</h4>
             <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#<?= $base_url?>dashboard.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Department Update</li>
+                        <li class="breadcrumb-item active" aria-current="page">Room's info Update</li>
                     </ol>
                 </nav>
             </div>
@@ -31,33 +31,38 @@
                 <form class="form-horizontal" action="" method="post">
                 <?php
                   $where['id']=$_GET['id'];
-                  $data=$mysqli->common_select('departments','*',$where);
+                  $data=$mysqli->common_select_single('room','*',$where);
                  
-                  if(!$data['error'] && count($data['data'])>0)
-                    $d=$data['data'][0];
+                  if(!$data['error'])
+                    $d=$data['data'];
                   else{
                     echo "<h2 class='text-danger text-center'>This url is not correct</h2>";
-                    
                   }
                 ?>
                     <div class="card-body">
-                        <h4 class="card-title">Department Information</h4>
+                        <h4 class="card-title">Room's Information</h4>
                         <div class="form-group row">
-                            <label for="department_id" class="col-sm-3 text-end control-label col-form-label">Department ID</label>
+                            <label for="room_no" class="col-sm-3 text-end control-label col-form-label">Room No :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="department_id" name="department_id">
+                                <input type="text" value="<?= $d->room_no ?>" class="form-control" id="room_no" name="room_no">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="dep_name" class="col-sm-3 text-end control-label col-form-label">Department Name</label>
+                            <label for="room_type" class="col-sm-3 text-end control-label col-form-label">Room Type :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="dep_name" name="dep_name">
+                                <input type="text" value="<?= $d->room_type ?>" class="form-control" id="room_type" name="room_type" required>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="dep_des" class="col-sm-3 text-end control-label col-form-label">Department Description</label>
+                            <label for="capacity" class="col-sm-3 text-end control-label col-form-label">Capacity :</label>
                             <div class="col-sm-9">
-                                <textarea name="dep_des" id="dep_des" cols="30" rows="10" class="form-control"></textarea>
+                                <input type="text" value="<?= $d->capacity ?>" class="form-control" id="capacity" name="capacity">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="room_rent" class="col-sm-3 text-end control-label col-form-label">Room Rent:</label>
+                            <div class="col-sm-9">
+                                <input type="text" value="<?= $d->room_rent ?>" class="form-control" id="room_rent" name="room_rent">
                             </div>
                         </div>
                     </div>
@@ -69,10 +74,10 @@
                 </form>
                 <?php
                     if($_POST){
-                        $rs=$mysqli->common_update('departments',$_POST,$where);
+                        $rs=$mysqli->common_update('room',$_POST,$where);
                         print_r($rs);
                         if(!$rs['error']){
-                        echo "<script>window.location='department_list.php'</script>";
+                        echo "<script>window.location='room_list.php'</script>";
                         }else{
                             echo $rs['error'];
                         }

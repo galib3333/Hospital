@@ -1,8 +1,3 @@
-<?php
-    $base_url="http://localhost/Hospital/";
-    require_once('class/crud.php');
-    $mysqli=new crud;
-?>
 <?php include_once('include/header.php'); ?>
 <?php include_once('include/sidebar.php'); ?>
 <!-- ============================================================== -->
@@ -51,7 +46,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 text-end control-label col-form-label">Email :</label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <input type="email" class="form-control" id="email" name="email">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -66,18 +61,13 @@
                                 <input type="text" class="form-control" id="present_address" name="present_address">
                             </div>
                         </div>
-                     <div class="form-group row">
+                        <div class="form-group row">
                             <label for="permanent_address" class="col-sm-3 text-end control-label col-form-label">Permanent Address :</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="permanent_address" name="permanent_address">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="picture" class="col-sm-3 text-end control-label col-form-label">Image :</label>
-                            <div class="col-sm-9">
-                                <input type="file" class="form-control" id="picture" name="picture">
-                            </div>
-                        </div>
+                        
                         <div class="form-group row">
                             <label for="birth_date" class="col-sm-3 text-end control-label col-form-label">Date of Birth :</label>
                             <div class="col-sm-9">
@@ -88,19 +78,19 @@
                         <label for="sex" class="col-sm-3 text-end control-label col-form-label">Gender :</label>
                             <div class="col-sm-9">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <input class="form-check-input" type="radio" name="sex">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Male
                                 </label>
                                 </div>
                                 <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <input class="form-check-input" type="radio" name="sex">
                                 <label class="form-check-label" for="flexRadioDefault2">
                                    Female
                                 </label>
                                 </div>
                                 <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <input class="form-check-input" type="radio" name="sex">
                                 <label class="form-check-label" for="flexRadioDefault2">
                                    Others
                                 </label>

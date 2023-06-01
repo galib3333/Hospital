@@ -7,12 +7,12 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Department</h4>
+            <h4 class="page-title">Room</h4>
             <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="<?= $base_url?>dashboard.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Department List</li>
+                        <li class="breadcrumb-item active" aria-current="page">Room's List</li>
                     </ol>
                 </nav>
             </div>
@@ -31,39 +31,38 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Department List
-                        <a class="btn btn-primary btn-xs float-end" href="<?= $base_url?>department_create.php">Add New</a>
+                    <h5 class="card-title">Room's List
+                        <a class="btn btn-primary btn-xs float-end" href="<?= $base_url?>room_create.php">Add New</a>
                     </h5>
                     <div class="table-responsive">
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>#SL</th>
-                                    <th>Department ID</th>
-                                    <th>Department Name</th>
-                                    <th>Department Description</th>
-                                    <th>Action</th>
+                                    <th>ID</th>
+                                    <th>Room No</th>
+                                    <th>Room Type</th>
+                                    <th>Capacity</th>
+                                    <th>Room Rent</th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
                             <?php
-                                $data=$mysqli->common_select('departments');
+                                $data=$mysqli->common_select('room');
                                 if(!$data['error']){
                                     foreach($data['data'] as $d){
                                 ?>
                                     <tr>
                                         <td><?= $d->id ?></td>
-                                        <td><?= $d->department_id ?></td>
-                                        <td><?= $d->dep_name ?></td>
-                                        <td><?= $d->dep_des ?></td>
+                                        <td><?= $d->room_no ?></td>
+                                        <td><?= $d->room_type ?></td>
+                                        <td><?= $d->capacity ?></td>
+                                        <td><?= $d->room_rent ?></td>
                                         <td>
-                                        <a title="Update" href="department_edit.php?id=<?= $d->id ?>">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a title="Delete" class="text-danger" href="department_delete.php?id=<?= $d->id ?>">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
+                                            <a title="Update" href="room_edit.php?id=<?= $d->id ?>">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            
                                         </td>
                                     </tr>
                                 <?php
