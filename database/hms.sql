@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2023 at 05:55 AM
+-- Generation Time: Jun 01, 2023 at 07:06 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -73,6 +73,8 @@ CREATE TABLE `bill` (
 CREATE TABLE `departments` (
   `id` int(11) NOT NULL,
   `department_id` int(11) NOT NULL,
+  `dep_name` varchar(255) NOT NULL,
+  `dep_des` text NOT NULL,
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -80,8 +82,9 @@ CREATE TABLE `departments` (
 -- Dumping data for table `departments`
 --
 
-INSERT INTO `departments` (`id`, `department_id`, `deleted_at`) VALUES
-(1, 0, NULL);
+INSERT INTO `departments` (`id`, `department_id`, `dep_name`, `dep_des`, `deleted_at`) VALUES
+(1, 101, 'Cardiology', 'ghfdghfdghfgh', '2023-06-01 07:04:47'),
+(2, 101, 'Cardiology', 'sdfsadfasdf', '2023-06-01 07:04:44');
 
 -- --------------------------------------------------------
 
@@ -92,6 +95,8 @@ INSERT INTO `departments` (`id`, `department_id`, `deleted_at`) VALUES
 CREATE TABLE `designations` (
   `id` int(11) NOT NULL,
   `designation_id` int(11) DEFAULT NULL,
+  `desig_name` varchar(255) NOT NULL,
+  `desig_des` text NOT NULL,
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -99,8 +104,8 @@ CREATE TABLE `designations` (
 -- Dumping data for table `designations`
 --
 
-INSERT INTO `designations` (`id`, `designation_id`, `deleted_at`) VALUES
-(1, 0, NULL);
+INSERT INTO `designations` (`id`, `designation_id`, `desig_name`, `desig_des`, `deleted_at`) VALUES
+(1, 304, 'lol', 'fghfghfgh', '2023-06-01 07:00:43');
 
 -- --------------------------------------------------------
 
@@ -379,7 +384,7 @@ ALTER TABLE `bill`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `designations`
