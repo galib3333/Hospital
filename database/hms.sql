@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2023 at 09:44 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Jun 01, 2023 at 05:55 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -72,7 +72,7 @@ CREATE TABLE `bill` (
 
 CREATE TABLE `departments` (
   `id` int(11) NOT NULL,
-  `department` varchar(255) NOT NULL,
+  `department_id` int(11) NOT NULL,
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -80,8 +80,8 @@ CREATE TABLE `departments` (
 -- Dumping data for table `departments`
 --
 
-INSERT INTO `departments` (`id`, `department`, `deleted_at`) VALUES
-(1, 'Cardiology', NULL);
+INSERT INTO `departments` (`id`, `department_id`, `deleted_at`) VALUES
+(1, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -91,7 +91,7 @@ INSERT INTO `departments` (`id`, `department`, `deleted_at`) VALUES
 
 CREATE TABLE `designations` (
   `id` int(11) NOT NULL,
-  `designation` varchar(255) DEFAULT NULL,
+  `designation_id` int(11) DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -99,8 +99,8 @@ CREATE TABLE `designations` (
 -- Dumping data for table `designations`
 --
 
-INSERT INTO `designations` (`id`, `designation`, `deleted_at`) VALUES
-(1, 'Intern Doctor up', NULL);
+INSERT INTO `designations` (`id`, `designation_id`, `deleted_at`) VALUES
+(1, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -112,8 +112,8 @@ CREATE TABLE `doctors` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `designation` varchar(255) NOT NULL,
-  `department` varchar(255) NOT NULL,
+  `designation_id` int(11) DEFAULT NULL,
+  `department_id` int(11) DEFAULT NULL,
   `specialist` varchar(255) DEFAULT NULL,
   `education` varchar(255) DEFAULT NULL,
   `fees` decimal(10,2) DEFAULT NULL,
@@ -123,15 +123,6 @@ CREATE TABLE `doctors` (
   `created_by` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `doctors`
---
-
-INSERT INTO `doctors` (`id`, `name`, `email`, `designation`, `department`, `specialist`, `education`, `fees`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
-(2, 'Reza', 'kamal@yahoo.com', 'sdfasdf', 'sdfsadf', 'sadfsadf', 'sdfsadf', '1000.00', NULL, NULL, '2023-05-26 18:12:02', NULL, NULL),
-(3, 'Reza', 'kamal@yahoo.com', 'hjkhjk', 'sdfsadf', 'uiouioui', 'rtyrtyrty', '9000.00', NULL, NULL, NULL, NULL, NULL),
-(4, 'Rahim', 'rahim@gmail.com', 'thgtse5e', 'gfrgrtg', 'gseyt5', 'MBBS', '500.00', NULL, NULL, '2023-05-27 06:29:49', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -286,7 +277,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `contact_no`, `password`, `image`, `created_by`, `created_at`, `updated_by`, `updated_at`, `deleted_at`) VALUES
-(1, 'Kamal Uddin', 'kamal@yahoo.com', '', 'adcd7048512e64b48da55b027577886ee5a36350', NULL, NULL, NULL, NULL, NULL, NULL);
+(1, 'Kamal Uddin', 'kamal@yahoo.com', '', 'adcd7048512e64b48da55b027577886ee5a36350', NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 'Galib', 'galib@gmail.com', '', '63982e54a7aeb0d89910475ba6dbd3ca6dd4e5a1', NULL, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -320,7 +312,9 @@ ALTER TABLE `designations`
 -- Indexes for table `doctors`
 --
 ALTER TABLE `doctors`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `designation_id` (`designation_id`),
+  ADD KEY `department_id` (`department_id`);
 
 --
 -- Indexes for table `patients`
@@ -397,7 +391,7 @@ ALTER TABLE `designations`
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `patients`
@@ -439,7 +433,18 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `doctors`
+--
+ALTER TABLE `doctors`
+  ADD CONSTRAINT `doctors_ibfk_1` FOREIGN KEY (`designation_id`) REFERENCES `designation` (`id`),
+  ADD CONSTRAINT `doctors_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
