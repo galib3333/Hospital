@@ -1,5 +1,5 @@
 <?php include_once('include/header.php'); ?>
-<link href="<?= $base_url?>assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+<link href="<?= $base_url?>../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
 <?php include_once('include/sidebar.php'); ?>
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
@@ -39,7 +39,6 @@
                             <thead>
                                 <tr>
                                     <th>#SL</th>
-                                    <th>Department ID</th>
                                     <th>Department Name</th>
                                     <th>Department Description</th>
                                     <th>Action</th>

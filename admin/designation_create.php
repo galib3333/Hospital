@@ -31,12 +31,7 @@
                 <form class="form-horizontal" action="" method="post">
                     <div class="card-body">
                         <h4 class="card-title">Designation Information</h4>
-                        <div class="form-group row">
-                            <label for="designation_id" class="col-sm-3 text-end control-label col-form-label">Designation ID</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="designation_id" name="designation_id">
-                            </div>
-                        </div>
+                        
                         <div class="form-group row">
                             <label for="desig_name" class="col-sm-3 text-end control-label col-form-label">Designation Name</label>
                             <div class="col-sm-9">

@@ -1,5 +1,5 @@
 <?php include_once('include/header.php'); ?>
-<link href="<?= $base_url?>assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+<link href="<?= $base_url?>../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
 <?php include_once('include/sidebar.php'); ?>
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
@@ -39,7 +39,6 @@
                             <thead>
                                 <tr>
                                     <th>#SL</th>
-                                    <th>Designation ID</th>
                                     <th>Designation Name</th>
                                     <th>Designation Description</th>
                                     <th>Action</th>
@@ -53,7 +52,6 @@
                                 ?>
                                     <tr>
                                         <td><?= $d->id ?></td>
-                                        <td><?= $d->designation_id ?></td>
                                         <td><?= $d->desig_name ?></td>
                                         <td><?= $d->desig_des ?></td>
                                         <td>
@@ -86,7 +84,7 @@
             
 <?php include_once('include/footer.php'); ?>
 <!-- this page js -->
-<script src="<?= $base_url?>assets/extra-libs/DataTables/datatables.min.js"></script>
+<script src="<?= $base_url?>../assets/extra-libs/DataTables/datatables.min.js"></script>
 <script>
     /****************************************
      *       Basic Table                   *
