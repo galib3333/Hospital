@@ -31,24 +31,14 @@
                 <form class="form-horizontal" action="" method="post">
                     <div class="card-body">
                         <h4 class="card-title">Patient's Information</h4>
+                        
                         <div class="form-group row">
-                            <label for="patient_id" class="col-sm-3 text-end control-label col-form-label">Patient's ID :</label>
+                            <label for="name" class="col-sm-3 text-end control-label col-form-label"> Name :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="patient_id" name="patient_id">
+                                <input type="text" class="form-control" id="name" name="name">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="first_name" class="col-sm-3 text-end control-label col-form-label">First Name :</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="first_name" name="first_name">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="last_name" class="col-sm-3 text-end control-label col-form-label">Last Name :</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="last_name" name="last_name">
-                            </div>
-                        </div>
+                       
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 text-end control-label col-form-label">Email :</label>
                             <div class="col-sm-9">
@@ -84,15 +74,15 @@
                             <label for="sex" class="col-sm-3 text-end control-label col-form-label">Gender :</label>
                             <div class="col-sm-9">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="sex" id="male" value="male">
+                                    <input class="form-check-input" type="radio" name="sex" id="male" value="Male">
                                     <label class="form-check-label" for="male">Male</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="sex" id="female" value="female">
+                                    <input class="form-check-input" type="radio" name="sex" id="female" value="Female">
                                     <label class="form-check-label" for="female">Female</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="sex" id="other" value="other">
+                                    <input class="form-check-input" type="radio" name="sex" id="other" value="Others">
                                     <label class="form-check-label" for="other">Others</label>
                                 </div>
                             </div>

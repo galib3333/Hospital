@@ -31,9 +31,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Appointment List
-                        <a class="btn btn-primary btn-xs float-end" href="<?= $base_url?>room_create.php">Add New</a>
-                    </h5>
+                   
                     <div class="table-responsive">
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
@@ -59,8 +57,8 @@
                                         <td><?= $d->app_time ?></td>
                                         <td><?= $d->symptoms ?></td>
                                         <td>
-                                            <a title="Update" href="room_edit.php?id=<?= $d->id ?>">
-                                                <i class="fa fa-edit"></i>
+                                            <a title="Update" href="appointment_add.php?id=<?= $d->id ?>">
+                                                <i class="fa fa-check"></i>
                                             </a>
                                             
                                         </td>

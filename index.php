@@ -77,7 +77,7 @@
                         <input name="contact_no" type="tel"id="contact"class="form-control"
                         placeholder="123"required>
                     </div>
-                </div>
+                  </div>
                 <!---->
                 <div class="form-group row">
                     <label class="col-sm-4 col-lg-4">
