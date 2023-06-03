@@ -49,19 +49,19 @@
                             </thead>
                             <tbody>
                             <?php
-                                $data=$mysqli->common_select('appointment_request');
+                                $data=$mysqli->common_select('appointment');
                                 if(!$data['error']){
                                     foreach($data['data'] as $d){
                                 ?>
                                     <tr>
                                         <td><?= $d->patient_name ?></td>
-                                        <td><?= $d->contact_no ?></td>
+                                        <td><?= $d->contact ?></td>
                                         <td><?= $d->app_date ?></td>
                                         <td><?= $d->app_time ?></td>
                                         <td><?= $d->symptoms ?></td>
-                                        <td><?= $d->serial_no ?></td>
+                                        <td><?= $d->serial ?></td>
                                         <td><?= $d->doctor_name ?></td>
-                                        <td><?= $d->problems ?></td>
+                                        <td><?= $d->problem ?></td>
 
                                         <td>
                                             <a title="Update" href="appointment_add.php?id=<?= $d->id ?>">
