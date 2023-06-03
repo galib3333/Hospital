@@ -61,7 +61,7 @@
                                         <td><?= $d->symptoms ?></td>
                                         <td><?= $d->serial ?></td>
                                         <td><?= $d->doctor_name ?></td>
-                                        <td><?= $d->problem ?></td>
+                                        <td><?= $d->Problem ?></td>
 
                                         <td>
                                             <a title="Update" href="appointment_add.php?id=<?= $d->id ?>">
