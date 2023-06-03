@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2023 at 05:16 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Jun 03, 2023 at 05:54 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,6 +41,32 @@ CREATE TABLE `appointment` (
   `created_by` int(11) NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `appointment_request`
+--
+
+CREATE TABLE `appointment_request` (
+  `id` int(11) NOT NULL,
+  `patient_name` varchar(255) DEFAULT NULL,
+  `contact_no` varchar(255) DEFAULT NULL,
+  `app_date` date DEFAULT NULL,
+  `app_time` time DEFAULT NULL,
+  `symptoms` text DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `appointment_request`
+--
+
+INSERT INTO `appointment_request` (`id`, `patient_name`, `contact_no`, `app_date`, `app_time`, `symptoms`, `created_at`, `updated_by`, `updated_at`, `deleted_at`) VALUES
+(1, 'Kamal Uddin', '01689754152', '2023-06-09', '12:00:00', 'aksjdhf', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -82,9 +108,8 @@ CREATE TABLE `departments` (
 --
 
 INSERT INTO `departments` (`id`, `dep_name`, `dep_des`, `deleted_at`) VALUES
-(1, 'Cardiology', 'dfgdfgdfg', NULL),
-(2, 'Cardiology', 'sdfsdf', NULL),
-(3, 'Cardio', 'bvgbjhnmvgb', NULL);
+(1, 'Cardiology', 'ghfdghfdghfgh', NULL),
+(2, 'Cardiology', 'sdfsadfasdf', NULL);
 
 -- --------------------------------------------------------
 
@@ -104,7 +129,7 @@ CREATE TABLE `designations` (
 --
 
 INSERT INTO `designations` (`id`, `desig_name`, `desig_des`, `deleted_at`) VALUES
-(1, 'General Physician', 'fdghdfghdfgh', NULL);
+(1, 'lol', 'fghfghfgh', NULL);
 
 -- --------------------------------------------------------
 
@@ -116,8 +141,8 @@ CREATE TABLE `doctors` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `designation_name` varchar(255) DEFAULT NULL,
-  `department_name` varchar(255) DEFAULT NULL,
+  `designation_id` int(11) DEFAULT NULL,
+  `department_id` int(11) DEFAULT NULL,
   `specialist` varchar(255) DEFAULT NULL,
   `education` varchar(255) DEFAULT NULL,
   `fees` decimal(10,2) DEFAULT NULL,
@@ -132,8 +157,8 @@ CREATE TABLE `doctors` (
 -- Dumping data for table `doctors`
 --
 
-INSERT INTO `doctors` (`id`, `name`, `email`, `designation_name`, `department_name`, `specialist`, `education`, `fees`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
-(1, 'Rabib Hasan', 'rabib@gmail.com', '1', '1', 'Cardiology', 'MBBS, MD', 1000.00, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `doctors` (`id`, `name`, `email`, `designation_id`, `department_id`, `specialist`, `education`, `fees`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
+(1, 'Kamal Uddin', 'kamal@yahoo.com', 1, 2, 'asdf', 'asdf', '300.00', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -274,7 +299,7 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`id`, `room_no`, `room_type`, `capacity`, `room_rent`, `created_at`, `created_by`, `deleted_at`, `updated_at`, `updated_by`) VALUES
-(1, '001', 'AC Word', 4, 500.00, '0000-00-00 00:00:00', NULL, NULL, NULL, NULL);
+(1, '001', 'AC Word', 4, '500.00', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -315,6 +340,12 @@ ALTER TABLE `appointment`
   ADD PRIMARY KEY (`app_id`);
 
 --
+-- Indexes for table `appointment_request`
+--
+ALTER TABLE `appointment_request`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `bill`
 --
 ALTER TABLE `bill`
@@ -337,8 +368,8 @@ ALTER TABLE `designations`
 --
 ALTER TABLE `doctors`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `designation_id` (`designation_name`),
-  ADD KEY `department_id` (`department_name`);
+  ADD KEY `designation_id` (`designation_id`),
+  ADD KEY `department_id` (`department_id`);
 
 --
 -- Indexes for table `patients`
@@ -394,6 +425,12 @@ ALTER TABLE `appointment`
   MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `appointment_request`
+--
+ALTER TABLE `appointment_request`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
@@ -403,7 +440,7 @@ ALTER TABLE `bill`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `designations`
