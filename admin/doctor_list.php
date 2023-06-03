@@ -41,8 +41,8 @@
                                     <th>#SL</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Department ID</th>
-                                    <th>Designation ID</th>
+                                    <th>Department Name</th>
+                                    <th>Designation Name</th>
                                     <th>Specialist</th>
                                     <th>Education</th>
                                     <th>Fees</th>
