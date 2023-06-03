@@ -33,7 +33,7 @@
                 }
                 
             }else{
-                $error=$this->connection->error();
+                $error=$this->connection->error;
             }
             $return = array('data'=>$result,'error'=>$error);
             return $return;
@@ -62,7 +62,7 @@
                 }
                 
             }else{
-                $error=$this->connection->error();
+                $error=$this->connection->error;
             }
             $return = array('data'=>$result,'error'=>$error);
             return $return;
@@ -82,7 +82,7 @@
             if($rs){
                 $result=$this->connection->insert_id;
             }else{
-                $error=$this->connection->error();
+                $error=$this->connection->error;
             }
             $return = array('data'=>$result,'error'=>$error);
             return $return;
@@ -111,7 +111,7 @@
             if($rs){
                 $result=$this->connection->affected_rows;
             }else{
-                $error=$this->connection->error();
+                $error=$this->connection->error;
             }
             $return = array('data'=>$result,'error'=>$error);
             return $return;
@@ -134,7 +134,7 @@
             if($rs){
                 $result=$this->connection->affected_rows;
             }else{
-                $error=$this->connection->error();
+                $error=$this->connection->error;
             }
             $return = array('data'=>$result,'error'=>$error);
             return $return;
@@ -152,7 +152,7 @@
                 }
                 
             }else{
-                $error=$this->connection->error();
+                $error=$this->connection->error;
             }
             $return = array('data'=>$result,'error'=>$error);
             return $return;
