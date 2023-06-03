@@ -46,7 +46,7 @@
                         <div class="form-group row">
                         <label for="department_id" class="col-sm-3 text-end control-label col-form-label">Department:</label>
                             <div class="col-sm-9">
-                                <select class="form-control" id="department_id" name="department_id">
+                                <select class="form-control" id="department_name" name="department_name">
                                     <?php
                                         $data=$mysqli->common_select('departments');
                                         if(!$data['error']){
@@ -60,7 +60,7 @@
                         <div class="form-group row">
                         <label for="designation_id" class="col-sm-3 text-end control-label col-form-label">Designation:</label>
                             <div class="col-sm-9">
-                                <select class="form-control" id="designation_id" name="designation_id">
+                                <select class="form-control" id="designation_name" name="designation_name">
                                 <?php
                                         $data=$mysqli->common_select('designations');
                                         if(!$data['error']){
