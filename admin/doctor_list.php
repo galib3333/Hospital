@@ -41,8 +41,8 @@
                                     <th>#SL</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Department ID</th>
-                                    <th>Designation ID</th>
+                                    <th>Department Name</th>
+                                    <th>Designation Name</th>
                                     <th>Specialist</th>
                                     <th>Education</th>
                                     <th>Fees</th>
@@ -59,8 +59,8 @@
                                         <td><?= $d->id ?></td>
                                         <td><?= $d->name ?></td>
                                         <td><?= $d->email ?></td>
-                                        <td><?= $d->department_id ?></td>
-                                        <td><?= $d->designation_id ?></td>
+                                        <td><?= $d->department_name?></td>
+                                        <td><?= $d->designation_name?></td>
                                         <td><?= $d->specialist ?></td>
                                         <td><?= $d->education ?></td>
                                         <td><?= $d->fees ?></td>
