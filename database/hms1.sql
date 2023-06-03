@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2023 at 05:54 AM
+-- Generation Time: Jun 03, 2023 at 09:42 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -28,10 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `appointment` (
-  `app_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `patient_id` int(11) NOT NULL,
-  `employ_id` int(11) NOT NULL,
+  `doctor_id` int(11) NOT NULL,
   `app_date` date NOT NULL,
+  `app_time` time DEFAULT NULL,
   `serial` varchar(255) NOT NULL,
   `problem` text NOT NULL,
   `approve` int(11) NOT NULL,
@@ -41,6 +42,13 @@ CREATE TABLE `appointment` (
   `created_by` int(11) NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`id`, `patient_id`, `doctor_id`, `app_date`, `app_time`, `serial`, `problem`, `approve`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
+(1, 2, 1, '2023-06-09', '12:00:00', '', 'asdfasdfasdfasdfasdf', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '2023-06-03 09:38:19');
 
 -- --------------------------------------------------------
 
@@ -66,7 +74,14 @@ CREATE TABLE `appointment_request` (
 --
 
 INSERT INTO `appointment_request` (`id`, `patient_name`, `contact_no`, `app_date`, `app_time`, `symptoms`, `created_at`, `updated_by`, `updated_at`, `deleted_at`) VALUES
-(1, 'Kamal Uddin', '01689754152', '2023-06-09', '12:00:00', 'aksjdhf', NULL, NULL, NULL, NULL);
+(1, 'Kamal Uddin', '01689754152', '2023-06-09', '12:00:00', 'aksjdhf', NULL, NULL, NULL, NULL),
+(2, 'asdf', '02045451', '2023-06-03', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
+(3, 'asdf', '02045451', '2023-06-03', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
+(4, 'sadf', '02045451', '0000-00-00', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
+(5, 'Kamal Uddin', '02045451', '2023-06-03', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
+(6, 'Kamal Uddin', 'asdf', '2023-06-09', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
+(7, 'Kamal Uddin', '02045451', '0000-00-00', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
+(8, 'asdf', '02045451', '0000-00-00', '00:00:00', 'asdf', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -168,29 +183,28 @@ INSERT INTO `doctors` (`id`, `name`, `email`, `designation_id`, `department_id`,
 
 CREATE TABLE `patients` (
   `id` int(11) NOT NULL,
-  `patient_id` varchar(100) NOT NULL,
-  `first_name` varchar(100) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `phone` varchar(30) NOT NULL,
-  `present_address` text NOT NULL,
-  `permanent_address` text NOT NULL,
-  `birth_date` date NOT NULL,
-  `sex` varchar(20) NOT NULL,
-  `blood_id` int(11) NOT NULL,
-  `updated_by` int(11) NOT NULL,
-  `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `created_at` datetime NOT NULL
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `phone` varchar(30) DEFAULT NULL,
+  `present_address` text DEFAULT NULL,
+  `permanent_address` text DEFAULT NULL,
+  `birth_date` date DEFAULT NULL,
+  `sex` varchar(20) DEFAULT NULL,
+  `blood_id` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `patients`
 --
 
-INSERT INTO `patients` (`id`, `patient_id`, `first_name`, `last_name`, `email`, `phone`, `present_address`, `permanent_address`, `birth_date`, `sex`, `blood_id`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
-(1, '', 'jamal', 'uddin', '', 'asdf', 'asdf', 'asdf', '0000-00-00', 'on', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00');
+INSERT INTO `patients` (`id`, `name`, `email`, `phone`, `present_address`, `permanent_address`, `birth_date`, `sex`, `blood_id`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
+(1, 'uddin', '', '015', 'asdf', 'asdf', '0000-00-00', 'on', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
+(2, 'Kamal Uddin', '', '01689754152', '', '', '0000-00-00', '', NULL, NULL, NULL, NULL, NULL, '2023-06-03 09:38:19');
 
 -- --------------------------------------------------------
 
@@ -337,7 +351,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `contact_no`, `password`, `image`, `
 -- Indexes for table `appointment`
 --
 ALTER TABLE `appointment`
-  ADD PRIMARY KEY (`app_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `appointment_request`
@@ -422,13 +436,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `appointment_request`
 --
 ALTER TABLE `appointment_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `bill`
@@ -458,7 +472,7 @@ ALTER TABLE `doctors`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `payment`
