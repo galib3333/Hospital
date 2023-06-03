@@ -81,28 +81,23 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                        <label for="sex" class="col-sm-3 text-end control-label col-form-label">Gender :</label>
+                            <label for="sex" class="col-sm-3 text-end control-label col-form-label">Gender :</label>
                             <div class="col-sm-9">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="sex">
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    Male
-                                </label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sex" id="male" value="male">
+                                    <label class="form-check-label" for="male">Male</label>
                                 </div>
                                 <div class="form-check">
-                                <input class="form-check-input" type="radio" name="sex">
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                   Female
-                                </label>
+                                    <input class="form-check-input" type="radio" name="sex" id="female" value="female">
+                                    <label class="form-check-label" for="female">Female</label>
                                 </div>
                                 <div class="form-check">
-                                <input class="form-check-input" type="radio" name="sex">
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                   Others
-                                </label>
+                                    <input class="form-check-input" type="radio" name="sex" id="other" value="other">
+                                    <label class="form-check-label" for="other">Others</label>
                                 </div>
                             </div>
                         </div>
+
                     <div class="border-top">
                         <div class="card-body">
                             <button type="submit" class="btn btn-primary">Submit</button>
