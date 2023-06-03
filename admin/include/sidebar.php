@@ -48,7 +48,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Appointment </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item">
-                                    <a href="patient_list.php" class="sidebar-link">
+                                    <a href="appointment_list.php" class="sidebar-link">
                                         <span class="hide-menu"> Appointment</span>
                                     </a>
                                 </li>

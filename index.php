@@ -56,7 +56,7 @@
       <div class="row">
           <div class="col-md-6">
               <h2 class="text-center my-4">
-                  Find Consultations
+                 Appointment
               </h2>
               <form method="post" action="">
                   <div class="form-group row">
