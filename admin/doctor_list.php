@@ -51,7 +51,11 @@
                             </thead>
                             <tbody>
                             <?php
-                                $data=$mysqli->common_select('doctors');
+                                $data=$mysqli->common_select_query('SELECT doctors.*,departments.dep_name,designations.desig_name FROM `doctors`
+                                join designations on designations.id=doctors.designation_id
+                                join departments on departments.id=doctors.department_id
+                                where doctors.deleted_at is null
+                                ');
                                 if(!$data['error']){
                                     foreach($data['data'] as $d){
                                 ?>
@@ -59,8 +63,8 @@
                                         <td><?= $d->id ?></td>
                                         <td><?= $d->name ?></td>
                                         <td><?= $d->email ?></td>
-                                        <td><?= $d->department_id?></td>
-                                        <td><?= $d->designation_id?></td>
+                                        <td><?= $d->dep_name?></td>
+                                        <td><?= $d->desig_name?></td>
                                         <td><?= $d->specialist ?></td>
                                         <td><?= $d->education ?></td>
                                         <td><?= $d->fees ?></td>
