@@ -55,15 +55,31 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="department_id" class="col-sm-3 text-end control-label col-form-label">Department :</label>
+                        <label for="department_id" class="col-sm-3 text-end control-label col-form-label">Department:</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="department_id" name="department_id">
+                                <select class="form-control" id="department_id" name="department_id">
+                                    <?php
+                                        $data=$mysqli->common_select('departments');
+                                        if(!$data['error']){
+                                            foreach($data['data'] as $d){
+                                    ?>
+                                        <option value="<?= $d->id ?>"><?= $d->dep_name ?></option>
+                                    <?php } } ?>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="designation_id" class="col-sm-3 text-end control-label col-form-label">Designation :</label>
+                        <label for="designation_id" class="col-sm-3 text-end control-label col-form-label">Designation:</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="designation_id" name="designation_id">
+                                <select class="form-control" id="designation_id" name="designation_id">
+                                <?php
+                                        $data=$mysqli->common_select('designations');
+                                        if(!$data['error']){
+                                            foreach($data['data'] as $d){
+                                    ?>
+                                        <option value="<?= $d->id ?>"><?= $d->desig_name ?></option>
+                                    <?php } } ?>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
