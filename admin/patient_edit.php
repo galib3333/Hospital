@@ -6,12 +6,12 @@
 <div class="page-breadcrumb">
     <div class="row">
         <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Doctors</h4>
+            <h4 class="page-title">Patients</h4>
             <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#<?= $base_url?>dashboard.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Doc's info Update</li>
+                        <li class="breadcrumb-item active" aria-current="page">Patient's info Update</li>
                     </ol>
                 </nav>
             </div>
@@ -43,48 +43,60 @@
                     <div class="card-body">
                         <h4 class="card-title">Patient's Information</h4>
                         <div class="form-group row">
-                            <label for="name" class="col-sm-3 text-end control-label col-form-label">Name :</label>
+                            <label for="name" class="col-sm-3 text-end control-label col-form-label"> Name :</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="name" name="name">
                             </div>
                         </div>
+                       
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 text-end control-label col-form-label">Email :</label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <input type="email" class="form-control" id="email" name="email">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="department" class="col-sm-3 text-end control-label col-form-label">Department :</label>
+                            <label for="phone" class="col-sm-3 text-end control-label col-form-label">Phone :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="department" name="department">
+                                <input type="text" class="form-control" id="phone" name="phone">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="designation" class="col-sm-3 text-end control-label col-form-label">Designation :</label>
+                            <label for="present_address" class="col-sm-3 text-end control-label col-form-label">Present Address :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="designation" name="designation">
+                                <input type="text" class="form-control" id="present_address" name="present_address">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="specialist" class="col-sm-3 text-end control-label col-form-label">Specialist :</label>
+                            <label for="permanent_address" class="col-sm-3 text-end control-label col-form-label">Permanent Address :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="specialist" name="specialist">
+                                <input type="text" class="form-control" id="permanent_address" name="permanent_address">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="birth_date" class="col-sm-3 text-end control-label col-form-label">Date of Birth :</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" id="birth_date" name="birth_date">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="education" class="col-sm-3 text-end control-label col-form-label">Education :</label>
+                            <label for="sex" class="col-sm-3 text-end control-label col-form-label">Gender :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="education" name="education">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sex" id="male" value="Male">
+                                    <label class="form-check-label" for="male">Male</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sex" id="female" value="Female">
+                                    <label class="form-check-label" for="female">Female</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="sex" id="other" value="Others">
+                                    <label class="form-check-label" for="other">Others</label>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="fees" class="col-sm-3 text-end control-label col-form-label">Fees :</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="fees" name="fees">
-                            </div>
-                        </div>
-                    </div>
                     <div class="border-top">
                         <div class="card-body">
                             <button type="submit" class="btn btn-primary">Submit</button>
