@@ -66,6 +66,11 @@
                                         <span class="hide-menu"> Room</span>
                                     </a>
                                 </li>
+                                <li class="sidebar-item">
+                                    <a href="test_list.php" class="sidebar-link">
+                                        <span class="hide-menu">Test</span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
