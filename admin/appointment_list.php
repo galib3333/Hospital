@@ -59,7 +59,7 @@
                                         <td><?= $d->app_date ?></td>
                                         <td><?= $d->app_time ?></td>
                                         <td><?= $d->symptoms ?></td>
-                                        <td><?= $d->serial_no ?></td>
+                                        <td><?= $d->serial ?></td>
                                         <td><?= $d->doctor_name ?></td>
                                         <td><?= $d->problems ?></td>
 
