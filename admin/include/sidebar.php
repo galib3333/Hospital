@@ -49,7 +49,7 @@
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item">
                                     <a href="appointment_rsv_list.php" class="sidebar-link">
-                                        <span class="hide-menu">Requist Appointment</span>
+                                        <span class="hide-menu">Request Appointment</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">
