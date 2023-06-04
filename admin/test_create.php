@@ -40,7 +40,7 @@
                         <div class="form-group row">
                             <label for="description" class="col-sm-3 text-end control-label col-form-label">Description :</label>
                             <div class="col-sm-9">
-                                <textarea name="desig_des" id="desig_des" cols="30" rows="10" class="form-control"></textarea>
+                                <textarea name="description" id="desig_des" cols="30" rows="10" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
