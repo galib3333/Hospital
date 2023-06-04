@@ -39,9 +39,7 @@
                             <thead>
                                 <tr>
                                     <th>#SL</th>
-                                    <th>Patient's ID</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
+                                    <th> Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Present Address</th>
@@ -59,9 +57,7 @@
                                 ?>
                                     <tr>
                                         <td><?= $d->id ?></td>
-                                        <td><?= $d->patient_id ?></td>
-                                        <td><?= $d->first_name ?></td>
-                                        <td><?= $d->last_name ?></td>
+                                        <td><?= $d->name ?></td>
                                         <td><?= $d->email ?></td>
                                         <td><?= $d->phone ?></td>
                                         <td><?= $d->present_address ?></td>

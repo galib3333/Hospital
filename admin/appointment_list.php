@@ -36,36 +36,42 @@
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Patient Name</th>
+                                    <th>Patient</th>
+                                    <th>Gender</th>
                                     <th>Contact</th>
                                     <th>Date</th>
                                     <th>Time</th>
                                     <th>Symptoms</th>
                                     <th>Serial No </th>
                                     <th>Doctor Name</th>
-                                    <th>Problems</th>
-                                    
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                             <?php
-                                $data=$mysqli->common_select('appointment');
+                                $data=$mysqli->common_select_query("SELECT patients.name, patients.phone,patients.sex,doctors.name as doc, departments.dep_name,appointment.* FROM `appointment` 
+                                join patients on patients.id=appointment.patient_id
+                                join doctors on doctors.id=appointment.doctor_id
+                                join departments on departments.id=doctors.department_id
+                                WHERE appointment.deleted_at is null");
                                 if(!$data['error']){
                                     foreach($data['data'] as $d){
                                 ?>
                                     <tr>
-                                        <td><?= $d->patient_name ?></td>
-                                        <td><?= $d->contact ?></td>
+                                        <td><?= $d->name ?></td>
+                                        <td><?= $d->sex ?></td>
+                                        <td><?= $d->phone ?></td>
                                         <td><?= $d->app_date ?></td>
                                         <td><?= $d->app_time ?></td>
-                                        <td><?= $d->symptoms ?></td>
+                                        <td><?= $d->problem ?></td>
                                         <td><?= $d->serial ?></td>
-                                        <td><?= $d->doctor_name ?></td>
-                                        <td><?= $d->Problem ?></td>
-
+                                        <td><?= $d->doc ?> (<?= $d->dep_name ?>)</td>
                                         <td>
-                                            <a title="Update" href="appointment_add.php?id=<?= $d->id ?>">
-                                                <i class="fa fa-check"></i>
+                                            <a title="Update" href="appointment_edit.php?id=<?= $d->id ?>">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a title="Update" class="text-danger" href="appointment_delete.php?id=<?= $d->id ?>">
+                                                <i class="fa fa-trash"></i>
                                             </a>
                                             
                                         </td>

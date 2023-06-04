@@ -57,10 +57,12 @@
                                         <td><?= $d->app_time ?></td>
                                         <td><?= $d->symptoms ?></td>
                                         <td>
-                                            <a title="Update" href="appointment_add.php?id=<?= $d->id ?>">
+                                            <a title="Accept" href="appointment_accept.php?id=<?= $d->id ?>">
                                                 <i class="fa fa-check"></i>
                                             </a>
-                                            
+                                            <a title="Delete" class="text-danger" href="appointment_rsv_delete.php?id=<?= $d->id ?>">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 <?php

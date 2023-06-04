@@ -117,7 +117,7 @@
                         <div class="form-group row">
                             <label for="serial" class="col-sm-3 text-end control-label col-form-label">SL :</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" id="serial" name="serial"><?= $d->serial ?></textarea>
+                                <textarea class="form-control" id="serial" name="serial"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -165,6 +165,7 @@
                                 $appdata['problem']=$_POST['problem'];
                                 $appdata['created_at']=date('Y-m-d H:i:s');
                                 $rs=$mysqli->common_create('appointment',$appdata);
+                                $mysqli->common_delete('appointment_request',$where);
                             echo "<script>window.location='appointment_list.php'</script>";
                             }else{
                                 echo $rs['error'];
