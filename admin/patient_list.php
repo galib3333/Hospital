@@ -66,12 +66,15 @@
                                         <td><?= $d->birth_date ?></td>
                                         <td><?= ($d->sex == 'male') ? 'Male' : (($d->sex == 'female') ? 'Female' : 'Other') ?></td>
                                         <td>
-                                        <a title="Update" href="patient_edit.php?id=<?= $d->id ?>">
-                                            <i class="fa fa-edit"></i>
-                                        </a>
-                                        <a title="Delete" class="text-danger" href="patient_delete.php?id=<?= $d->id ?>">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
+                                            <a title="Prescription" href="prescription_list.php?id=<?= $d->id ?>">
+                                                <i class="fa fa-list"></i>
+                                            </a>
+                                            <a title="Update" href="patient_edit.php?id=<?= $d->id ?>">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a title="Delete" class="text-danger" href="patient_delete.php?id=<?= $d->id ?>">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 <?php

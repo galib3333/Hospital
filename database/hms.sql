@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2023 at 09:42 AM
+-- Generation Time: Jun 05, 2023 at 07:01 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -144,7 +144,7 @@ CREATE TABLE `designations` (
 --
 
 INSERT INTO `designations` (`id`, `desig_name`, `desig_des`, `deleted_at`) VALUES
-(1, 'lol', 'fghfghfgh', NULL);
+(1, 'General Physician', 'rtyretyrtyre', NULL);
 
 -- --------------------------------------------------------
 
@@ -258,11 +258,69 @@ CREATE TABLE `p_admit` (
 --
 
 CREATE TABLE `p_medicine` (
-  `pres_medi_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `prescription_id` int(11) NOT NULL,
-  `medicine_cat_id` int(11) NOT NULL,
-  `medicine_name` varchar(255) NOT NULL,
-  `dose` varchar(255) DEFAULT NULL,
+  `medicine_name` varchar(255) DEFAULT NULL,
+  `advice` varchar(255) DEFAULT NULL,
+  `before_after` varchar(255) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `p_medicine`
+--
+
+INSERT INTO `p_medicine` (`id`, `prescription_id`, `medicine_name`, `advice`, `before_after`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
+(1, 1, 'Napa 500', '1+0+1', 'After', NULL, NULL, NULL, NULL, NULL),
+(2, 1, 'Max-pro 20', '1+0+1', 'Before', NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `p_prescription`
+--
+
+CREATE TABLE `p_prescription` (
+  `id` int(11) NOT NULL,
+  `doctor_id` int(11) NOT NULL,
+  `patient_id` int(11) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `weight` int(11) DEFAULT NULL,
+  `inv` text DEFAULT NULL,
+  `cc` varchar(255) DEFAULT NULL,
+  `advice` varchar(255) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `p_prescription`
+--
+
+INSERT INTO `p_prescription` (`id`, `doctor_id`, `patient_id`, `age`, `weight`, `inv`, `cc`, `advice`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
+(1, 1, 2, 26, 60, '', 'asdf', 'asdf', NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `p_test`
+--
+
+CREATE TABLE `p_test` (
+  `id` int(11) NOT NULL,
+  `patient_id` int(11) NOT NULL,
+  `sub_total` decimal(10,2) DEFAULT NULL,
+  `discount` decimal(10,2) DEFAULT NULL,
+  `total` decimal(10,2) DEFAULT NULL,
+  `bill_date` datetime DEFAULT NULL,
+  `Due` decimal(10,2) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
@@ -273,20 +331,19 @@ CREATE TABLE `p_medicine` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `p_prescription`
+-- Table structure for table `p_test_des`
 --
 
-CREATE TABLE `p_prescription` (
-  `prescription_id` int(11) NOT NULL,
-  `patient_id` int(11) NOT NULL,
-  `cc` varchar(255) NOT NULL,
-  `inv_id` int(11) NOT NULL,
-  `advice` varchar(255) NOT NULL,
-  `updated_by` int(11) NOT NULL,
-  `updated_at` datetime NOT NULL,
-  `deleted_at` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `created_at` datetime NOT NULL
+CREATE TABLE `p_test_des` (
+  `id` int(11) NOT NULL,
+  `p_test_id` int(11) NOT NULL,
+  `test_id` int(11) NOT NULL,
+  `Amount` decimal(10,2) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -314,6 +371,32 @@ CREATE TABLE `room` (
 
 INSERT INTO `room` (`id`, `room_no`, `room_type`, `capacity`, `room_rent`, `created_at`, `created_by`, `deleted_at`, `updated_at`, `updated_by`) VALUES
 (1, '001', 'AC Word', 4, '500.00', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `test`
+--
+
+CREATE TABLE `test` (
+  `id` int(11) NOT NULL,
+  `test_name` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `test`
+--
+
+INSERT INTO `test` (`id`, `test_name`, `description`, `price`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
+(1, 'Blood Test', 'Available', '500.00', NULL, NULL, NULL, NULL, NULL),
+(2, 'Blood Test', 'Avail', '3000.00', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -407,18 +490,36 @@ ALTER TABLE `p_admit`
 -- Indexes for table `p_medicine`
 --
 ALTER TABLE `p_medicine`
-  ADD PRIMARY KEY (`pres_medi_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `p_prescription`
 --
 ALTER TABLE `p_prescription`
-  ADD PRIMARY KEY (`prescription_id`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `p_test`
+--
+ALTER TABLE `p_test`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `p_test_des`
+--
+ALTER TABLE `p_test_des`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `room`
 --
 ALTER TABLE `room`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `test`
+--
+ALTER TABLE `test`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -490,19 +591,37 @@ ALTER TABLE `p_admit`
 -- AUTO_INCREMENT for table `p_medicine`
 --
 ALTER TABLE `p_medicine`
-  MODIFY `pres_medi_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `p_prescription`
 --
 ALTER TABLE `p_prescription`
-  MODIFY `prescription_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `p_test`
+--
+ALTER TABLE `p_test`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `p_test_des`
+--
+ALTER TABLE `p_test_des`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `test`
+--
+ALTER TABLE `test`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
