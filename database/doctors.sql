@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2023 at 05:19 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Jun 05, 2023 at 08:42 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,12 +48,12 @@ CREATE TABLE `doctors` (
 --
 
 INSERT INTO `doctors` (`id`, `name`, `email`, `designation_id`, `department_id`, `specialist`, `education`, `fees`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
-(1, 'Dr. Murad', 'murad@gamil.com', 4, 3, 'teeth', 'MBBS', '700.00', NULL, NULL, NULL, NULL, NULL),
-(2, 'Dr. Harun', 'harunn@gmail.com', 1, 1, 'oncology', 'MBBS', '800.00', NULL, NULL, '2023-06-04 16:13:36', NULL, NULL),
-(3, 'Dr. shila', 'shilla@gmail.com', 1, 5, 'cancer', 'MBBS', '1000.00', NULL, NULL, NULL, NULL, NULL),
-(4, 'Chamak hasan', 'chamak@gmail.com', 5, 4, 'eyes', 'MBBS', '600.00', NULL, NULL, NULL, NULL, NULL),
-(5, 'Jamal khan', 'jamal@gamil.com', 3, 7, 'heart', 'MBBS', '800.00', NULL, NULL, NULL, NULL, NULL),
-(6, 'Dr. Marufa', 'marufa@gamil.com', 2, 6, 'gynecologic oncology', 'MBBS', '800.00', NULL, NULL, NULL, NULL, NULL);
+(1, 'Dr. Murad Hasan', 'murad@gamil.com', 1, 7, 'Cardiologist', 'MBBS, MD', 1000.00, NULL, NULL, NULL, NULL, NULL),
+(2, 'Dr. Harun', 'harunn@gmail.com', 1, 1, 'oncology', 'MBBS', 800.00, NULL, NULL, '2023-06-04 16:13:36', NULL, NULL),
+(3, 'Dr. Shila Rahman', 'shilla@gmail.com', 2, 3, 'Pediatrician', 'MBBS, MD', 500.00, NULL, NULL, NULL, NULL, NULL),
+(4, 'Dr. Chamak Hasan', 'chamak@gmail.com', 4, 4, 'Orthopedic Surgeon', 'MBBS, MD', 2000.00, NULL, NULL, NULL, NULL, NULL),
+(5, 'Dr. Jamal khan', 'jamal@gmail.com', 6, 8, 'Psychiatrist', 'MBBS, MD', 2000.00, NULL, NULL, NULL, NULL, NULL),
+(6, 'Dr. Marufa', 'marufa@gamil.com', 4, 6, 'Dermatologist', 'MBBS, MD', 1000.00, NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables

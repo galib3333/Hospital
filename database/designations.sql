@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2023 at 05:19 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Jun 05, 2023 at 08:42 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,11 +39,12 @@ CREATE TABLE `designations` (
 --
 
 INSERT INTO `designations` (`id`, `desig_name`, `desig_des`, `deleted_at`) VALUES
-(1, 'Oncology', 'Hematologist-oncologists', NULL),
-(2, 'Gynaecology', 'An obstetrician/gynecologist (OB/GYN)', NULL),
-(3, 'Cardiology', 'Physicians', NULL),
-(4, 'Dentist', 'The DDS (Doctor of Dental Surgery)', NULL),
-(5, 'Eye specialist', 'ophthalmologist', NULL);
+(1, 'Department Head', 'Head of Department', NULL),
+(2, 'Clinical Supervisor', 'Clinical Supervisor', NULL),
+(3, 'Attending Physician', 'Physician', NULL),
+(4, 'Chief Medical Officer (CMO)', 'Medical Officer', NULL),
+(5, 'Senior Consultant', 'Consultant', NULL),
+(6, 'Medical Superintendent', 'Medical Superintendent', NULL);
 
 --
 -- Indexes for dumped tables
@@ -63,7 +64,7 @@ ALTER TABLE `designations`
 -- AUTO_INCREMENT for table `designations`
 --
 ALTER TABLE `designations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
