@@ -64,10 +64,15 @@
                                         <td><?= $d->permanent_address
                                         ?></td>
                                         <td><?= $d->birth_date ?></td>
-                                        <td><?= ($d->sex == 'male') ? 'Male' : (($d->sex == 'female') ? 'Female' : 'Other') ?></td>
+                                        <td><?= ($d->sex == 'Male') ? 'Male' : (($d->sex == 'Female') ? 'Female' : 'Other') ?></td>
                                         <td>
                                             <a title="Prescription" href="prescription_list.php?id=<?= $d->id ?>">
                                                 <i class="fa fa-list"></i>
+                                            </a>
+                                            <a title="test" href="test_list.php?id=<?= $d->id ?>">
+                                                <a title="Test" href="test_list.php?id=<?= $d->id ?>">
+                                                <i class="fa fa-thermometer-three-quarters"></i>
+                                            </a>
                                             </a>
                                             <a title="Update" href="patient_edit.php?id=<?= $d->id ?>">
                                                 <i class="fa fa-edit"></i>
