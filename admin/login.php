@@ -49,7 +49,7 @@ session_start();
             <div class="auth-box bg-dark border-top border-secondary">
                 <div id="loginform">
                     <div class="text-center pt-3 pb-3">
-                        <span class="db"><img src="<?= $base_url ?>assets/images/logo.png" alt="logo" /></span>
+                        <span class="db"><img src="<?= $base_url ?>assets/images/logo1.png" alt="logo" /></span>
                     </div>
                     <!-- Form -->
                     <form class="form-horizontal mt-3" id="loginform" method="post" action="">
