@@ -84,15 +84,15 @@
                             <label for="sex" class="col-sm-3 text-end control-label col-form-label">Gender :</label>
                             <div class="col-sm-9">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="sex" id="male" value="Male" <?= ($d->sex ==='Male') ? 'checked' :'' ?>>
+                                    <input class="form-check-input" type="radio" name="sex" id="male" value="Male" <?= $d->sex ==='Male' ? 'checked' :'' ?>>
                                     <label class="form-check-label" for="male">Male</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="sex" id="female" value="Female" <?= ($d->sex ==='Female') ? 'checked' :'' ?>>
+                                    <input class="form-check-input" type="radio" name="sex" id="female" value="Female" <?= $d->sex ==='Female' ? 'checked' :'' ?>>
                                     <label class="form-check-label" for="female">Female</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="sex" id="others" value="Others" <?= ($d->sex ==='Others') ? 'checked' :'' ?>>
+                                    <input class="form-check-input" type="radio" name="sex" id="others" value="Others" <?= $d->sex ==='Others' ? 'checked' :'' ?>>
                                     <label class="form-check-label" for="others">Others</label>
                                 </div>
                             </div>
