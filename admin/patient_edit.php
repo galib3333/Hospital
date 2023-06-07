@@ -45,39 +45,39 @@
                         <div class="form-group row">
                             <label for="name" class="col-sm-3 text-end control-label col-form-label"> Name :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" value="<?= $d->name ?>" class="form-control" id="name" name="name">
                             </div>
                         </div>
                        
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 text-end control-label col-form-label">Email :</label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" id="email" name="email">
+                                <input type="email" value="<?= $d->email ?>" class="form-control" id="email" name="email">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="phone" class="col-sm-3 text-end control-label col-form-label">Phone :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="phone" name="phone">
+                                <input type="text" value="<?= $d->phone ?>" class="form-control" id="phone" name="phone">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="present_address" class="col-sm-3 text-end control-label col-form-label">Present Address :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="present_address" name="present_address">
+                                <input type="text" value="<?= $d->present_address ?>" class="form-control" id="present_address" name="present_address">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="permanent_address" class="col-sm-3 text-end control-label col-form-label">Permanent Address :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="permanent_address" name="permanent_address">
+                                <input type="text" value="<?= $d->present_address ?>" class="form-control" id="permanent_address" name="permanent_address">
                             </div>
                         </div>
                         
                         <div class="form-group row">
                             <label for="birth_date" class="col-sm-3 text-end control-label col-form-label">Date of Birth :</label>
                             <div class="col-sm-9">
-                                <input type="date" class="form-control" id="birth_date" name="birth_date">
+                                <input type="date" value="<?= $d->birth_date ?>" class="form-control" id="birth_date" name="birth_date">
                             </div>
                         </div>
                         <div class="form-group row">
