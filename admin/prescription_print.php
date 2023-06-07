@@ -16,6 +16,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    body{
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      
+    }
    h1{
     color: aqua;
    }
@@ -27,19 +31,31 @@
       padding: 10px;
      }
      .h1{
-      opacity:0.5;
+      opacity:0.2;
+     font-size: 80px;
+     transform: rotate(-30deg);
      }
-     footer{
-
+     strong{
+      padding:5%!important;
      }
      p{
-      padding:20px;
+      padding:1%;
       text-align: center;
       background-color: aqua;
      }
      .prescription{
       height: 300px;
      }
+     footer{
+      width: 100%;
+      background-color: aqua;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      
+     }
+    
+     
   </style>
 </head>
 <body>
@@ -53,16 +69,16 @@
     <div style="text-align: right;">
       <h3>Dr John Smith</h3>
       <strong>MBBS,FCPS</strong><hr>
-      <strong>Contact:01865850477</strong> <br>
+      <strong>Contact: 01865850477</strong> <br>
       <strong>info@email.com</strong><br>
       <strong>www.website.com</strong>
     </div>
   </section>
   <div class="border">
-     <strong>Name:....</strong>
-     <strong>Age:....</strong>
-     <strong>Gender:....</strong>
-     <strong>Date:....</strong>
+     <strong>Name :....</strong>
+     <strong>Age :....</strong>
+     <strong>Gender :....</strong>
+     <strong>Date :....</strong>
    </div>
    <div class="middle">
       <img src="Capture.PNG" alt="" width="100px">
@@ -76,5 +92,4 @@
    </footer>
 </body>
 </html>
-
 
