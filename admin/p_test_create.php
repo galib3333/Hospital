@@ -30,26 +30,7 @@
             <div class="card">
                 <form class="form-horizontal" method="post">
                     <div class="card-body">
-                    <?php
-                            // $data=$mysqli->common_select_query("SELECT patients.name as pati, p_test.* FROM `p_test` 
-                            // join patients on patient.id=p_test.patient_id
-                            // WHERE p_test.deleted_at is null and p_test.id=".$_GET['id']."");
-                            // if(!$data['error'])
-                            //     $pati=$data['data'][0];
-                            // else
-                            //     echo "<h2 class='text-danger text-center'>This url is not correct</h2>";
-
-                            $data = $mysqli->common_select_query("SELECT patients.name as pati, p_test.* FROM `p_test` 
-                            JOIN patients ON patients.id = p_test.patient_id
-                            WHERE p_test.deleted_at is null and p_test.id='" . $_GET['id'] . "'");
-
-                            if (!$data['error']) {
-                                $pati = $data['data'][0];
-                            } else {
-                                echo "<h2 class='text-danger text-center'>This URL is not correct</h2>";
-                            }
-
-                        ?>
+                    
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label for="name"> Patient Name :</label>
@@ -59,7 +40,7 @@
                                 if(!$data['error']){
                                     foreach($data['data'] as $d){
                                 ?>
-                                    <option <?= $d->id==$pati->patient_id?"selected":"" ?> value="<?= $d->id ?>"><?= $d->name ?></option>
+                                    <option value="<?= $d->id ?>"><?= $d->name ?></option>
                                 <?php } } ?>
                                 </select>
                             </div>
@@ -110,7 +91,6 @@
                         $pdata['inv']=$_POST['patiinvent_id'];
                         $pdata['cc']=$_POST['cc'];
                         $pdata['advice']=$_POST['advice'];
-                        $pdata['doctor_id']=$pati->doctor_id;
                         $pdata['created_at']=date('Y-m-d H:i:s');
                         $rs=$mysqli->common_create('p_prescription',$pdata);
                         if(!$rs['error']){

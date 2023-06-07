@@ -35,23 +35,22 @@
                  
                   if(!$data['error'] && count($data['data'])>0)
                     $d=$data['data'][0];
-                  else{
+                  else
                     echo "<h2 class='text-danger text-center'>This url is not correct</h2>";
                     
-                  }
                 ?>
                     <div class="card-body">
                         <h4 class="card-title">Doctor's Information</h4>
                         <div class="form-group row">
                             <label for="name" class="col-sm-3 text-end control-label col-form-label">Name :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" value="<?= $d->name ?>" class="form-control" id="name" name="name">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 text-end control-label col-form-label">Email :</label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <input type="email" value="<?= $d->email ?>" class="form-control" id="email" name="email" required>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -61,9 +60,9 @@
                                     <?php
                                         $data=$mysqli->common_select('departments');
                                         if(!$data['error']){
-                                            foreach($data['data'] as $d){
+                                            foreach($data['data'] as $dep){
                                     ?>
-                                        <option value="<?= $d->id ?>"><?= $d->dep_name ?></option>
+                                        <option <?= $d->department_id==$dep->id?"selected":"" ?> value="<?= $dep->id ?>"><?= $dep->dep_name ?></option>
                                     <?php } } ?>
                                 </select>
                             </div>
@@ -75,9 +74,9 @@
                                 <?php
                                         $data=$mysqli->common_select('designations');
                                         if(!$data['error']){
-                                            foreach($data['data'] as $d){
+                                            foreach($data['data'] as $des){
                                     ?>
-                                        <option value="<?= $d->id ?>"><?= $d->desig_name ?></option>
+                                        <option <?= $d->designation_id==$des->id?"selected":"" ?> value="<?= $des->id ?>"><?= $des->desig_name ?></option>
                                     <?php } } ?>
                                 </select>
                             </div>
@@ -85,19 +84,19 @@
                         <div class="form-group row">
                             <label for="specialist" class="col-sm-3 text-end control-label col-form-label">Specialist :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="specialist" name="specialist">
+                                <input type="text" value="<?= $d->specialist ?>" class="form-control" id="specialist" name="specialist">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="education" class="col-sm-3 text-end control-label col-form-label">Education :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="education" name="education">
+                                <input type="text" value="<?= $d->education ?>" class="form-control" id="education" name="education">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="fees" class="col-sm-3 text-end control-label col-form-label">Fees :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="fees" name="fees">
+                                <input type="text" value="<?= $d->fees ?>" class="form-control" id="fees" name="fees">
                             </div>
                         </div>
                     </div>
