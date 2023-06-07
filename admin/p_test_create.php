@@ -49,32 +49,56 @@
                        
                         <div class="form-group repeater">
                             <div data-repeater-list="test">
+                                    <div class="col-sm-6">
+                                        <label for="name"> Test Name :</label>
+                                        <select readonly class="form-control" id="test_name" name="test_name">
+                                        <?php
+                                        $data=$mysqli->common_select('test');
+                                        if(!$data['error']){
+                                            foreach($data['data'] as $d){
+                                        ?>
+                                            <option value="<?= $d->id ?>"><?= $d->test_name ?></option>
+                                        <?php } } ?>
+                                        </select>
+                                    </div>
                                 <div class="row">
-                                    <div class="col-sm-5">Test Name</div>
-                                    <div class="col-sm-3">Description</div>
-                                    <div class="col-sm-3">Price</div>
+                                    <div class="col-sm-5">Sub Total</div>
+                                    <div class="col-sm-3">Discount</div>
+                                    <div class="col-sm-3">Total</div>
                                 </div>
                                 <div class="row pt-3" data-repeater-item>
                                     <div class="col-sm-5">
-                                        <input type="text" class="form-control" name="test_name">
+                                        <input type="text" class="form-control" name="sub_total">
                                     </div>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" name="Des">
+                                        <input type="text" class="form-control" name="discount">
                                     </div>
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" name="Price">
+                                        <input type="text" class="form-control" name="total">
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-sm-3">Bill_Date</div>
+                                    <div class="col-sm-3">Due</div>
+                                </div>
+                                    <div class="col-sm-3">
+                                        <input type="date" class="form-control" name="bill_date">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" name="due">
                                     </div>
                                     <div class="col-sm-1">
                                         <input class="btn btn-danger" data-repeater-delete type="button" value="Delete"/>
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="row">
                                 <div class="col-sm-1 offset-sm-11 pt-3">
                                     <input class="btn btn-primary" data-repeater-create type="button" value="Add"/>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="border-top">
                             <div class="card-body">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -86,13 +110,14 @@
                     if($_POST){
                         
                         $pdata['patient_id']=$_POST['patient_id'];
-                        $pdata['age']=$_POST['age'];
-                        $pdata['weight']=$_POST['weight'];
-                        $pdata['inv']=$_POST['patiinvent_id'];
-                        $pdata['cc']=$_POST['cc'];
-                        $pdata['advice']=$_POST['advice'];
+                        $pdata['test_name']=$_POST['test_name'];
+                        $pdata['sub_total']=$_POST['sub_total'];
+                        $pdata['discount']=$_POST['discount'];
+                        $pdata['total']=$_POST['total'];
+                        $pdata['bill_date']=$_POST['bill_date'];
+                        $pdata['Due']=$_POST['Due'];
                         $pdata['created_at']=date('Y-m-d H:i:s');
-                        $rs=$mysqli->common_create('p_prescription',$pdata);
+                        $rs=$mysqli->common_create('p_test',$pdata);
                         if(!$rs['error']){
                             if($_POST['medicine']){
                                 foreach($_POST['medicine'] as $m){
@@ -100,7 +125,7 @@
                                     $rsm=$mysqli->common_create('p_medicine',$m);
                                 }
                             }
-                        echo "<script>window.location='prescription_list.php'
+                        echo "<script>window.location='p_test_list.php'
                         </script>";
                         }else{
                             echo $rs['error'];

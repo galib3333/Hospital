@@ -39,28 +39,36 @@
                             <thead>
                                 <tr>
                                     <th>#SL</th>
+                                    <th>Patient Name</th>
                                     <th>Test Name</th>
-                                    <th>Description</th>
-                                    <th>Price</th>
+                                    <th>Sub Total</th>
+                                    <th>Discount</th>
+                                    <th>Total</th>
+                                    <th>Bill Date</th>
+                                    <th>Due</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                             <?php
-                                $data=$mysqli->common_select('test');
+                                $data=$mysqli->common_select('p_test');
                                 if(!$data['error']){
                                     foreach($data['data'] as $d){
                                 ?>
                                     <tr>
                                         <td><?= $d->id ?></td>
+                                        <td><?= $d->patient_id ?></td>
                                         <td><?= $d->test_name ?></td>
-                                        <td><?= $d->description ?></td>
-                                        <td><?= $d->price ?></td>
+                                        <td><?= $d->sub_total ?></td>
+                                        <td><?= $d->discount ?></td>
+                                        <td><?= $d->total ?></td>
+                                        <td><?= $d->bill_date ?></td>
+                                        <td><?= $d->Due ?></td>
                                         <td>
-                                        <a title="Update" href="test_edit.php?id=<?= $d->id ?>">
+                                        <a title="Update" href="p_test_edit.php?id=<?= $d->id ?>">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a title="Delete" class="text-danger" href="test_delete.php?id=<?= $d->id ?>">
+                                        <a title="Delete" class="text-danger" href="p_test_delete.php?id=<?= $d->id ?>">
                                             <i class="fa fa-trash"></i>
                                         </a>
                                         </td>
