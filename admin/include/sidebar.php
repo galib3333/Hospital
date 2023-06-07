@@ -43,7 +43,18 @@
                                         <span class="hide-menu"> Patient</span>
                                     </a>
                                 </li>
-                                </ul>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span
+                                    class="hide-menu">Tests</span></a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+                                <li class="sidebar-item">
+                                    <a href="p_test_list.php" class="sidebar-link">
+                                        <span class="hide-menu">Tests</span>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Appointment </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
