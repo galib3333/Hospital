@@ -45,13 +45,13 @@
                         <div class="form-group row">
                             <label for="desig_name" class="col-sm-3 text-end control-label col-form-label">Designation Name</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="desig_name" name="desig_name">
+                                <input type="text" class="form-control" id="desig_name" name="desig_name" value="<?= $d->desig_name ?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="desig_des" class="col-sm-3 text-end control-label col-form-label">Designation Description</label>
                             <div class="col-sm-9">
-                                <textarea name="desig_des" id="desig_des" cols="30" rows="10" class="form-control"></textarea>
+                                <textarea name="desig_des" id="desig_des" cols="30" rows="10" class="form-control"><?= $d->desig_des?></textarea>
                             </div>
                         </div>
                     </div>
