@@ -41,17 +41,16 @@
                                 JOIN patients ON patients.id = p_test.patient_id
                                 JOIN test ON test.id = p_test.test_id
                                 WHERE p_test.deleted_at IS NULL");
-                                if (!$data['error']) {
-                                    foreach ($data['data'] as $d) {
+                                if(!$data['error']){
+                                    foreach($data['data'] as $d){
                                     }
                                 } else {
-                                    // Handle error
                                     echo $data['error'];
                                 }
                                 ?>
 
                                 <label for="name">Patient Name :</label>
-                                <select readonly class="form-control">
+                                <select readonly class="form-control" name="patient_id">
                                 <?php
                                 $data=$mysqli->common_select('patients');
                                 if(!$data['error']){
@@ -65,13 +64,13 @@
                         </div>
                         <div class="col-sm-6">
                             <label for="name">Test Name :</label>
-                            <select readonly class="form-control">
+                            <select readonly class="form-control" name="test_id">
                             <?php
                             $data=$mysqli->common_select('test');
                             if(!$data['error']){
                                 foreach($data['data'] as $t_data){
                             ?>
-                                <option value="<?= $t_data->id ?>"><?= $t_data->test_name ?></option>
+                                <option value="<?= $t_data->test_name ?>"><?= $t_data->test_name ?></option>
                             <?php } } ?>
                             </select>
                         </div>
