@@ -32,9 +32,6 @@
                     <div class="card-body">
                     
                         <div class="form-group row">
-                            <?php
-                                
-                            ?>
                             <div class="col-sm-6">
                                 <label for="name">Patient Name :</label>
                                 <select readonly class="form-control" name="patient_id">
