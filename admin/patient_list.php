@@ -69,11 +69,6 @@
                                             <a title="Prescription" href="prescription_list.php?id=<?= $d->id ?>">
                                                 <i class="fa fa-list"></i>
                                             </a>
-                                            <a title="test" href="p_test_list.php?id=<?= $d->id ?>">
-                                                <a title="Test" href="p_test_list.php?id=<?= $d->id ?>">
-                                                <i class="fa fa-thermometer-three-quarters"></i>
-                                            </a>
-                                            </a>
                                             <a title="Update" href="patient_edit.php?id=<?= $d->id ?>">
                                                 <i class="fa fa-edit"></i>
                                             </a>

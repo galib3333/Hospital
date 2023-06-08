@@ -5,7 +5,7 @@
 <?php
   $where['id']=$_GET['id'];
   $data['deleted_at']=date('Y-m-d H:i:s');
-  $rs=$mysqli->common_update('test',$data,$where);
+  $rs=$mysqli->common_update('p_test',$data,$where);
     if(!$rs['error']){
       echo "<script>window.location='p_test_list.php'</script>";
     }else{

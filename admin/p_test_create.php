@@ -32,9 +32,27 @@
                     <div class="card-body">
                     
                         <div class="form-group row">
+                            <?php
+                                
+                            ?>
                             <div class="col-sm-6">
+                            <?php
+                                $data = $mysqli->common_select_query("SELECT patients.name AS patient_name, test.test_name, p_test.* 
+                                FROM p_test
+                                JOIN patients ON patients.id = p_test.patient_id
+                                JOIN test ON test.id = p_test.test_id
+                                WHERE p_test.deleted_at IS NULL");
+                                if (!$data['error']) {
+                                    foreach ($data['data'] as $d) {
+                                    }
+                                } else {
+                                    // Handle error
+                                    echo $data['error'];
+                                }
+                                ?>
+
                                 <label for="name"> Patient Name :</label>
-                                <select readonly class="form-control" id="patient_id" name="patient_id">
+                                <select readonly class="form-control"<?= $d->name ?>>
                                 <?php
                                 $data=$mysqli->common_select('patients');
                                 if(!$data['error']){
@@ -46,44 +64,41 @@
                             </div>
                             
                         </div>
-                       
+                        <div class="col-sm-6">
+                            <label for="name"> Test Name :</label>
+                            <select readonly class="form-control" <?= $d->test_name ?>>
+                            <?php
+                            $data=$mysqli->common_select('test');
+                            if(!$data['error']){
+                                foreach($data['data'] as $d){
+                            ?>
+                                <option value="<?= $d->id ?>"><?= $d->test_name ?></option>
+                            <?php } } ?>
+                            </select>
+                        </div>
                         <div class="form-group repeater">
                             <div data-repeater-list="test">
-                                    <div class="col-sm-6">
-                                        <label for="name"> Test Name :</label>
-                                        <select readonly class="form-control" id="test_name" name="test_name">
-                                        <?php
-                                        $data=$mysqli->common_select('test');
-                                        if(!$data['error']){
-                                            foreach($data['data'] as $d){
-                                        ?>
-                                            <option value="<?= $d->id ?>"><?= $d->test_name ?></option>
-                                        <?php } } ?>
-                                        </select>
-                                    </div>
-                                <div class="row">
-                                    <div class="col-sm-5">Sub Total</div>
-                                    <div class="col-sm-3">Discount</div>
-                                    <div class="col-sm-3">Total</div>
-                                </div>
                                 <div class="row pt-3" data-repeater-item>
-                                    <div class="col-sm-5">
+                                <div class="row">
+                                    <div class="col-sm-2"><h6>Sub Total</h6></div>
+                                    <div class="col-sm-2"><h6 class="ps-1">Discount</h6></div>
+                                    <div class="col-sm-2"><h6 class="ps-1">Total</h6></div>
+                                    <div class="col-sm-2"><h6 class="ps-2">Bill_Date</h6></div>
+                                    <div class="col-sm-2"><h6 class="ps-3">Due</h6></div>
+                                </div>
+                                    <div class="col-sm-2">
                                         <input type="text" class="form-control" name="sub_total">
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <input type="text" class="form-control" name="discount">
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <input type="text" class="form-control" name="total">
                                     </div>
-                                    <div class="row">
-                                    <div class="col-sm-3">Bill_Date</div>
-                                    <div class="col-sm-3">Due</div>
-                                </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <input type="date" class="form-control" name="bill_date">
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <input type="text" class="form-control" name="due">
                                     </div>
                                     <div class="col-sm-1">
@@ -98,6 +113,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                         
                         <div class="border-top">
                             <div class="card-body">
@@ -108,23 +124,16 @@
                 </form>
                 <?php
                     if($_POST){
-                        
-                        $pdata['patient_id']=$_POST['patient_id'];
-                        $pdata['test_name']=$_POST['test_name'];
+                        $pdata['patient_id'] = $_POST['patient_id'];
+                        $pdata['test_id'] = $_POST['test_id'];
                         $pdata['sub_total']=$_POST['sub_total'];
                         $pdata['discount']=$_POST['discount'];
                         $pdata['total']=$_POST['total'];
                         $pdata['bill_date']=$_POST['bill_date'];
-                        $pdata['Due']=$_POST['Due'];
+                        $pdata['due']=$_POST['due'];
                         $pdata['created_at']=date('Y-m-d H:i:s');
                         $rs=$mysqli->common_create('p_test',$pdata);
                         if(!$rs['error']){
-                            if($_POST['medicine']){
-                                foreach($_POST['medicine'] as $m){
-                                    $m['prescription_id']=$rs['data'];
-                                    $rsm=$mysqli->common_create('p_medicine',$m);
-                                }
-                            }
                         echo "<script>window.location='p_test_list.php'
                         </script>";
                         }else{
@@ -142,7 +151,7 @@
 <!-- ============================================================== -->
             
 <?php include_once('include/footer.php'); ?>
-<script src="<?= $base_url; ?>../assets/libs/repeater/jquery.repeater.min.js"></script>
+<script src="<?= $base_url; ?>../assets/dist/js/repeater/jquery.repeater.min.js"></script>
 <script>
     $(document).ready(function () {
         $('.repeater').repeater({
