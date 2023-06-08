@@ -36,19 +36,6 @@
                                 
                             ?>
                             <div class="col-sm-6">
-                            <?php
-                                $data = $mysqli->common_select_query("SELECT patients.name AS p_name, test.test_name, p_test.* FROM `p_test`
-                                JOIN patients ON patients.id = p_test.patient_id
-                                JOIN test ON test.id = p_test.test_id
-                                WHERE p_test.deleted_at IS NULL");
-                                if(!$data['error']){
-                                    foreach($data['data'] as $d){
-                                    }
-                                } else {
-                                    echo $data['error'];
-                                }
-                                ?>
-
                                 <label for="name">Patient Name :</label>
                                 <select readonly class="form-control" name="patient_id">
                                 <?php
@@ -73,6 +60,18 @@
                                 <option value="<?= $t_data->test_name ?>"><?= $t_data->test_name ?></option>
                             <?php } } ?>
                             </select>
+                            <?php
+                                $data = $mysqli->common_select_query("SELECT patients.name AS p_name, test.test_name, p_test.* FROM `p_test`
+                                JOIN patients ON patients.id = p_test.patient_id
+                                JOIN test ON test.id = p_test.test_id
+                                WHERE p_test.deleted_at IS NULL");
+                                if(!$data['error']){
+                                    foreach($data['data'] as $d){
+                                    }
+                                } else {
+                                    echo $data['error'];
+                                }
+                                ?>
                         </div>
                         <div class="form-group repeater">
                             <div data-repeater-list="test">
@@ -133,8 +132,8 @@
                         $pdata['created_at']=date('Y-m-d H:i:s');
                         $rs=$mysqli->common_create('p_test',$pdata);
                         if(!$rs['error']){
-                        echo "<script>window.location='p_test_list.php'
-                        </script>";
+                            echo "<script>window.location='p_test_list.php'
+                            </script>";
                         }else{
                             echo $rs['error'];
                         }
