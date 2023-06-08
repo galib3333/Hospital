@@ -37,8 +37,7 @@
                             ?>
                             <div class="col-sm-6">
                             <?php
-                                $data = $mysqli->common_select_query("SELECT patients.name AS patient_name, test.test_name, p_test.* 
-                                FROM p_test
+                                $data = $mysqli->common_select_query("SELECT patients.name AS p_name, test.test_name, p_test.* FROM `p_test`
                                 JOIN patients ON patients.id = p_test.patient_id
                                 JOIN test ON test.id = p_test.test_id
                                 WHERE p_test.deleted_at IS NULL");
@@ -51,28 +50,28 @@
                                 }
                                 ?>
 
-                                <label for="name"> Patient Name :</label>
-                                <select readonly class="form-control"<?= $d->name ?>>
+                                <label for="name">Patient Name :</label>
+                                <select readonly class="form-control">
                                 <?php
                                 $data=$mysqli->common_select('patients');
                                 if(!$data['error']){
-                                    foreach($data['data'] as $d){
+                                    foreach($data['data'] as $p_data){
                                 ?>
-                                    <option value="<?= $d->id ?>"><?= $d->name ?></option>
+                                    <option value="<?= $p_data->name ?>"><?= $p_data->name ?></option>
                                 <?php } } ?>
                                 </select>
                             </div>
                             
                         </div>
                         <div class="col-sm-6">
-                            <label for="name"> Test Name :</label>
-                            <select readonly class="form-control" <?= $d->test_name ?>>
+                            <label for="name">Test Name :</label>
+                            <select readonly class="form-control">
                             <?php
                             $data=$mysqli->common_select('test');
                             if(!$data['error']){
-                                foreach($data['data'] as $d){
+                                foreach($data['data'] as $t_data){
                             ?>
-                                <option value="<?= $d->id ?>"><?= $d->test_name ?></option>
+                                <option value="<?= $t_data->id ?>"><?= $t_data->test_name ?></option>
                             <?php } } ?>
                             </select>
                         </div>
@@ -83,8 +82,9 @@
                                     <div class="col-sm-2"><h6>Sub Total</h6></div>
                                     <div class="col-sm-2"><h6 class="ps-1">Discount</h6></div>
                                     <div class="col-sm-2"><h6 class="ps-1">Total</h6></div>
-                                    <div class="col-sm-2"><h6 class="ps-2">Bill_Date</h6></div>
                                     <div class="col-sm-2"><h6 class="ps-3">Due</h6></div>
+                                    <div class="col-sm-2"><h6 class="ps-2">Bill_Date</h6></div>
+                                    
                                 </div>
                                     <div class="col-sm-2">
                                         <input type="text" class="form-control" name="sub_total">
@@ -96,10 +96,10 @@
                                         <input type="text" class="form-control" name="total">
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="date" class="form-control" name="bill_date">
+                                        <input type="text" class="form-control" name="due">
                                     </div>
                                     <div class="col-sm-2">
-                                        <input type="text" class="form-control" name="due">
+                                        <input type="date" class="form-control" name="bill_date">
                                     </div>
                                     <div class="col-sm-1">
                                         <input class="btn btn-danger" data-repeater-delete type="button" value="Delete"/>

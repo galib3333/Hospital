@@ -43,19 +43,19 @@
                     <div class="form-group row">
                             <label for="test_name" class="col-sm-3 text-end control-label col-form-label">Test Name :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="test_name" name="test_name">
+                                <input type="text" class="form-control" id="test_name" name="test_name" value="<?= $d->test_name ?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="description" class="col-sm-3 text-end control-label col-form-label">Description :</label>
                             <div class="col-sm-9">
-                                <input type="description" class="form-control" id="description" name="description" required>
+                                <input type="description" class="form-control" id="description" name="description" required value="<?= $d->description ?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="price" class="col-sm-3 text-end control-label col-form-label">Price :</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="price" name="price">
+                                <input type="text" class="form-control" id="price" name="price" value="<?= $d->price ?>">
                             </div>
                         </div>
                     <div class="border-top">
