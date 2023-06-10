@@ -33,19 +33,7 @@
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label for="name">Patient Name :</label>
-                                <?php
-                                    $data = $mysqli->common_select_query("SELECT p_test.*, patients.name AS patient_name, test.test_name AS test_name
-                                    FROM p_test
-                                    JOIN patients ON patients.id = p_test.patient_id
-                                    JOIN test ON test.id = p_test.test_id
-                                    WHERE p_test.deleted_at IS NULL");                            
-                                    if(!$data['error']){
-                                        foreach($data['data'] as $d){
-                                        }
-                                    } else {
-                                        echo $data['error'];
-                                    }
-                                ?>
+                                
                                 <select readonly class="form-control" name="patient_id">
                                 <?php
                                 $data=$mysqli->common_select('patients');
@@ -119,15 +107,7 @@
                 </form>
                 <?php
                     if($_POST){
-                        $pdata['patient_id'] = $_POST['patient_id'];
-                        $pdata['test_id'] = $_POST['test_id'];
-                        $pdata['sub_total']=$_POST['sub_total'];
-                        $pdata['discount']=$_POST['discount'];
-                        $pdata['total']=$_POST['total'];
-                        $pdata['bill_date']=$_POST['bill_date'];
-                        $pdata['due']=$_POST['due'];
-                        $pdata['created_at']=date('Y-m-d H:i:s');
-                        $rs=$mysqli->common_create('p_test',$pdata);
+                        $rs=$mysqli->common_create('p_test',$_POST);
                         if(!$rs['error']){
                             echo "<script>window.location='p_test_list.php'
                             </script>";
