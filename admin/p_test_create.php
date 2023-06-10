@@ -30,17 +30,29 @@
             <div class="card">
                 <form class="form-horizontal" method="post">
                     <div class="card-body">
-                    
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label for="name">Patient Name :</label>
+                                <?php
+                                    $data = $mysqli->common_select_query("SELECT p_test.*, patients.name AS patient_name, test.test_name AS test_name
+                                    FROM p_test
+                                    JOIN patients ON patients.id = p_test.patient_id
+                                    JOIN test ON test.id = p_test.test_id
+                                    WHERE p_test.deleted_at IS NULL");                            
+                                    if(!$data['error']){
+                                        foreach($data['data'] as $d){
+                                        }
+                                    } else {
+                                        echo $data['error'];
+                                    }
+                                ?>
                                 <select readonly class="form-control" name="patient_id">
                                 <?php
                                 $data=$mysqli->common_select('patients');
                                 if(!$data['error']){
-                                    foreach($data['data'] as $p_data){
+                                    foreach($data['data'] as $d){
                                 ?>
-                                    <option value="<?= $p_data->name ?>"><?= $p_data->name ?></option>
+                                    <option value="<?= $d->id ?>"><?= $d->name ?></option>
                                 <?php } } ?>
                                 </select>
                             </div>
@@ -52,23 +64,11 @@
                             <?php
                             $data=$mysqli->common_select('test');
                             if(!$data['error']){
-                                foreach($data['data'] as $t_data){
+                                foreach($data['data'] as $d){
                             ?>
-                                <option value="<?= $t_data->test_name ?>"><?= $t_data->test_name ?></option>
+                                <option value="<?= $d->id ?>"><?= $d->test_name ?></option>
                             <?php } } ?>
                             </select>
-                            <?php
-                                $data = $mysqli->common_select_query("SELECT patients.name AS p_name, test.test_name, p_test.* FROM `p_test`
-                                JOIN patients ON patients.id = p_test.patient_id
-                                JOIN test ON test.id = p_test.test_id
-                                WHERE p_test.deleted_at IS NULL");
-                                if(!$data['error']){
-                                    foreach($data['data'] as $d){
-                                    }
-                                } else {
-                                    echo $data['error'];
-                                }
-                                ?>
                         </div>
                         <div class="form-group repeater">
                             <div data-repeater-list="test">
@@ -139,8 +139,6 @@
             </div>
         </div>
     </div>
-
-</div>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
