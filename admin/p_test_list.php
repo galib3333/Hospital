@@ -62,7 +62,7 @@
                                 ?>
                                     <tr>
                                         <td><?= $d->id ?></td>
-                                        <td><?= $d->name ?></td>
+                                        <td><?= $d->patient_name?></td>
                                         <td><?= $d->test_name ?></td>
                                         <td><?= $d->sub_total ?></td>
                                         <td><?= $d->discount ?></td>

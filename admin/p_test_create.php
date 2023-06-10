@@ -66,7 +66,7 @@
                                     <div class="col-sm-2"><h6 class="ps-1">Discount</h6></div>
                                     <div class="col-sm-2"><h6 class="ps-1">Total</h6></div>
                                     <div class="col-sm-2"><h6 class="ps-3">Due</h6></div>
-                                    <div class="col-sm-2"><h6 class="ps-2">Bill_Date</h6></div>
+                                    <div class="col-sm-2"><h6 class="ps-3">Bill_Date</h6></div>
                                     
                                 </div>
                                     <div class="col-sm-2">
