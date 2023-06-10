@@ -125,7 +125,6 @@
             
 <?php include_once('include/footer.php'); ?>
 <script src="<?= $base_url; ?>../assets/dist/js/repeater/jquery.repeater.min.js"></script>
-<script src="<?= $base_url; ?>../assets/dist/js/file.js "></script>
 <script>
     $(document).ready(function () {
         $('.repeater').repeater({
@@ -142,3 +141,5 @@
         })
     });
 </script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?= $base_url; ?>../assets/dist/js/file.js "></script> -->
