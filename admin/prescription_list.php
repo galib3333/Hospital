@@ -80,7 +80,7 @@
                                             <a title="Update" href="prescription_edit.php?id=<?= $d->id ?>">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a title="Update" class="text-danger" href="prescription_delete.php?id=<?= $d->id ?>">
+                                            <a title="Delete" class="text-danger" href="prescription_delete.php?id=<?= $d->id ?>">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                             
