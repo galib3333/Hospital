@@ -49,9 +49,9 @@
                                 <?php
                                 $data=$mysqli->common_select('patients');
                                 if(!$data['error']){
-                                    foreach($data['data'] as $patients){
+                                    foreach($data['data'] as $d){
                                 ?>
-                                    <option value="<?= $d->patients ?>"><?= $patients->name ?></option>
+                                    <option value="<?= $d->id ?>"><?= $d->name ?></option>
                                 <?php } } ?>
                                 </select>
                             </div>
@@ -62,9 +62,9 @@
                             <?php
                             $data=$mysqli->common_select('test');
                             if(!$data['error']){
-                                foreach($data['data'] as $test){
+                                foreach($data['data'] as $d){
                             ?>
-                                <option value="<?= $d->test ?>"><?= $test->test_name ?></option>
+                                <option value="<?= $d->id ?>"><?= $d->test_name ?></option>
                             <?php } } ?>
                             </select>
                         </div>
