@@ -13,7 +13,7 @@
                         </li>
                         
                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span
                                     class="hide-menu">Doctor </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item">
@@ -35,7 +35,7 @@
                         </li>
 
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-account-plus"></i><span
                                     class="hide-menu">Patient </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item">
@@ -46,7 +46,7 @@
                             </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span
+                                href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-pill"></i><span
                                     class="hide-menu">Tests</span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item">
@@ -56,7 +56,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Appointment </span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-message-alert"></i><span class="hide-menu">Appointment </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item">
                                     <a href="appointment_rsv_list.php" class="sidebar-link">
@@ -70,7 +70,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Settings </span></a>
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-beats"></i><span class="hide-menu">Settings </span></a>
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item">
                                     <a href="room_list.php" class="sidebar-link">

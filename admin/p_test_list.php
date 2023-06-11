@@ -51,19 +51,23 @@
                             </thead>
                             <tbody>
                             <?php
-                                $data=$mysqli->common_select('p_test');
+                                $data = $mysqli->common_select_query("SELECT p_test.*, patients.name AS patient_name, test.test_name AS test_name
+                                FROM p_test
+                                JOIN patients ON patients.id = p_test.patient_id
+                                JOIN test ON test.id = p_test.test_id
+                                WHERE p_test.deleted_at IS NULL");                            
                                 if(!$data['error']){
                                     foreach($data['data'] as $d){
                                 ?>
                                     <tr>
                                         <td><?= $d->id ?></td>
-                                        <td><?= $d->patient_id ?></td>
-                                        <td><?= $d->test_id ?></td>
+                                        <td><?= $d->patient_name?></td>
+                                        <td><?= $d->test_name ?></td>
                                         <td><?= $d->sub_total ?></td>
                                         <td><?= $d->discount ?></td>
                                         <td><?= $d->total ?></td>
                                         <td><?= $d->bill_date ?></td>
-                                        <td><?= $d->Due ?></td>
+                                        <td><?= $d->due ?></td>
                                         <td>
                                         <a title="Update" href="p_test_edit.php?id=<?= $d->id ?>">
                                             <i class="fa fa-edit"></i>

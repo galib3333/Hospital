@@ -30,21 +30,20 @@
             <div class="card">
                 <form class="form-horizontal" method="post">
                     <div class="card-body">
-                    
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label for="name">Patient Name :</label>
+                                
                                 <select readonly class="form-control" name="patient_id">
                                 <?php
                                 $data=$mysqli->common_select('patients');
                                 if(!$data['error']){
-                                    foreach($data['data'] as $p_data){
+                                    foreach($data['data'] as $d){
                                 ?>
-                                    <option value="<?= $p_data->name ?>"><?= $p_data->name ?></option>
+                                    <option value="<?= $d->id ?>"><?= $d->name ?></option>
                                 <?php } } ?>
                                 </select>
                             </div>
-                            
                         </div>
                         <div class="col-sm-6">
                             <label for="name">Test Name :</label>
@@ -52,23 +51,11 @@
                             <?php
                             $data=$mysqli->common_select('test');
                             if(!$data['error']){
-                                foreach($data['data'] as $t_data){
+                                foreach($data['data'] as $d){
                             ?>
-                                <option value="<?= $t_data->test_name ?>"><?= $t_data->test_name ?></option>
+                                <option value="<?= $d->id ?>"><?= $d->test_name ?></option>
                             <?php } } ?>
                             </select>
-                            <?php
-                                $data = $mysqli->common_select_query("SELECT patients.name AS p_name, test.test_name, p_test.* FROM `p_test`
-                                JOIN patients ON patients.id = p_test.patient_id
-                                JOIN test ON test.id = p_test.test_id
-                                WHERE p_test.deleted_at IS NULL");
-                                if(!$data['error']){
-                                    foreach($data['data'] as $d){
-                                    }
-                                } else {
-                                    echo $data['error'];
-                                }
-                                ?>
                         </div>
                         <div class="form-group repeater">
                             <div data-repeater-list="test">
@@ -78,7 +65,7 @@
                                     <div class="col-sm-2"><h6 class="ps-1">Discount</h6></div>
                                     <div class="col-sm-2"><h6 class="ps-1">Total</h6></div>
                                     <div class="col-sm-2"><h6 class="ps-3">Due</h6></div>
-                                    <div class="col-sm-2"><h6 class="ps-2">Bill_Date</h6></div>
+                                    <div class="col-sm-2"><h6 class="ps-3">Bill_Date</h6></div>
                                     
                                 </div>
                                     <div class="col-sm-2">
@@ -119,15 +106,7 @@
                 </form>
                 <?php
                     if($_POST){
-                        $pdata['patient_id'] = $_POST['patient_id'];
-                        $pdata['test_id'] = $_POST['test_id'];
-                        $pdata['sub_total']=$_POST['sub_total'];
-                        $pdata['discount']=$_POST['discount'];
-                        $pdata['total']=$_POST['total'];
-                        $pdata['bill_date']=$_POST['bill_date'];
-                        $pdata['due']=$_POST['due'];
-                        $pdata['created_at']=date('Y-m-d H:i:s');
-                        $rs=$mysqli->common_create('p_test',$pdata);
+                        $rs=$mysqli->common_create('p_test',$_POST);
                         if(!$rs['error']){
                             echo "<script>window.location='p_test_list.php'
                             </script>";
@@ -139,15 +118,12 @@
             </div>
         </div>
     </div>
-
-</div>
 <!-- ============================================================== -->
 <!-- End Container fluid  -->
 <!-- ============================================================== -->
             
 <?php include_once('include/footer.php'); ?>
 <script src="<?= $base_url; ?>../assets/dist/js/repeater/jquery.repeater.min.js"></script>
-<script src="<?= $base_url; ?>../assets/dist/js/file.js "></script>
 <script>
     $(document).ready(function () {
         $('.repeater').repeater({
@@ -164,3 +140,5 @@
         })
     });
 </script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?= $base_url; ?>../assets/dist/js/file.js "></script> -->
