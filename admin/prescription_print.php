@@ -81,7 +81,7 @@
      <strong>Date :....</strong>
    </div>
    <div class="middle">
-      <img src="Capture.PNG" alt="" width="100px">
+      <img src="../assets/images/rx.PNG" alt="" width="100px">
       <h1 style="text-align: center;" class="h1">Prescription</h1>
    </div>
    <div class="prescription">
