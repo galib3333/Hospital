@@ -38,13 +38,12 @@
                                 <?php
                                 $data=$mysqli->common_select('patients');
                                 if(!$data['error']){
-                                    foreach($data['data'] as $d){
+                                    foreach($data['data'] as $patients){
                                 ?>
-                                    <option value="<?= $d->id ?>"><?= $d->name ?></option>
+                                    <option value="<?= $patients->patient_id ?>"><?= $patients->name ?></option>
                                 <?php } } ?>
                                 </select>
                             </div>
-                            
                         </div>
                         <div class="col-sm-6">
                             <label for="name">Test Name :</label>
@@ -52,9 +51,9 @@
                             <?php
                             $data=$mysqli->common_select('test');
                             if(!$data['error']){
-                                foreach($data['data'] as $d){
+                                foreach($data['data'] as $test){
                             ?>
-                                <option value="<?= $d->id ?>"><?= $d->test_name ?></option>
+                                <option value="<?= $test->test_id ?>"><?= $test->test_name ?></option>
                             <?php } } ?>
                             </select>
                         </div>

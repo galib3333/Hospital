@@ -31,7 +31,7 @@
                 <form class="form-horizontal" action="" method="post">
                 <?php
                   $where['id']=$_GET['id'];
-                  $data=$mysqli->common_select('test','*',$where);
+                  $data=$mysqli->common_select('p_test','*',$where);
                  
                   if(!$data['error'] && count($data['data'])>0)
                     $d=$data['data'][0];
@@ -40,33 +40,82 @@
                     
                   }
                 ?>
-                    <div class="form-group row">
-                            <label for="test_name" class="col-sm-3 text-end control-label col-form-label">Test Name :</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="test_name" name="test_name">
-                            </div>
-                        </div>
+                    <div class="card-body">
                         <div class="form-group row">
-                            <label for="description" class="col-sm-3 text-end control-label col-form-label">Description :</label>
-                            <div class="col-sm-9">
-                                <input type="description" class="form-control" id="description" name="description" required>
+                            <div class="col-sm-6">
+                                <label for="name">Patient Name :</label>
+                                
+                                <select readonly class="form-control" name="patient_id">
+                                <?php
+                                $data=$mysqli->common_select('patients');
+                                if(!$data['error']){
+                                    foreach($data['data'] as $patients){
+                                ?>
+                                    <option value="<?= $d->patients ?>"><?= $patients->name ?></option>
+                                <?php } } ?>
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="price" class="col-sm-3 text-end control-label col-form-label">Price :</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="price" name="price">
+                        <div class="col-sm-6">
+                            <label for="name">Test Name :</label>
+                            <select readonly class="form-control" name="test_id">
+                            <?php
+                            $data=$mysqli->common_select('test');
+                            if(!$data['error']){
+                                foreach($data['data'] as $test){
+                            ?>
+                                <option value="<?= $d->test ?>"><?= $test->test_name ?></option>
+                            <?php } } ?>
+                            </select>
+                        </div>
+                        <div class="form-group repeater">
+                            <div data-repeater-list="test">
+                                <div class="row pt-3" data-repeater-item>
+                                <div class="row">
+                                    <div class="col-sm-2"><h6>Sub Total</h6></div>
+                                    <div class="col-sm-2"><h6 class="ps-1">Discount</h6></div>
+                                    <div class="col-sm-2"><h6 class="ps-1">Total</h6></div>
+                                    <div class="col-sm-2"><h6 class="ps-3">Due</h6></div>
+                                    <div class="col-sm-2"><h6 class="ps-3">Bill_Date</h6></div>
+                                    
+                                </div>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" name="sub_total" value="<?= $d->sub_total ?>">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" name="discount" value="<?= $d->discount ?>">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" name="total" value="<?= $d->total ?>">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" name="due" value="<?= $d->due ?>">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="date" class="form-control" name="bill_date" value="<?= $d->bill_date ?>">
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <input class="btn btn-danger" data-repeater-delete type="button" value="Delete"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-sm-1 offset-sm-11 pt-3">
+                                    <input class="btn btn-primary" data-repeater-create type="button" value="Add"/>
+                                </div>
+                            </div>
+                            <div class="border-top">
+                            <div class="card-body">
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </div>
-                    <div class="border-top">
-                        <div class="card-body">
-                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </form>
                 <?php
                     if($_POST){
-                        $rs=$mysqli->common_update('test',$_POST,$where);
+                        $rs=$mysqli->common_update('p_test',$_POST,$where);
                         print_r($rs);
                         if(!$rs['error']){
                         echo "<script>window.location='p_test_list.php'</script>";
