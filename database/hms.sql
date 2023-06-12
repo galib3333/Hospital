@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2023 at 07:01 AM
+-- Generation Time: Jun 12, 2023 at 05:54 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -123,8 +123,13 @@ CREATE TABLE `departments` (
 --
 
 INSERT INTO `departments` (`id`, `dep_name`, `dep_des`, `deleted_at`) VALUES
-(1, 'Cardiology', 'ghfdghfdghfgh', NULL),
-(2, 'Cardiology', 'sdfsadfasdf', NULL);
+(1, 'Cardiology', 'treatment for heart', '2023-06-04 16:11:03'),
+(3, 'Pediatrics', 'Focuses on the medical care of infants, children, and adolescents.', NULL),
+(4, 'Orthopedic ', 'Deals with conditions and injuries affecting the musculoskeletal system.', NULL),
+(5, 'Neurology', 'Specializes in disorders of the nervous system.', NULL),
+(6, 'Dermatology', 'Deals with skin-related conditions and disorders.', NULL),
+(7, 'Cardiology', 'Specializes in diagnosing and treating heart-related conditions.', NULL),
+(8, 'Psychiatry', 'Specializes in the diagnosis and treatment of mental disorders.', NULL);
 
 -- --------------------------------------------------------
 
@@ -144,7 +149,12 @@ CREATE TABLE `designations` (
 --
 
 INSERT INTO `designations` (`id`, `desig_name`, `desig_des`, `deleted_at`) VALUES
-(1, 'General Physician', 'rtyretyrtyre', NULL);
+(1, 'Department Head', 'Head of Department', NULL),
+(2, 'Clinical Supervisor', 'Clinical Supervisor', NULL),
+(3, 'Attending Physician', 'Physician', NULL),
+(4, 'Chief Medical Officer (CMO)', 'Medical Officer', NULL),
+(5, 'Senior Consultant', 'Consultant', NULL),
+(6, 'Medical Superintendent', 'Medical Superintendent', NULL);
 
 -- --------------------------------------------------------
 
@@ -173,7 +183,12 @@ CREATE TABLE `doctors` (
 --
 
 INSERT INTO `doctors` (`id`, `name`, `email`, `designation_id`, `department_id`, `specialist`, `education`, `fees`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
-(1, 'Kamal Uddin', 'kamal@yahoo.com', 1, 2, 'asdf', 'asdf', '300.00', NULL, NULL, NULL, NULL, NULL);
+(1, 'Dr. Murad Hasan\'s', 'murad@gamil.com', 1, 7, 'Cardiologist', 'MBBS, FCPS', '1200.00', NULL, NULL, NULL, NULL, NULL),
+(2, 'Dr. Harun', 'harunn@gmail.com', 1, 1, 'oncology', 'MBBS', '800.00', NULL, NULL, '2023-06-04 16:13:36', NULL, NULL),
+(3, 'Dr. Shila Rahman', 'shilla@gmail.com', 2, 3, 'Pediatrician', 'MBBS, MD', '500.00', NULL, NULL, NULL, NULL, NULL),
+(4, 'Dr. Chamak Hasan', 'chamak@gmail.com', 4, 4, 'Orthopedic Surgeon', 'MBBS, MD', '2000.00', NULL, NULL, NULL, NULL, NULL),
+(5, 'Dr. Jamal khan', 'jamal@gmail.com', 6, 8, 'Psychiatrist', 'MBBS, MD', '2000.00', NULL, NULL, NULL, NULL, NULL),
+(6, 'Dr. Marufa', 'marufa@gamil.com', 4, 6, 'Dermatologist', 'MBBS, MD', '1000.00', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -190,7 +205,6 @@ CREATE TABLE `patients` (
   `permanent_address` text DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
   `sex` varchar(20) DEFAULT NULL,
-  `blood_id` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
@@ -202,9 +216,11 @@ CREATE TABLE `patients` (
 -- Dumping data for table `patients`
 --
 
-INSERT INTO `patients` (`id`, `name`, `email`, `phone`, `present_address`, `permanent_address`, `birth_date`, `sex`, `blood_id`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
-(1, 'uddin', '', '015', 'asdf', 'asdf', '0000-00-00', 'on', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00'),
-(2, 'Kamal Uddin', '', '01689754152', '', '', '0000-00-00', '', NULL, NULL, NULL, NULL, NULL, '2023-06-03 09:38:19');
+INSERT INTO `patients` (`id`, `name`, `email`, `phone`, `present_address`, `permanent_address`, `birth_date`, `sex`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
+(1, 'Michael Johnson', 'michaeljohnson@example.com', '0185000034', '456 Pine Street', '789 Oak Avenue, ', '1991-06-25', 'Male', NULL, NULL, NULL, NULL, NULL),
+(2, 'Emily Davis', 'emilydavis@example.com', '01735061377', '789 Elm Road', '123 Oak Avenue', '1997-10-13', 'Female', NULL, NULL, NULL, NULL, NULL),
+(3, 'James Wilson', 'jameswilson@example.com', '01728985444', ' 321 Maple Avenue', ' 456 Pine Street', '1998-07-24', 'Male', NULL, NULL, NULL, NULL, NULL),
+(4, 'Sarah Anderson', 'sarahanderson@example.com', '', '789 Oak Avenue', '789 Elm Road', '1990-09-06', 'Female', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -276,7 +292,10 @@ CREATE TABLE `p_medicine` (
 
 INSERT INTO `p_medicine` (`id`, `prescription_id`, `medicine_name`, `advice`, `before_after`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
 (1, 1, 'Napa 500', '1+0+1', 'After', NULL, NULL, NULL, NULL, NULL),
-(2, 1, 'Max-pro 20', '1+0+1', 'Before', NULL, NULL, NULL, NULL, NULL);
+(2, 1, 'Max-pro 20', '1+0+1', 'Before', NULL, NULL, NULL, NULL, NULL),
+(3, 2, 'Napa 500', '1+0+1', 'After', NULL, NULL, NULL, NULL, NULL),
+(4, 2, 'Max-pro 20', '1+0+1', 'Before', NULL, NULL, NULL, NULL, NULL),
+(5, 2, 'C-Vit', '1+1+1', 'After', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -305,7 +324,8 @@ CREATE TABLE `p_prescription` (
 --
 
 INSERT INTO `p_prescription` (`id`, `doctor_id`, `patient_id`, `age`, `weight`, `inv`, `cc`, `advice`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
-(1, 1, 2, 26, 60, '', 'asdf', 'asdf', NULL, NULL, NULL, NULL, NULL);
+(1, 1, 2, 26, 60, '', 'asdf', 'asdf', NULL, NULL, NULL, NULL, NULL),
+(2, 1, 2, 26, 60, '', 'asdf', 'asdf', NULL, NULL, NULL, NULL, '2023-06-12 05:37:03');
 
 -- --------------------------------------------------------
 
@@ -555,25 +575,25 @@ ALTER TABLE `bill`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `designations`
 --
 ALTER TABLE `designations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -591,13 +611,13 @@ ALTER TABLE `p_admit`
 -- AUTO_INCREMENT for table `p_medicine`
 --
 ALTER TABLE `p_medicine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `p_prescription`
 --
 ALTER TABLE `p_prescription`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `p_test`
