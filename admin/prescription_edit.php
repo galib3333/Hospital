@@ -146,7 +146,7 @@
                         $pdata['inv']=$_POST['patiinvent_id'];
                         $pdata['cc']=$_POST['cc'];
                         $pdata['advice']=$_POST['advice'];
-                        $rs=$mysqli->common_create('p_prescription',$pdata);
+                        $rs=$mysqli->common_update('p_prescription',$pdata);
                         if(!$rs['error']){
                             if($_POST['medicine']){
                                 foreach($_POST['medicine'] as $m){
@@ -175,10 +175,5 @@
 <script>
     $(document).ready(function () {
         var $repeater = $('.repeater').repeater()
-        
-        $repeater.setList([
-            {'text-input': 'medicine_name','text-input': 'medicine_name','text-input': 'medicine_name',},
-            { 'text-input': 'set-foo' }
-        ]);
     });
 </script>

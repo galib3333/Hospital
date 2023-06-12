@@ -116,7 +116,6 @@
                 </form>
                 <?php
                     if($_POST){
-                        
                         $pdata['patient_id']=$_POST['patient_id'];
                         $pdata['age']=$_POST['age'];
                         $pdata['weight']=$_POST['weight'];
