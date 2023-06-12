@@ -19,7 +19,7 @@
     <nav class="navbar navbar-expand-lg nav-back fixed-top" 
     id="mainNav">
       <div class="container">
-          <a class="navbar-brand" href="#">Medical</a>
+          <a class="navbar-brand fw-bold" href="#" >Matrix Hospital</a>
           <button class="navbar-toggler navbar-toggler-right" type="button"
            data-toggle="collapse" data-target="#navbarResponsive" 
            aria-controls="navbarResponsive" aria-expanded="false" 
@@ -44,10 +44,11 @@
    
 <!-- End Header -->    
    <!-- ======= Hero Section ======= -->
-   <section id="hero" class="d-flex align-items-center">
+   <section id="hero" class="d-flex align-items-center" style="background-image:url('assets/images/doctor.jpg'); background-repeat:no-repeat; background-size:cover;">
     <div class="container text-center position-relative">
-      <h1>24/7 Care is available</h1>
-      <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, deleniti.</h2>
+
+      <h1 style="color:rgb(21,185,175);">24/7 Care is available</h1>
+      <marquee behavior="" direction=""><h2 style="font-size:25px;"> <i>Innovating Healthcare for a Better Tomorrow..</i> </h2></marquee>
       <a href="#about" class="main-btn">Get Started</a>
     </div>
   </section>
