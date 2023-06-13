@@ -1,6 +1,6 @@
 <?php
     $base_url="http://localhost/hospital/";
-    require_once('class/crud.php');
+    require_once('../class/crud.php');
     $mysqli=new crud;
 ?>
 <!DOCTYPE html>
