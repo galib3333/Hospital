@@ -3,7 +3,7 @@
             <!-- ============================================================== -->
             <footer class="footer text-center">
                 All Rights Reserved by Matrix-admin. Designed and Developed by <a
-                    href="https://www.wrappixel.com">WrapPixel</a>.
+                    href="https://www.wdpfround54.com">WDPF-Round54</a>.
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
