@@ -119,7 +119,7 @@
                         $pdata['patient_id']=$_POST['patient_id'];
                         $pdata['age']=$_POST['age'];
                         $pdata['weight']=$_POST['weight'];
-                        $pdata['inv']=$_POST['patiinvent_id'];
+                        $pdata['inv']=$_POST['inv'];
                         $pdata['cc']=$_POST['cc'];
                         $pdata['advice']=$_POST['advice'];
                         $pdata['doctor_id']=$pati->doctor_id;
