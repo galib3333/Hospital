@@ -4,7 +4,7 @@
     echo "<script>window.location='login.php'</script>";
     exit;
   }
-    $base_url="http://localhost/Hospital/admin/";
+  $base_url="http://".$_SERVER['SERVER_NAME']."/".explode('/',$_SERVER['SCRIPT_NAME'])[1]."/admin/";
     require_once('../class/crud.php');
     $mysqli=new crud;
 ?>

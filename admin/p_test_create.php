@@ -45,46 +45,22 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <label for="name">Test Name :</label>
-                            <select readonly class="form-control" name="test_id">
-                            <?php
-                            $data=$mysqli->common_select('test');
-                            if(!$data['error']){
-                                foreach($data['data'] as $d){
-                            ?>
-                                <option value="<?= $d->id ?>"><?= $d->test_name ?></option>
-                            <?php } } ?>
-                            </select>
-                        </div>
+                        
                         <div class="form-group repeater">
                             <div data-repeater-list="test">
+                                
                                 <div class="row pt-3" data-repeater-item>
-                                <div class="row">
-                                    <div class="col-sm-2"><h6>Sub Total</h6></div>
-                                    <div class="col-sm-2"><h6 class="ps-1">Discount</h6></div>
-                                    <div class="col-sm-2"><h6 class="ps-1">Total</h6></div>
-                                    <div class="col-sm-2"><h6 class="ps-3">Due</h6></div>
-                                    <div class="col-sm-2"><h6 class="ps-3">Bill_Date</h6></div>
-                                    
-                                </div>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control" name="sub_total">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control" name="discount">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control" name="total">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <input type="text" class="form-control" name="due">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <input type="date" class="form-control" name="bill_date">
-                                    </div>
-                                    <div class="col-sm-1">
-                                        <input class="btn btn-danger" data-repeater-delete type="button" value="Delete"/>
+                                    <div class="col-sm-6">
+                                        <label for="name">Test Name :</label>
+                                        <select readonly class="form-control" name="test_id">
+                                        <?php
+                                        $data=$mysqli->common_select('test');
+                                        if(!$data['error']){
+                                            foreach($data['data'] as $d){
+                                        ?>
+                                            <option value="<?= $d->id ?>"><?= $d->test_name ?></option>
+                                        <?php } } ?>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -94,6 +70,33 @@
                                     <input class="btn btn-primary" data-repeater-create type="button" value="Add"/>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                                    <div class="col-sm-2"><h6>Sub Total</h6></div>
+                                    <div class="col-sm-2"><h6 class="ps-1">Discount</h6></div>
+                                    <div class="col-sm-2"><h6 class="ps-1">Total</h6></div>
+                                    <div class="col-sm-2"><h6 class="ps-3">Due</h6></div>
+                                    <div class="col-sm-2"><h6 class="ps-3">Bill_Date</h6></div>
+                                </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="sub_total">
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="discount">
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="total">
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="due">
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="date" class="form-control" name="bill_date">
+                        </div>
+                        <div class="col-sm-1">
+                            <input class="btn btn-danger" data-repeater-delete type="button" value="Delete"/>
                         </div>
                     </div>
                         
