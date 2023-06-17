@@ -1,5 +1,5 @@
 <?php
-    $base_url="http://".$_SERVER['SERVER_NAME']."/".explode('/',$_SERVER['SCRIPT_NAME'])[1]."/";
+    $base_url="https://".$_SERVER['SERVER_NAME']."/".explode('/',$_SERVER['SCRIPT_NAME'])[1]."/";
     require_once('class/crud.php');
     $mysqli=new crud;
 ?>
