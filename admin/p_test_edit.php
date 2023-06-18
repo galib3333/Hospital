@@ -59,7 +59,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="bill_date">Test Date</label>
-                                <input type="date" class="form-control" name="bill_date" id="bill_date" value="<?= $d->bill_date ?>">
+                                <input type="date" class="form-control" name="bill_date" id="bill_date" value="">
                             </div>
                         </div>
                         
@@ -85,12 +85,12 @@
                                             if(!$data['error']){
                                                 foreach($data['data'] as $t){
                                             ?>
-                                                <option <?= $t->id == $d->id ? "selected" : "" ?> data-price="<?= $t->price ?>" value="<?= $t->id ?>"><?= $t->test_name ?></option>
+                                                <option <?= $t->id == $d->id ? "selected" : "" ?> value="<?= $t->id ?>"><?= $t->test_name ?></option>
                                             <?php } } ?>
                                         </select>
                                     </div>
                                     <div class="col-sm-3">
-                                    <input type="text" name="amount" class="form-control testprice">
+                                    <input type="text" name="amount" class="form-control testprice" value="<?= $t->price ?>">
                                     </div>
                                     <div class="col-sm-3">
                                         <input class="btn btn-danger" data-repeater-delete type="button" value="Delete"/>
