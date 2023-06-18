@@ -11,7 +11,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#<?= $base_url?>dashboard.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Create a new test.</li>
+                        <li class="breadcrumb-item active" aria-current="page">Update test info.</li>
                     </ol>
                 </nav>
             </div>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="bill_date">Test Date</label>
-                                <input type="date" class="form-control" name="bill_date" id="bill_date">
+                                <input type="date" class="form-control" name="bill_date" id="bill_date" value="<?= $d->bill_date ?>">
                             </div>
                         </div>
                         
@@ -90,7 +90,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-3">
-                                    <input type="text" name="amount" class="form-control testprice" value="<?= isset($d->amount) ? $d->amount : '' ?>">
+                                    <input type="text" name="amount" class="form-control testprice">
                                     </div>
                                     <div class="col-sm-3">
                                         <input class="btn btn-danger" data-repeater-delete type="button" value="Delete"/>
