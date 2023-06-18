@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2023 at 05:54 AM
+-- Generation Time: Jun 18, 2023 at 09:30 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -48,7 +48,8 @@ CREATE TABLE `appointment` (
 --
 
 INSERT INTO `appointment` (`id`, `patient_id`, `doctor_id`, `app_date`, `app_time`, `serial`, `problem`, `approve`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
-(1, 2, 1, '2023-06-09', '12:00:00', '', 'asdfasdfasdfasdfasdf', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '2023-06-03 09:38:19');
+(1, 2, 1, '2023-06-09', '12:00:00', '', 'asdfasdfasdfasdfasdf', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '2023-06-03 09:38:19'),
+(2, 5, 5, '2023-06-13', '21:42:00', '5', 'bad headache', 0, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '2023-06-13 05:43:00');
 
 -- --------------------------------------------------------
 
@@ -220,7 +221,8 @@ INSERT INTO `patients` (`id`, `name`, `email`, `phone`, `present_address`, `perm
 (1, 'Michael Johnson', 'michaeljohnson@example.com', '0185000034', '456 Pine Street', '789 Oak Avenue, ', '1991-06-25', 'Male', NULL, NULL, NULL, NULL, NULL),
 (2, 'Emily Davis', 'emilydavis@example.com', '01735061377', '789 Elm Road', '123 Oak Avenue', '1997-10-13', 'Female', NULL, NULL, NULL, NULL, NULL),
 (3, 'James Wilson', 'jameswilson@example.com', '01728985444', ' 321 Maple Avenue', ' 456 Pine Street', '1998-07-24', 'Male', NULL, NULL, NULL, NULL, NULL),
-(4, 'Sarah Anderson', 'sarahanderson@example.com', '', '789 Oak Avenue', '789 Elm Road', '1990-09-06', 'Female', NULL, NULL, NULL, NULL, NULL);
+(4, 'Sarah Anderson', 'sarahanderson@example.com', '', '789 Oak Avenue', '789 Elm Road', '1990-09-06', 'Female', NULL, NULL, NULL, NULL, NULL),
+(5, 'Kamal Uddin', '', '01689754152', '', '', '0000-00-00', 'Male', NULL, NULL, NULL, NULL, '2023-06-13 05:42:59');
 
 -- --------------------------------------------------------
 
@@ -295,7 +297,9 @@ INSERT INTO `p_medicine` (`id`, `prescription_id`, `medicine_name`, `advice`, `b
 (2, 1, 'Max-pro 20', '1+0+1', 'Before', NULL, NULL, NULL, NULL, NULL),
 (3, 2, 'Napa 500', '1+0+1', 'After', NULL, NULL, NULL, NULL, NULL),
 (4, 2, 'Max-pro 20', '1+0+1', 'Before', NULL, NULL, NULL, NULL, NULL),
-(5, 2, 'C-Vit', '1+1+1', 'After', NULL, NULL, NULL, NULL, NULL);
+(5, 2, 'C-Vit', '1+1+1', 'After', NULL, NULL, NULL, NULL, NULL),
+(6, 3, 'Napa 500', '1+0+1', 'After', NULL, NULL, NULL, NULL, NULL),
+(7, 3, 'Max-pro 20', '1+0+1', 'Before', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -325,7 +329,8 @@ CREATE TABLE `p_prescription` (
 
 INSERT INTO `p_prescription` (`id`, `doctor_id`, `patient_id`, `age`, `weight`, `inv`, `cc`, `advice`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
 (1, 1, 2, 26, 60, '', 'asdf', 'asdf', NULL, NULL, NULL, NULL, NULL),
-(2, 1, 2, 26, 60, '', 'asdf', 'asdf', NULL, NULL, NULL, NULL, '2023-06-12 05:37:03');
+(2, 1, 2, 26, 60, '', 'asdf', 'asdf', NULL, NULL, NULL, NULL, '2023-06-12 05:37:03'),
+(3, 5, 5, 26, 60, 'X-rey', 'bad headache', 'Sleep', NULL, NULL, NULL, NULL, '2023-06-13 05:46:05');
 
 -- --------------------------------------------------------
 
@@ -338,9 +343,11 @@ CREATE TABLE `p_test` (
   `patient_id` int(11) NOT NULL,
   `sub_total` decimal(10,2) DEFAULT NULL,
   `discount` decimal(10,2) DEFAULT NULL,
+  `service_charge` decimal(10,2) DEFAULT 0.00,
+  `vat` decimal(10,2) DEFAULT 0.00,
   `total` decimal(10,2) DEFAULT NULL,
   `bill_date` datetime DEFAULT NULL,
-  `Due` decimal(10,2) DEFAULT NULL,
+  `due` decimal(10,2) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
@@ -358,7 +365,7 @@ CREATE TABLE `p_test_des` (
   `id` int(11) NOT NULL,
   `p_test_id` int(11) NOT NULL,
   `test_id` int(11) NOT NULL,
-  `Amount` decimal(10,2) DEFAULT NULL,
+  `amount` decimal(10,2) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
@@ -557,13 +564,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `appointment_request`
 --
 ALTER TABLE `appointment_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `bill`
@@ -593,7 +600,7 @@ ALTER TABLE `doctors`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `payment`
@@ -611,25 +618,25 @@ ALTER TABLE `p_admit`
 -- AUTO_INCREMENT for table `p_medicine`
 --
 ALTER TABLE `p_medicine`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `p_prescription`
 --
 ALTER TABLE `p_prescription`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `p_test`
 --
 ALTER TABLE `p_test`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `p_test_des`
 --
 ALTER TABLE `p_test_des`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `room`
