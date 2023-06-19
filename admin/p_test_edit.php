@@ -111,33 +111,33 @@
 										</tr>
 										<tr>
 											<td>Discount (%)</td>
-											<td><input class="form-control" onkeyup="check_total()" id="discount" type="text" name="discount" value=""></td>
+											<td><input class="form-control" onkeyup="check_total()" id="discount" type="text" name="discount" value="<?= $d->discount ?>"></td>
 											<td class="discount"></td>
 										</tr>
 										<tr>
 											<td>VAT (%)</td>
-											<td><input class="form-control" onkeyup="check_total()" id="vat" type="text" name="vat"  value=""></td>
+											<td><input class="form-control" onkeyup="check_total()" id="vat" type="text" name="vat"  value="<?= $d->vat ?>"></td>
 											<td class="vat"></td>
 										</tr>
 										<tr>
 											<td>Service Charge (%)</td>
-											<td><input class="form-control" onkeyup="check_total()" id="service_charge" type="text" name="service_charge" value=""></td>
+											<td><input class="form-control" onkeyup="check_total()" id="service_charge" type="text" name="service_charge" value="<?= $d->service_charge ?>"></td>
 											<td class="service_charge"></td>
 										</tr>
 										<tr>
 											<td>Total</td>
-											<td><input class="form-control" type="hidden" name="total" id="total" value=""></td>
+											<td><input class="form-control" type="hidden" name="total" id="total" value="<?= $d->total ?>"></td>
 											<td class="total"></td>
 										</tr>
                                         <tr>
 											<td>Pay</td>
 											<td></td>
-											<td><input class="form-control" type="text" name="pay" id="pay" onkeyup="get_due(this.value)" value=""></td>
+											<td><input class="form-control" type="text" name="pay" id="pay" onkeyup="get_due(this.value)" value="<?= $d->pay ?>"></td>
 										</tr>
                                         <tr>
 											<td>Due</td>
 											<td></td>
-											<td><input class="form-control" type="text" name="due" id="due" value=""></td>
+											<td><input class="form-control" type="text" name="due" id="due" value="<?= $d->due ?>"></td>
 										</tr>
 									</table>
 								</div>
