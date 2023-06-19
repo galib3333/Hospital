@@ -132,7 +132,7 @@
                                         <tr>
 											<td>Pay</td>
 											<td></td>
-											<td><input class="form-control" type="text" name="pay" id="pay" onkeyup="get_due(this.value)" value="<?= $d->pay ?>"></td>
+											<td><input class="form-control" type="text" name="pay" id="pay" onkeyup="get_due(this.value)"></td>
 										</tr>
                                         <tr>
 											<td>Due</td>
