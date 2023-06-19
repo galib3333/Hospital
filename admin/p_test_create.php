@@ -35,9 +35,9 @@
                                 <label for="name">Patient Name :</label>
                                 <select class="form-control" name="patient_id">
                                     <?php
-                                    $data=$mysqli->common_select('patients');
-                                    if(!$data['error']){
-                                        foreach($data['data'] as $d){
+                                        $data=$mysqli->common_select('patients');
+                                        if(!$data['error']){
+                                            foreach($data['data'] as $d){
                                     ?>
                                         <option value="<?= $d->id ?>"><?= $d->name ?></option>
                                     <?php } } ?>
@@ -67,9 +67,9 @@
                                         <select onchange="get_test(this)" class="form-control" name="test_id">
                                             <option value="">Select Test</option>
                                             <?php
-                                            $data=$mysqli->common_select('test');
-                                            if(!$data['error']){
-                                                foreach($data['data'] as $d){
+                                                $data=$mysqli->common_select('test');
+                                                if(!$data['error']){
+                                                    foreach($data['data'] as $d){
                                             ?>
                                                 <option data-price="<?= $d->price ?>" value="<?= $d->id ?>"><?= $d->test_name ?></option>
                                             <?php } } ?>

@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <form class="form-horizontal" method="post">
+                <form class="form-horizontal" method="post" action="p_test_edit.php">
                 <?php
                   $where['id']=$_GET['id'];
                   $data=$mysqli->common_select('p_test','*',$where);
@@ -49,17 +49,14 @@
                                     $data = $mysqli->common_select('patients');
                                     if (!$data['error']) {
                                         foreach ($data['data'] as $p) {
-                                            ?>
-                                            <option <?= $p->id == $d->patient_id ? "selected" : "" ?> value="<?= $p->id ?>"><?= $p->name ?></option>
-                                            <?php
-                                        }
-                                    }
                                 ?>
+                                    <option <?= $p->id == $d->patient_id ? "selected" : "" ?> value="<?= $p->id ?>"><?= $p->name ?></option>
+                                <?php } } ?>
                                 </select>
                             </div>
                             <div class="col-sm-6">
                                 <label for="bill_date">Test Date</label>
-                                <input type="date" class="form-control" name="bill_date" id="bill_date" value="">
+                                <input type="date" class="form-control" name="bill_date" id="bill_date" value="<?= $d->bill_date ?>" >
                             </div>
                         </div>
                         
@@ -81,16 +78,17 @@
                                         <select onchange="get_test(this)" class="form-control" name="test_id">
                                             <option value="">Select Test</option>
                                             <?php
-                                            $data=$mysqli->common_select('test');
-                                            if(!$data['error']){
-                                                foreach($data['data'] as $t){
+                                                $data=$mysqli->common_select('test');
+                                                if(!$data['error']){
+                                                    foreach($data['data'] as $t){
                                             ?>
-                                                <option <?= $t->id == $d->id ? "selected" : "" ?> value="<?= $t->id ?>"><?= $t->test_name ?></option>
+                                                <option data-price="<?= $d->price ?>" 
+                                                <?= $t->id == $d->id ? "selected" : "" ?> value="<?= $d->id ?>"><?= $t->test_name ?></option>
                                             <?php } } ?>
                                         </select>
                                     </div>
                                     <div class="col-sm-3">
-                                    <input type="text" name="amount" class="form-control testprice" value="<?= $t->price ?>">
+                                    <input type="text" name="amount" class="form-control testprice">
                                     </div>
                                     <div class="col-sm-3">
                                         <input class="btn btn-danger" data-repeater-delete type="button" value="Delete"/>
