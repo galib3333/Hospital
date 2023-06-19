@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2023 at 09:30 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Jun 20, 2023 at 06:52 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -172,6 +172,9 @@ CREATE TABLE `doctors` (
   `specialist` varchar(255) DEFAULT NULL,
   `education` varchar(255) DEFAULT NULL,
   `fees` decimal(10,2) DEFAULT NULL,
+  `days` varchar(255) NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
@@ -183,13 +186,13 @@ CREATE TABLE `doctors` (
 -- Dumping data for table `doctors`
 --
 
-INSERT INTO `doctors` (`id`, `name`, `email`, `designation_id`, `department_id`, `specialist`, `education`, `fees`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
-(1, 'Dr. Murad Hasan\'s', 'murad@gamil.com', 1, 7, 'Cardiologist', 'MBBS, FCPS', '1200.00', NULL, NULL, NULL, NULL, NULL),
-(2, 'Dr. Harun', 'harunn@gmail.com', 1, 1, 'oncology', 'MBBS', '800.00', NULL, NULL, '2023-06-04 16:13:36', NULL, NULL),
-(3, 'Dr. Shila Rahman', 'shilla@gmail.com', 2, 3, 'Pediatrician', 'MBBS, MD', '500.00', NULL, NULL, NULL, NULL, NULL),
-(4, 'Dr. Chamak Hasan', 'chamak@gmail.com', 4, 4, 'Orthopedic Surgeon', 'MBBS, MD', '2000.00', NULL, NULL, NULL, NULL, NULL),
-(5, 'Dr. Jamal khan', 'jamal@gmail.com', 6, 8, 'Psychiatrist', 'MBBS, MD', '2000.00', NULL, NULL, NULL, NULL, NULL),
-(6, 'Dr. Marufa', 'marufa@gamil.com', 4, 6, 'Dermatologist', 'MBBS, MD', '1000.00', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `doctors` (`id`, `name`, `email`, `designation_id`, `department_id`, `specialist`, `education`, `fees`, `days`, `start_time`, `end_time`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
+(1, 'Dr. Murad Hasan\'s', 'murad@gamil.com', 1, 7, 'Cardiologist', 'MBBS, FCPS', 1200.00, '', '00:00:00', '00:00:00', NULL, NULL, NULL, NULL, NULL),
+(2, 'Dr. Harun', 'harunn@gmail.com', 1, 1, 'oncology', 'MBBS', 800.00, '', '00:00:00', '00:00:00', NULL, NULL, '2023-06-04 16:13:36', NULL, NULL),
+(3, 'Dr. Shila Rahman', 'shilla@gmail.com', 2, 3, 'Pediatrician', 'MBBS, MD', 500.00, '', '00:00:00', '00:00:00', NULL, NULL, NULL, NULL, NULL),
+(4, 'Dr. Chamak Hasan', 'chamak@gmail.com', 4, 4, 'Orthopedic Surgeon', 'MBBS, MD', 2000.00, '', '00:00:00', '00:00:00', NULL, NULL, NULL, NULL, NULL),
+(5, 'Dr. Jamal khan', 'jamal@gmail.com', 6, 8, 'Psychiatrist', 'MBBS, MD', 2000.00, '', '00:00:00', '00:00:00', NULL, NULL, NULL, NULL, NULL),
+(6, 'Dr. Marufa', 'marufa@gamil.com', 4, 6, 'Dermatologist', 'MBBS, MD', 1000.00, '', '00:00:00', '00:00:00', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -221,8 +224,8 @@ INSERT INTO `patients` (`id`, `name`, `email`, `phone`, `present_address`, `perm
 (1, 'Michael Johnson', 'michaeljohnson@example.com', '0185000034', '456 Pine Street', '789 Oak Avenue, ', '1991-06-25', 'Male', NULL, NULL, NULL, NULL, NULL),
 (2, 'Emily Davis', 'emilydavis@example.com', '01735061377', '789 Elm Road', '123 Oak Avenue', '1997-10-13', 'Female', NULL, NULL, NULL, NULL, NULL),
 (3, 'James Wilson', 'jameswilson@example.com', '01728985444', ' 321 Maple Avenue', ' 456 Pine Street', '1998-07-24', 'Male', NULL, NULL, NULL, NULL, NULL),
-(4, 'Sarah Anderson', 'sarahanderson@example.com', '', '789 Oak Avenue', '789 Elm Road', '1990-09-06', 'Female', NULL, NULL, NULL, NULL, NULL),
-(5, 'Kamal Uddin', '', '01689754152', '', '', '0000-00-00', 'Male', NULL, NULL, NULL, NULL, '2023-06-13 05:42:59');
+(4, 'Sarah Anderson', 'sarahanderson@example.com', '+88 12365498', '789 Oak Avenue', '789 Oak Avenue', '1990-09-06', 'Female', NULL, NULL, NULL, NULL, NULL),
+(5, 'Kamal Uddin', '', '01689754152', '', '', '0000-00-00', 'Male', NULL, NULL, '2023-06-19 06:19:38', NULL, '2023-06-13 05:42:59');
 
 -- --------------------------------------------------------
 
@@ -346,7 +349,7 @@ CREATE TABLE `p_test` (
   `service_charge` decimal(10,2) DEFAULT 0.00,
   `vat` decimal(10,2) DEFAULT 0.00,
   `total` decimal(10,2) DEFAULT NULL,
-  `bill_date` datetime DEFAULT NULL,
+  `bill_date` date DEFAULT NULL,
   `due` decimal(10,2) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
@@ -354,6 +357,18 @@ CREATE TABLE `p_test` (
   `created_by` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `p_test`
+--
+
+INSERT INTO `p_test` (`id`, `patient_id`, `sub_total`, `discount`, `service_charge`, `vat`, `total`, `bill_date`, `due`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
+(3, 4, 3000.00, 10.00, 5.00, 10.00, 3150.00, '2023-06-29', 0.00, NULL, NULL, NULL, NULL, NULL),
+(4, 3, 3000.00, 10.00, 5.00, 10.00, 3150.00, '2023-06-22', 0.00, NULL, NULL, NULL, NULL, NULL),
+(9, 2, 11500.00, 10.00, 10.00, 10.00, 12650.00, '2023-06-10', 1150.00, NULL, NULL, NULL, NULL, NULL),
+(10, 2, 3000.00, 10.00, 10.00, 10.00, 3300.00, '2023-06-24', 2100.00, NULL, NULL, NULL, NULL, NULL),
+(11, 3, 0.00, 10.00, 10.00, 10.00, 0.00, '2023-06-24', 3800.00, NULL, NULL, NULL, NULL, NULL),
+(12, 3, 500.00, 10.00, 10.00, 10.00, 550.00, '2023-06-03', 100.00, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -372,6 +387,20 @@ CREATE TABLE `p_test_des` (
   `created_by` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `p_test_des`
+--
+
+INSERT INTO `p_test_des` (`id`, `p_test_id`, `test_id`, `amount`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
+(4, 3, 3, 3000.00, NULL, NULL, NULL, NULL, NULL),
+(5, 4, 3, 3000.00, NULL, NULL, NULL, NULL, NULL),
+(10, 9, 4, 8000.00, NULL, NULL, NULL, NULL, NULL),
+(11, 9, 1, 500.00, NULL, NULL, NULL, NULL, NULL),
+(12, 9, 3, 3000.00, NULL, NULL, NULL, NULL, NULL),
+(13, 10, 3, 3000.00, NULL, NULL, NULL, NULL, NULL),
+(14, 11, 0, 0.00, NULL, NULL, NULL, NULL, NULL),
+(15, 12, 1, 500.00, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -397,7 +426,7 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`id`, `room_no`, `room_type`, `capacity`, `room_rent`, `created_at`, `created_by`, `deleted_at`, `updated_at`, `updated_by`) VALUES
-(1, '001', 'AC Word', 4, '500.00', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL);
+(1, '001', 'AC Word', 4, 500.00, '0000-00-00 00:00:00', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -422,8 +451,10 @@ CREATE TABLE `test` (
 --
 
 INSERT INTO `test` (`id`, `test_name`, `description`, `price`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
-(1, 'Blood Test', 'Available', '500.00', NULL, NULL, NULL, NULL, NULL),
-(2, 'Blood Test', 'Avail', '3000.00', NULL, NULL, NULL, NULL, NULL);
+(1, 'Blood Test', 'Available', 500.00, NULL, NULL, NULL, NULL, NULL),
+(2, 'Blood Test', 'Avail', 3000.00, NULL, NULL, '2023-06-19 05:45:04', NULL, NULL),
+(3, 'X-Ray', 'fdgdsfgdsfg', 3000.00, NULL, NULL, NULL, NULL, NULL),
+(4, 'Ultrasound Test', 'dfgdsfgdfg', 8000.00, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -630,13 +661,13 @@ ALTER TABLE `p_prescription`
 -- AUTO_INCREMENT for table `p_test`
 --
 ALTER TABLE `p_test`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `p_test_des`
 --
 ALTER TABLE `p_test_des`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `room`
@@ -648,7 +679,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `test`
 --
 ALTER TABLE `test`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
