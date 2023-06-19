@@ -82,7 +82,7 @@
                                                 if(!$data['error']){
                                                     foreach($data['data'] as $t){
                                             ?>
-                                            <option <?= $t->id == $d->id ? "selected" : "" ?> value="<?= $d->id ?>"><?= $t->test_name ?></option>
+                                            <option <?= $t->id == $d->id ? "selected" : "" ?> value="<?= $t->id ?>"><?= $t->test_name ?></option>
                                             <?php } } ?>
                                         </select>
                                     </div>
