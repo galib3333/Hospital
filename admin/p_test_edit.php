@@ -59,7 +59,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="bill_date">Test Date</label>
-                                <input type="date" class="form-control" name="bill_date" id="bill_date" value="">
+                                <input type="date" class="form-control" name="bill_date" id="bill_date" value="<?= $d->bill_date ?>">
                             </div>
                         </div>
                         
@@ -113,22 +113,22 @@
 										</tr>
 										<tr>
 											<td>Discount (%)</td>
-											<td><input class="form-control" onkeyup="check_total()" id="discount" type="text" name="discount" value=""></td>
+											<td><input class="form-control" onkeyup="check_total()" id="discount" type="text" name="discount" value="<?= $d->discount ?>"></td>
 											<td class="discount"></td>
 										</tr>
 										<tr>
 											<td>VAT (%)</td>
-											<td><input class="form-control" onkeyup="check_total()" id="vat" type="text" name="vat"  value=""></td>
+											<td><input class="form-control" onkeyup="check_total()" id="vat" type="text" name="vat"  value="<?= $d->vat ?>"></td>
 											<td class="vat"></td>
 										</tr>
 										<tr>
 											<td>Service Charge (%)</td>
-											<td><input class="form-control" onkeyup="check_total()" id="service_charge" type="text" name="service_charge" value=""></td>
+											<td><input class="form-control" onkeyup="check_total()" id="service_charge" type="text" name="service_charge" value="<?= $d->service_charge ?>"></td>
 											<td class="service_charge"></td>
 										</tr>
 										<tr>
 											<td>Total</td>
-											<td><input class="form-control" type="hidden" name="total" id="total" value=""></td>
+											<td><input class="form-control" type="hidden" name="total" id="total" value="<?= $d->total ?>"></td>
 											<td class="total"></td>
 										</tr>
                                         <tr>
@@ -139,7 +139,7 @@
                                         <tr>
 											<td>Due</td>
 											<td></td>
-											<td><input class="form-control" type="text" name="due" id="due" value=""></td>
+											<td><input class="form-control" type="text" name="due" id="due" value="<?= $d->due ?>"></td>
 										</tr>
 									</table>
 								</div>
