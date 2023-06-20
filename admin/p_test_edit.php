@@ -50,7 +50,7 @@
                                     if (!$data['error']) {
                                         foreach ($data['data'] as $p) {
                                 ?>
-                                    <option <?= $p->id == $d->patient_id ? "selected" : "" ?> value="<?= $p->id ?>"><?= $p->name ?></option>
+                                    <option <?= $d->patient_id == $p->id ? "selected" : "" ?> value="<?= $p->id ?>"><?= $p->name ?></option>
                                 <?php } } ?>
                                 </select>
                             </div>
@@ -82,7 +82,8 @@
                                                 if(!$data['error']){
                                                     foreach($data['data'] as $t){
                                             ?>
-                                            <option <?= $t->id == $d->id ? "selected" : "" ?> value="<?= $t->id ?>"><?= $t->test_name ?></option>
+                                            <option data-price="<?= $d->price ?>"
+                                            <?= $d->id == $t->id ? "selected" : "" ?> value="<?= $t->id ?>"><?= $t->test_name ?></option>
                                             <?php } } ?>
                                         </select>
                                     </div>

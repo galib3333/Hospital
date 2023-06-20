@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                        <label for="designation_id" class="col-sm-3 text-end control-label col-form-label">Designation:</label>
+                            <label for="designation_id" class="col-sm-3 text-end control-label col-form-label">Designation:</label>
                             <div class="col-sm-9">
                                 <select class="form-control" id="designation_id" name="designation_id">
                                 <?php
@@ -71,7 +71,19 @@
                                 </select>
                             </div>
                         </div>
-
+                        <div class="form-group row">
+                            <label for="days" class="col-sm-3 text-end control-label col-form-label">Day:</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="days" name="days" multiple>
+                                <?php
+                                        $day=array("Sat","Sun","Mon","Tue","Wed","Thur","Fri");
+                                        foreach($day as $fday){
+                                    ?>
+                                        <option value="<?= $fday ?>"><?= $fday ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="specialist" class="col-sm-3 text-end control-label col-form-label">Specialist :</label>
                             <div class="col-sm-9">
