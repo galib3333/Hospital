@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <form class="form-horizontal" method="post">
+                <form class="form-horizontal" method="post" action="payment.php">
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-sm-6">
@@ -175,6 +175,60 @@
 <?php include_once('include/footer.php'); ?>
 <script src="<?= $base_url; ?>../assets/dist/js/repeater/jquery.repeater.min.js"></script>
 <script>
+    // function get_due(e){
+    //     let total=$('#total').val()?parseFloat($('#total').val()):0;
+    //     let pay=e>0?parseFloat(e):0;
+    //     if(total>pay)
+    //         $("#due").val((total - pay));
+    //     else
+    //         $("#due").val(0);
+    // }
+    // function get_test(e){
+    //     let price=$(e).find(":selected").data("price");
+    //     $(e).closest('.row').find('.testprice').val(price);
+    //     check_total()
+    // }
+    // $(document).ready(function () {
+    //     $('.repeater').repeater({
+    //         hide: function (deleteElement) {
+    //             $(this).hide(function(){
+    //                 deleteElement();
+    //                 check_total();
+    //             });
+    //         }
+    //     })
+    // });
+    // function check_total(){
+    //     let totalamt=0;
+    //     $('.testprice').each(function(){
+    //         totalamt+=$(this).val()?parseFloat($(this).val()):0;
+    //     })
+    //     let rent=totalamt;
+    //     let discount=$("#discount").val()?parseFloat($("#discount").val()):0;
+    //     let vat=$("#vat").val()?parseFloat($("#vat").val()):0;
+    //     let service_charge=$("#service_charge").val()?parseFloat($("#service_charge").val()):0;
+        
+    //     if(discount>0){
+    //         discount=(rent*(discount/100))
+    //     }
+    //     if(vat>0){
+    //         vat=(rent*(vat/100))
+    //     }
+    //     if(service_charge>0){
+    //         service_charge=(rent*(service_charge/100))
+    //     }
+    //     $(".discount").text("BDT "+discount);
+    //     $(".vat").text("BDT "+vat);
+    //     $(".service_charge").text("BDT "+service_charge);
+    //     $("#subamount").text("BDT "+rent);
+    //     $(".subamount").val(rent);
+
+    //     let total=((rent + service_charge + vat) -discount)
+    //     $(".total").text("BDT "+total);
+    //     $("#total").val(total);
+
+    // }
+
     function get_due(e){
         let total=$('#total').val()?parseFloat($('#total').val()):0;
         let pay=e>0?parseFloat(e):0;
@@ -228,4 +282,14 @@
         $("#total").val(total);
 
     }
+
+    $('form').submit(function(e) {
+        e.preventDefault();
+
+        let payAmount = $("#pay").val();
+        let dueAmount = $("#due").val();
+
+        let redirectUrl = 'payment.php' + '?pay=' + encodeURIComponent(payAmount) + '&due=' + encodeURIComponent(dueAmount);
+        window.location.href = redirectUrl;
+    });
 </script>

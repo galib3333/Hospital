@@ -73,9 +73,6 @@
                                         <a title="Update" href="p_test_edit.php?id=<?= $d->id ?>">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a title="Payment" href="payment.php?id=<?= $d->id ?>">
-                                            <i class="mdi mdi-credit-card"></i>
-                                        </a>
                                         <a title="Delete" class="text-danger" href="p_test_delete.php?id=<?= $d->id ?>">
                                             <i class="fa fa-trash"></i>
                                         </a>

@@ -26,9 +26,36 @@
 <!-- ============================================================== -->
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
-            <h1>Total Amount : BDT  </h1>
-            <h1>Due Amount : </h1>
+        <div class="col-sm-6">
+            
+            <table>
+                <thead>
+                    
+                </thead>
+                <tbody>
+                    <?php
+                        $payAmount = $_GET['pay'] ?? '';
+                        $dueAmount = $_GET['due'] ?? '';
+                    ?>
+                    <tr>
+                        <td><h3>Total Amount : </h3></td>
+                        <td></td>
+                        <td><input class="form-control" type="text" name="pay" id="pay" value="<?= $payAmount; ?>"></td>
+                    </tr>
+                    <tr>
+                        <td><h3>Total Due Amount : </h3></td>
+                        <td></td>
+                        <td><input class="form-control" type="text" name="due" id="due" value="<?= $dueAmount; ?>"></td>
+                    </tr>
+
+                    <tr>
+                        <td><h3>Pay Due : </h3></td>
+                        <td></td>
+                        <td><input class="form-control" type="text" name="pay_due" id="pay_due" value=""></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-primary ">Pay Due</button>
         </div>
     </div>
 </div>
