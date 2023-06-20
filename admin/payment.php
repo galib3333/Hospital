@@ -27,35 +27,55 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6">
-            
+            <form method="post" action="">
             <table>
                 <thead>
                     
                 </thead>
                 <tbody>
                     <?php
-                        $payAmount = $_GET['pay'] ?? '';
-                        $dueAmount = $_GET['due'] ?? '';
+                        $where['id'] = $_GET['id'];
+                        $data=$mysqli->common_select_single("p_test","*",$where);
+                        if(!$data['error']){
+                            $d=$data['data'];
+                        }
                     ?>
                     <tr>
                         <td><h3>Total Amount : </h3></td>
-                        <td></td>
-                        <td><input class="form-control" type="text" name="pay" id="pay" value="<?= $payAmount; ?>"></td>
+                        <td> BDT <?= $d->total ?></td>
                     </tr>
                     <tr>
                         <td><h3>Total Due Amount : </h3></td>
-                        <td></td>
-                        <td><input class="form-control" type="text" name="due" id="due" value="<?= $dueAmount; ?>"></td>
+                        <td>BDT <?= $d->due ?></td>
                     </tr>
 
                     <tr>
                         <td><h3>Pay Due : </h3></td>
-                        <td></td>
-                        <td><input class="form-control" type="text" name="pay_due" id="pay_due" value=""></td>
+                        <td><input class="form-control" type="text" name="pay_due" id="pay_due" value="" onkeyup="check_due(this.value)">
+                        <span id="due_msg"></span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-primary ">Pay Due</button>
+            <button type="submit" class="btn btn-primary ">Pay Due</button>
+            </form>
+<?php
+    if($_POST){
+        $pay=$_POST['pay_due'];
+        if($d->due > $pay)
+            $due['due']=($d->due - $pay);
+        else
+            $due['due']=0;
+        $rs=$mysqli->common_update('p_test',$due,$where);
+        if(!$rs['error']){
+            echo "<script>window.location='p_test_list.php'</script>";
+        }else{
+            echo $rs['error'];
+        }
+        
+    }
+
+?>
         </div>
     </div>
 </div>
@@ -64,3 +84,13 @@
 <!-- ============================================================== -->
             
 <?php include_once('include/footer.php'); ?>
+<script>
+    function check_due(e){
+        $("#due_msg").text("");
+        let due=<?= $d->due ?>;
+        if(e>due){
+            $("#pay_due").val(due);
+            $("#due_msg").text("You cannot pay more than "+due);
+        }
+    }
+</script>

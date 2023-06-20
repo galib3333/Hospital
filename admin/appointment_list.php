@@ -73,7 +73,7 @@
                                             <a title="Update" href="appointment_edit.php?id=<?= $d->id ?>">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a title="Delete" class="text-danger" href="appointment_delete.php?id=<?= $d->id ?>">
+                                            <a title="Delete" onclick="return confirm('Are you sure to delete this!')" class="text-danger" href="appointment_delete.php?id=<?= $d->id ?>">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                             

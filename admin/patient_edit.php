@@ -106,7 +106,6 @@
                 <?php
                     if($_POST){
                         $rs=$mysqli->common_update('patients',$_POST,$where);
-                        print_r($rs);
                         if(!$rs['error']){
                         echo "<script>window.location='patient_list.php'</script>";
                         }else{
