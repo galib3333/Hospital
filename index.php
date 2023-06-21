@@ -13,9 +13,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="assets/frontend/main.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.1/css/all.min.css" integrity="sha512-BxQjx52Ea/sanKjJ426PAhxQJ4BPfahiSb/ohtZ2Ipgrc5wyaTSgTwPhhZ/xC66vvg+N4qoDD1j0VcJAqBTjhQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
   </head>
   <body>
     <nav class="navbar navbar-expand-lg nav-back fixed-top" 
@@ -81,6 +82,22 @@
                         placeholder="123"required>
                     </div>
                   </div>
+                  <div class="form-group row">
+                    <label class="col-sm-4 col-lg-4">
+                        Doctor:
+                    </label>
+                    <div class="col-sm-8 col-lg-8">
+                         <select class="form-control" name="doctor_id">
+                          <?php
+                              $data=$mysqli->common_select('doctors');
+                              if(!$data['error']){
+                                  foreach($data['data'] as $dt){
+                          ?>
+                              <option value="<?= $dt->id ?>"><?= $dt->name ?></option>
+                          <?php } } ?>
+                      </select>
+                    </div>
+                  </div>
                 <!---->
                 <div class="form-group row">
                     <label class="col-sm-4 col-lg-4">
@@ -88,6 +105,21 @@
                     </label>
                     <div class="col-sm-8 col-lg-8">
                         <input name="app_date" type="date"id="date"class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-lg-4">
+                      Day
+                    </label>
+                    <div class="col-sm-8 col-lg-8">
+                      <select class="form-control" id="days" name="days" >
+                        <?php
+                          $day=array("Sat","Sun","Mon","Tue","Wed","Thur","Fri");
+                          foreach($day as $fday){
+                        ?>
+                          <option value="<?= $fday ?>"><?= $fday ?></option>
+                        <?php } ?>
+                      </select>
                     </div>
                 </div>
                 <!---->
@@ -141,13 +173,13 @@
   <footer class="footer py-4 mt-5">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-4 text-lg-left">Copyright © Your Website 2020</div>
+          <div class="col-lg-4 text-lg-left">Copyright © WDPF-R54</div>
             <div class="col-lg-4 my-3 my-lg-0">
-                <a class="btn btn-back btn-social mx-2" href="#!">
-                  <i class="fab fa-twitter"></i></a>
-                  <a class="btn btn-back btn-social mx-2" href="#!">
-                    <i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-back btn-social mx-2" href="#!">
+              <a class="btn btn-back btn-social mx-2 rounded-circle" href="#!">
+                <i class="fab fa-facebook"></i></a>
+                <a class="btn btn-back btn-social mx-2 rounded-circle" href="#!">
+                 <i class="fab fa-twitter"></i></a>
+                  <a class="btn btn-back btn-social mx-2 rounded-circle" href="#!">
                       <i class="fab fa-linkedin-in"></i></a>
             </div>
             <div class="col-lg-4 text-lg-right">
