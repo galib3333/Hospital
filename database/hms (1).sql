@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2023 at 06:52 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Jun 21, 2023 at 09:56 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -61,7 +61,9 @@ CREATE TABLE `appointment_request` (
   `id` int(11) NOT NULL,
   `patient_name` varchar(255) DEFAULT NULL,
   `contact_no` varchar(255) DEFAULT NULL,
+  `doctor_name` varchar(255) NOT NULL,
   `app_date` date DEFAULT NULL,
+  `days` varchar(255) NOT NULL,
   `app_time` time DEFAULT NULL,
   `symptoms` text DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
@@ -74,15 +76,22 @@ CREATE TABLE `appointment_request` (
 -- Dumping data for table `appointment_request`
 --
 
-INSERT INTO `appointment_request` (`id`, `patient_name`, `contact_no`, `app_date`, `app_time`, `symptoms`, `created_at`, `updated_by`, `updated_at`, `deleted_at`) VALUES
-(1, 'Kamal Uddin', '01689754152', '2023-06-09', '12:00:00', 'aksjdhf', NULL, NULL, NULL, NULL),
-(2, 'asdf', '02045451', '2023-06-03', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
-(3, 'asdf', '02045451', '2023-06-03', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
-(4, 'sadf', '02045451', '0000-00-00', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
-(5, 'Kamal Uddin', '02045451', '2023-06-03', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
-(6, 'Kamal Uddin', 'asdf', '2023-06-09', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
-(7, 'Kamal Uddin', '02045451', '0000-00-00', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
-(8, 'asdf', '02045451', '0000-00-00', '00:00:00', 'asdf', NULL, NULL, NULL, NULL);
+INSERT INTO `appointment_request` (`id`, `patient_name`, `contact_no`, `doctor_name`, `app_date`, `days`, `app_time`, `symptoms`, `created_at`, `updated_by`, `updated_at`, `deleted_at`) VALUES
+(1, 'Kamal Uddin', '01689754152', '0', '2023-06-09', '', '12:00:00', 'aksjdhf', NULL, NULL, NULL, NULL),
+(2, 'asdf', '02045451', '0', '2023-06-03', '', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
+(3, 'asdf', '02045451', '0', '2023-06-03', '', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
+(4, 'sadf', '02045451', '0', '0000-00-00', '', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
+(5, 'Kamal Uddin', '02045451', '0', '2023-06-03', '', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
+(6, 'Kamal Uddin', 'asdf', '0', '2023-06-09', '', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
+(7, 'Kamal Uddin', '02045451', '0', '0000-00-00', '', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
+(8, 'asdf', '02045451', '0', '0000-00-00', '', '00:00:00', 'asdf', NULL, NULL, NULL, NULL),
+(10, 'Galib', '01865850477', '3', '2023-06-27', 'Mon', '03:33:00', 'Fever', NULL, NULL, NULL, NULL),
+(11, 'Abir', '44565', '6', '2023-06-04', 'Tue', '15:30:00', 'Fever', NULL, NULL, NULL, NULL),
+(12, 'Abir', '44565', '6', '2023-06-04', 'Tue', '15:30:00', 'Fever', NULL, NULL, NULL, NULL),
+(13, 'Galib', '0145464641', '4', '2023-05-30', 'Mon', '02:40:00', 'Fever', NULL, NULL, NULL, NULL),
+(14, 'Galib', '0145464641', '4', '2023-05-30', 'Mon', '02:40:00', 'Fever', NULL, NULL, NULL, NULL),
+(15, 'Galib', '0145464641', '3', '2023-05-29', 'Sun', '14:45:00', 'Fever', NULL, NULL, NULL, NULL),
+(16, 'Galib', '0145464641', '3', '2023-05-29', 'Sun', '14:45:00', 'Fever', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -187,12 +196,12 @@ CREATE TABLE `doctors` (
 --
 
 INSERT INTO `doctors` (`id`, `name`, `email`, `designation_id`, `department_id`, `specialist`, `education`, `fees`, `days`, `start_time`, `end_time`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
-(1, 'Dr. Murad Hasan\'s', 'murad@gamil.com', 1, 7, 'Cardiologist', 'MBBS, FCPS', 1200.00, '', '00:00:00', '00:00:00', NULL, NULL, NULL, NULL, NULL),
-(2, 'Dr. Harun', 'harunn@gmail.com', 1, 1, 'oncology', 'MBBS', 800.00, '', '00:00:00', '00:00:00', NULL, NULL, '2023-06-04 16:13:36', NULL, NULL),
-(3, 'Dr. Shila Rahman', 'shilla@gmail.com', 2, 3, 'Pediatrician', 'MBBS, MD', 500.00, '', '00:00:00', '00:00:00', NULL, NULL, NULL, NULL, NULL),
-(4, 'Dr. Chamak Hasan', 'chamak@gmail.com', 4, 4, 'Orthopedic Surgeon', 'MBBS, MD', 2000.00, '', '00:00:00', '00:00:00', NULL, NULL, NULL, NULL, NULL),
-(5, 'Dr. Jamal khan', 'jamal@gmail.com', 6, 8, 'Psychiatrist', 'MBBS, MD', 2000.00, '', '00:00:00', '00:00:00', NULL, NULL, NULL, NULL, NULL),
-(6, 'Dr. Marufa', 'marufa@gamil.com', 4, 6, 'Dermatologist', 'MBBS, MD', 1000.00, '', '00:00:00', '00:00:00', NULL, NULL, NULL, NULL, NULL);
+(1, 'Dr. Murad Hasan', 'murad@gamil.com', 1, 7, 'Cardiologist', 'MBBS, FCPS', '1200.00', '', '00:00:00', '00:00:00', NULL, NULL, NULL, NULL, NULL),
+(2, 'Dr. Harun', 'harunn@gmail.com', 1, 1, 'oncology', 'MBBS', '800.00', '', '00:00:00', '00:00:00', NULL, NULL, '2023-06-04 16:13:36', NULL, NULL),
+(3, 'Dr. Shila Rahman', 'shilla@gmail.com', 2, 3, 'Pediatrician', 'MBBS, MD', '500.00', '', '00:00:00', '00:00:00', NULL, NULL, NULL, NULL, NULL),
+(4, 'Dr. Chamak Hasan', 'chamak@gmail.com', 4, 4, 'Orthopedic Surgeon', 'MBBS, MD', '2000.00', '', '00:00:00', '00:00:00', NULL, NULL, NULL, NULL, NULL),
+(5, 'Dr. Jamal khan', 'jamal@gmail.com', 6, 8, 'Psychiatrist', 'MBBS, MD', '2000.00', '', '00:00:00', '00:00:00', NULL, NULL, NULL, NULL, NULL),
+(6, 'Dr. Marufa', 'marufa@gamil.com', 4, 6, 'Dermatologist', 'MBBS, MD', '1000.00', '', '00:00:00', '00:00:00', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -363,12 +372,12 @@ CREATE TABLE `p_test` (
 --
 
 INSERT INTO `p_test` (`id`, `patient_id`, `sub_total`, `discount`, `service_charge`, `vat`, `total`, `bill_date`, `due`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
-(3, 4, 3000.00, 10.00, 5.00, 10.00, 3150.00, '2023-06-29', 0.00, NULL, NULL, NULL, NULL, NULL),
-(4, 3, 3000.00, 10.00, 5.00, 10.00, 3150.00, '2023-06-22', 0.00, NULL, NULL, NULL, NULL, NULL),
-(9, 2, 11500.00, 10.00, 10.00, 10.00, 12650.00, '2023-06-10', 1150.00, NULL, NULL, NULL, NULL, NULL),
-(10, 2, 3000.00, 10.00, 10.00, 10.00, 3300.00, '2023-06-24', 2100.00, NULL, NULL, NULL, NULL, NULL),
-(11, 3, 0.00, 10.00, 10.00, 10.00, 0.00, '2023-06-24', 3800.00, NULL, NULL, NULL, NULL, NULL),
-(12, 3, 500.00, 10.00, 10.00, 10.00, 550.00, '2023-06-03', 100.00, NULL, NULL, NULL, NULL, NULL);
+(3, 4, '3000.00', '10.00', '5.00', '10.00', '3150.00', '2023-06-29', '0.00', NULL, NULL, NULL, NULL, NULL),
+(4, 3, '3000.00', '10.00', '5.00', '10.00', '3150.00', '2023-06-22', '0.00', NULL, NULL, NULL, NULL, NULL),
+(9, 2, '11500.00', '10.00', '10.00', '10.00', '12650.00', '2023-06-10', '1150.00', NULL, NULL, NULL, NULL, NULL),
+(10, 2, '3000.00', '10.00', '10.00', '10.00', '3300.00', '2023-06-24', '2100.00', NULL, NULL, NULL, NULL, NULL),
+(11, 3, '0.00', '10.00', '10.00', '10.00', '0.00', '2023-06-24', '3800.00', NULL, NULL, NULL, NULL, NULL),
+(12, 3, '500.00', '10.00', '10.00', '10.00', '550.00', '2023-06-03', '100.00', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -393,14 +402,14 @@ CREATE TABLE `p_test_des` (
 --
 
 INSERT INTO `p_test_des` (`id`, `p_test_id`, `test_id`, `amount`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
-(4, 3, 3, 3000.00, NULL, NULL, NULL, NULL, NULL),
-(5, 4, 3, 3000.00, NULL, NULL, NULL, NULL, NULL),
-(10, 9, 4, 8000.00, NULL, NULL, NULL, NULL, NULL),
-(11, 9, 1, 500.00, NULL, NULL, NULL, NULL, NULL),
-(12, 9, 3, 3000.00, NULL, NULL, NULL, NULL, NULL),
-(13, 10, 3, 3000.00, NULL, NULL, NULL, NULL, NULL),
-(14, 11, 0, 0.00, NULL, NULL, NULL, NULL, NULL),
-(15, 12, 1, 500.00, NULL, NULL, NULL, NULL, NULL);
+(4, 3, 3, '3000.00', NULL, NULL, NULL, NULL, NULL),
+(5, 4, 3, '3000.00', NULL, NULL, NULL, NULL, NULL),
+(10, 9, 4, '8000.00', NULL, NULL, NULL, NULL, NULL),
+(11, 9, 1, '500.00', NULL, NULL, NULL, NULL, NULL),
+(12, 9, 3, '3000.00', NULL, NULL, NULL, NULL, NULL),
+(13, 10, 3, '3000.00', NULL, NULL, NULL, NULL, NULL),
+(14, 11, 0, '0.00', NULL, NULL, NULL, NULL, NULL),
+(15, 12, 1, '500.00', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -426,7 +435,7 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`id`, `room_no`, `room_type`, `capacity`, `room_rent`, `created_at`, `created_by`, `deleted_at`, `updated_at`, `updated_by`) VALUES
-(1, '001', 'AC Word', 4, 500.00, '0000-00-00 00:00:00', NULL, NULL, NULL, NULL);
+(1, '001', 'AC Word', 4, '500.00', '0000-00-00 00:00:00', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -451,10 +460,10 @@ CREATE TABLE `test` (
 --
 
 INSERT INTO `test` (`id`, `test_name`, `description`, `price`, `updated_by`, `updated_at`, `deleted_at`, `created_by`, `created_at`) VALUES
-(1, 'Blood Test', 'Available', 500.00, NULL, NULL, NULL, NULL, NULL),
-(2, 'Blood Test', 'Avail', 3000.00, NULL, NULL, '2023-06-19 05:45:04', NULL, NULL),
-(3, 'X-Ray', 'fdgdsfgdsfg', 3000.00, NULL, NULL, NULL, NULL, NULL),
-(4, 'Ultrasound Test', 'dfgdsfgdfg', 8000.00, NULL, NULL, NULL, NULL, NULL);
+(1, 'Blood Test', 'Available', '500.00', NULL, NULL, NULL, NULL, NULL),
+(2, 'Blood Test', 'Avail', '3000.00', NULL, NULL, '2023-06-19 05:45:04', NULL, NULL),
+(3, 'X-Ray', 'fdgdsfgdsfg', '3000.00', NULL, NULL, NULL, NULL, NULL),
+(4, 'Ultrasound Test', 'dfgdsfgdfg', '8000.00', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -601,7 +610,7 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT for table `appointment_request`
 --
 ALTER TABLE `appointment_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `bill`

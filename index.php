@@ -87,13 +87,13 @@
                         Doctor:
                     </label>
                     <div class="col-sm-8 col-lg-8">
-                         <select class="form-control" name="doctor_id">
+                         <select class="form-control" name="doctor_name" id="doctor">
                           <?php
                               $data=$mysqli->common_select('doctors');
                               if(!$data['error']){
-                                  foreach($data['data'] as $dt){
+                                  foreach($data['data'] as $d){
                           ?>
-                              <option value="<?= $dt->id ?>"><?= $dt->name ?></option>
+                              <option value="<?= $d->id ?>"><?= $d->name ?></option>
                           <?php } } ?>
                       </select>
                     </div>
@@ -112,7 +112,7 @@
                       Day
                     </label>
                     <div class="col-sm-8 col-lg-8">
-                      <select class="form-control" id="days" name="days" >
+                      <select class="form-control" id="day" name="days" >
                         <?php
                           $day=array("Sat","Sun","Mon","Tue","Wed","Thur","Fri");
                           foreach($day as $fday){

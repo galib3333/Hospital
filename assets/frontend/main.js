@@ -3,7 +3,9 @@ let DB;
 let form = document.querySelector('form');
 let patientName = document.querySelector('#patient-name');
 let contact = document.querySelector('#contact');
+let doctor = document.querySelector('#doctor');
 let date = document.querySelector('#date');
+let day = document.querySelector('#day');
 let time = document.querySelector('#time');
 let symptoms = document.querySelector('#symptoms');
 let consultations = document.querySelector('#consultations');
@@ -37,7 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
           objectStore.createIndex('patientname', 'patientname', { unique: false } );
           objectStore.createIndex('contact', 'contact', { unique: false } );
+          objectStore.createIndex('doctor', 'doctor', { unique: false } );
           objectStore.createIndex('date', 'date', { unique: false } );
+          objectStore.createIndex('day', 'day', { unique: false } );
           objectStore.createIndex('time', 'time', { unique: false } );
           objectStore.createIndex('symptoms', 'symptoms', { unique: false } );
 
@@ -52,8 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
                patientname : patientName.value,
                
              contact : contact.value,
+             doctor : doctor.value,
                date : date.value,
-            time : time.value,
+               day : day.value,
+              time : time.value,
                symptoms : symptoms.value
           }
           
@@ -94,7 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     ConsultationHTML.innerHTML = `  
                          <p class="font-weight-bold">Patient Name:  <span class="font-weight-normal">${cursor.value.patientname}<span></p>
                           <p class="font-weight-bold">Contact:  <span class="font-weight-normal">${cursor.value.contact}<span></p>
+                          <p class="font-weight-bold">Doctor:  <span class="font-weight-normal">${cursor.value.doctor}<span></p>
                          <p class="font-weight-bold">Date:  <span class="font-weight-normal">${cursor.value.date}<span></p>
+                         <p class="font-weight-bold">Day:  <span class="font-weight-normal">${cursor.value.day}<span></p>
                          <p class="font-weight-bold">Time:  <span class="font-weight-normal">${cursor.value.time}<span></p>
                          <p class="font-weight-bold">Symptoms:  <span class="font-weight-normal">${cursor.value.symptoms}<span></p>
                          <p class="font-weight-bold">NB: We will contact you ASP to confirm your doctor.</p>

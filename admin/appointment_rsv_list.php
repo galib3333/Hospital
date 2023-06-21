@@ -31,17 +31,17 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                   
-                    <div class="table-responsive">
-                        <table id="zero_config" class="table table-striped table-bordered">
+                   <div class="table-responsive">
+                        <table id="zero_config" class="table table-striped   table-bordered">
                             <thead>
                                 <tr>
                                     <th>Patient Name</th>
                                     <th>Contact</th>
+                                    <th>Doctor</th>
                                     <th>Date</th>
+                                    <th>Day</th>
                                     <th>time</th>
                                     <th>Symptoms</th>
-                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,7 +53,9 @@
                                     <tr>
                                         <td><?= $d->patient_name ?></td>
                                         <td><?= $d->contact_no ?></td>
+                                        <td><?= $d->doctor_name ?></td>
                                         <td><?= $d->app_date ?></td>
+                                        <td><?= $d->days ?></td>
                                         <td><?= $d->app_time ?></td>
                                         <td><?= $d->symptoms ?></td>
                                         <td>
