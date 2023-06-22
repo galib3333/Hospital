@@ -11,7 +11,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#<?= $base_url?>dashboard.php">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Update test info.</li>
+                        <li class="breadcrumb-item active" aria-current="page">Create a new test.</li>
                     </ol>
                 </nav>
             </div>
@@ -28,30 +28,30 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <form class="form-horizontal" method="post" action="payment.php">
+                <form class="form-horizontal" method="post">
                 <?php
                   $where['id']=$_GET['id'];
                   $data=$mysqli->common_select('p_test','*',$where);
                  
                   if(!$data['error'] && count($data['data'])>0)
                     $d=$data['data'][0];
-                  else{
+                  else
                     echo "<h2 class='text-danger text-center'>This url is not correct</h2>";
                     
-                  }
                 ?>
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-sm-6">
-                                <label for="name">Patient Name :</label>
+                                <label for="patient_id">Patient Name :</label>
                                 <select class="form-control" name="patient_id">
-                                <?php
-                                    $data = $mysqli->common_select('patients');
-                                    if (!$data['error']) {
-                                        foreach ($data['data'] as $p) {
-                                ?>
-                                    <option <?= $d->patient_id == $p->id ? "selected" : "" ?> value="<?= $p->id ?>"><?= $p->name ?></option>
-                                <?php } } ?>
+                                    <?php
+                                        $data=$mysqli->common_select('patients');
+                                        if(!$data['error']){
+                                            foreach($data['data'] as $p){
+                                    ?>
+                                    <option <?= $d->patient_id == $p->id ? "selected": ""?>
+                                        value="<?= $p->id ?>"><?= $p->name ?></option>
+                                    <?php } } ?>
                                 </select>
                             </div>
                             <div class="col-sm-6">
@@ -75,20 +75,20 @@
                                 </div>
                                 <div class="row pt-3" data-repeater-item>
                                     <div class="col-sm-6">
-                                        <select onchange="get_test(this)" class="form-control" name="test_id">
+                                        <select onchange="get_test(this)" class="form-control" name="id">
                                             <option value="">Select Test</option>
                                             <?php
                                                 $data=$mysqli->common_select('test');
                                                 if(!$data['error']){
                                                     foreach($data['data'] as $t){
                                             ?>
-                                            <option data-price="<?= $d->price ?>"
-                                            <?= $d->id == $t->id ? "selected" : "" ?> value="<?= $t->id ?>"><?= $t->test_name ?></option>
+                                            <option <?= $d->id == $t->id ? "selected": ""?>
+                                        value="<?= $t->id ?>"><?= $t->test_name ?></option>
                                             <?php } } ?>
                                         </select>
                                     </div>
                                     <div class="col-sm-3">
-                                    <input type="text" name="amount" class="form-control testprice">
+                                        <input type="text" name="amount" class="form-control testprice">
                                     </div>
                                     <div class="col-sm-3">
                                         <input class="btn btn-danger" data-repeater-delete type="button" value="Delete"/>
@@ -106,7 +106,7 @@
 									<table class="table">
 										<tr>
 											<td>Amount</td>
-											<td width="100px"><input class="form-control subamount" type="hidden" name="sub_total" value="<?= $d->sub_total ?>"></td>
+											<td width="100px"><input class="form-control subamount" type="hidden" name="sub_total" value=""></td>
 											<td id="subamount"></td>
 										</tr>
 										<tr>
