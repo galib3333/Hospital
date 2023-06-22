@@ -155,17 +155,14 @@
                 if($_POST){
                     $rs=$mysqli->common_create('appointment_request',$_POST);
                     if(!$rs['error']){
-                    
+                    echo "Successfully done";
                     }else{
                         echo $rs['error'];
                     }
                 }
             ?>
           </div>
-          <div class="col-md-6">
-              <h2 id="services" class="text-center my-4"></h2>
-              <ul id="consultations"class="list-group"></ul>
-          </div>
+          
       </div>
   </div>
 
