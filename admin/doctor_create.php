@@ -1,5 +1,10 @@
 <?php include_once('include/header.php'); ?>
 <?php include_once('include/sidebar.php'); ?>
+<style>
+    select.form-control{
+        height: auto;
+    }
+</style>
 <!-- ============================================================== -->
 <!-- Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
@@ -73,15 +78,36 @@
                         </div>
                         <div class="form-group row">
                             <label for="days" class="col-sm-3 text-end control-label col-form-label">Day:</label>
-                            <div class="col-sm-9">
-                                <select class="form-control" id="days" name="days" multiple>
-                                <?php
+                            <div class="col-sm-3">
+                                <select class="form-control" id="days" name="days[]" multiple>
+                                    <?php
                                         $day=array("Sat","Sun","Mon","Tue","Wed","Thur","Fri");
                                         foreach($day as $fday){
                                     ?>
                                         <option value="<?= $fday ?>"><?= $fday ?></option>
                                     <?php } ?>
                                 </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <label for="" class="col-sm-3 text-end control-label col-form-label">Start Time</label>
+                                            <div class="col-sm-9">
+                                                <input type="time" class="form-control" name="start_time" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <label for="" class="col-sm-3 text-end control-label col-form-label">End Time</label>
+                                            <div class="col-sm-9">
+                                                <input type="time" class="form-control" name="end_time" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                         <div class="form-group row">
@@ -110,6 +136,7 @@
                 </form>
                 <?php
                     if($_POST){
+                        $_POST['days']=implode(',',$_POST['days']);
                         $rs=$mysqli->common_create('doctors',$_POST);
                         if(!$rs['error']){
                         echo "<script>window.location='doctor_list.php'</script>";

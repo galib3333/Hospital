@@ -87,7 +87,7 @@
                         Doctor:
                     </label>
                     <div class="col-sm-8 col-lg-8">
-                         <select class="form-control" name="doctor_name" id="doctor">
+                         <select onchange="get_doc(this)" class="form-control" name="doctor_name" id="doctor">
                           <?php
                               $data=$mysqli->common_select('doctors');
                               if(!$data['error']){
@@ -96,6 +96,9 @@
                               <option value="<?= $d->id ?>"><?= $d->name ?></option>
                           <?php } } ?>
                       </select>
+                      <span class="days">
+
+                      </span>
                     </div>
                   </div>
                 <!---->
@@ -107,21 +110,7 @@
                         <input name="app_date" type="date"id="date"class="form-control">
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label class="col-sm-4 col-lg-4">
-                      Day
-                    </label>
-                    <div class="col-sm-8 col-lg-8">
-                      <select class="form-control" id="day" name="days" >
-                        <?php
-                          $day=array("Sat","Sun","Mon","Tue","Wed","Thur","Fri");
-                          foreach($day as $fday){
-                        ?>
-                          <option value="<?= $fday ?>"><?= $fday ?></option>
-                        <?php } ?>
-                      </select>
-                    </div>
-                </div>
+                
                 <!---->
                 <div class="form-group row">
                     <label class="col-sm-4 col-lg-4">
@@ -186,11 +175,25 @@
     </div>
 </footer>
 
-      <script src="assets/frontend/main.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+      var doc_day="";
+      var doc_time="";
+    function get_doc(e){
+      let doc_id=$(e).val();
+      $.getJSON( "doc_data.php", { id: doc_id } )
+        .done(function( json ) {
+          
+        })
+        .fail(function( jqxhr, textStatus, error ) {
+          var err = textStatus + ", " + error;
+          console.log( "Request Failed: " + err );
+      });
+    }
+  </script>
   </body>
 </html>
