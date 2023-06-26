@@ -53,7 +53,7 @@
                                     <tr>
                                         <td><?= $d->patient_name ?></td>
                                         <td><?= $d->contact_no ?></td>
-                                        <td><?= $d->doctor_name ?></td>
+                                        <td><?= $d->doctor_id ?></td>
                                         <td><?= $d->app_date ?></td>
                                         <td><?= $d->days ?></td>
                                         <td><?= $d->app_time ?></td>
