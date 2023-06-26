@@ -81,7 +81,7 @@
                   <div class="form-group row">
                     <label class="col-sm-4 col-lg-4">Doctor:</label>
                     <div class="col-sm-8 col-lg-8">
-                         <select onchange="get_doc(this)" class="form-control" name="doctor_name" id="doctor">
+                         <select onchange="get_doc(this)" class="form-control" name="doctor_id" id="doctor">
                             <option value="">Select Doctor</option>
                           <?php
                               $data=$mysqli->common_select('doctors');
