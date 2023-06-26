@@ -110,12 +110,12 @@
                                 
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="serial_no" class="col-sm-3 text-end control-label col-form-label">No Of Serial :</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="serial_no" name="serial_no" value="25">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group row">
                             <label for="specialist" class="col-sm-3 text-end control-label col-form-label">Specialist :</label>
                             <div class="col-sm-9">
