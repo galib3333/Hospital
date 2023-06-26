@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="row pt-3" data-repeater-item>
                                     <div class="col-sm-6">
-                                        <select onchange="get_test(this)" class="form-control" name="id">
+                                        <select onchange="get_test(this)" class="form-control" name="test_name">
                                             <option value="">Select Test</option>
                                             <?php
                                                 $data=$mysqli->common_select('test');
@@ -88,7 +88,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-3">
-                                        <input type="text" name="amount" class="form-control testprice">
+                                        <input type="text" name="amount" class="form-control testprice" value="<?= $t->price ?>">
                                     </div>
                                     <div class="col-sm-3">
                                         <input class="btn btn-danger" data-repeater-delete type="button" value="Delete"/>
