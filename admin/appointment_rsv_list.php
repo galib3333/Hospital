@@ -62,7 +62,8 @@
                                             <a title="Accept" href="appointment_accept.php?id=<?= $d->id ?>">
                                                 <i class="fa fa-check"></i>
                                             </a>
-                                            <a title="Delete" class="text-danger" href="appointment_rsv_delete.php?id=<?= $d->id ?>">
+                                            <a title="Delete" onclick="return confirm('Are you sure to delete this!')"
+                                            class="text-danger" href="appointment_rsv_delete.php?id=<?= $d->id ?>">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </td>
