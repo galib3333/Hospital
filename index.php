@@ -70,7 +70,6 @@
                           placeholder="Name" required>
                       </div>
                   </div>
-                  <!---->
                   <div class="form-group row">
                     <label class="col-sm-4 col-lg-4">Contact</label>
                     <div class="col-sm-8 col-lg-8">
