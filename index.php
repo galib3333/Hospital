@@ -64,9 +64,7 @@
               </h2>
               <form method="post" action="">
                   <div class="form-group row">
-                      <label class="col-sm-4 col-lg-4">
-                          Patient Name
-                      </label>
+                      <label class="col-sm-4 col-lg-4">Patient Name</label>
                       <div class="col-sm-8 col-lg-8">
                           <input name="patient_name" type="text"id="patient-name"class="form-control"
                           placeholder="Name" required>
@@ -74,57 +72,47 @@
                   </div>
                   <!---->
                   <div class="form-group row">
-                    <label class="col-sm-4 col-lg-4">
-                        Contact
-                    </label>
+                    <label class="col-sm-4 col-lg-4">Contact</label>
                     <div class="col-sm-8 col-lg-8">
                         <input name="contact_no" type="tel"id="contact"class="form-control"
                         placeholder="123"required>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-sm-4 col-lg-4">
-                        Doctor:
-                    </label>
+                    <label class="col-sm-4 col-lg-4">Doctor:</label>
                     <div class="col-sm-8 col-lg-8">
                          <select onchange="get_doc(this)" class="form-control" name="doctor_name" id="doctor">
+                            <option value="">Select Doctor</option>
                           <?php
                               $data=$mysqli->common_select('doctors');
                               if(!$data['error']){
-                                  foreach($data['data'] as $d){
+                                foreach($data['data'] as $d){
                           ?>
                               <option value="<?= $d->id ?>"><?= $d->name ?></option>
                           <?php } } ?>
                       </select>
-                      <span class="days">
-
-                      </span>
+                      <span class="days"></span>
                     </div>
                   </div>
                 <!---->
                 <div class="form-group row">
-                    <label class="col-sm-4 col-lg-4">
-                      Date
-                    </label>
+                    <label class="col-sm-4 col-lg-4">Date</label>
                     <div class="col-sm-8 col-lg-8">
-                        <input name="app_date" type="date"id="date"class="form-control">
+                      <input name="app_date" required type="date"id="date"class="form-control">
+                      <span id="datemsg"></span>
                     </div>
                 </div>
                 
                 <!---->
                 <div class="form-group row">
-                    <label class="col-sm-4 col-lg-4">
-                       Time
-                    </label>
+                    <label class="col-sm-4 col-lg-4">Time</label>
                     <div class="col-sm-8 col-lg-8">
-                        <input name="app_time" type="time"id="time"class="form-control">
-                       </div>
+                      <input readonly name="app_time" type="time"id="time"class="form-control">
+                    </div>
                 </div>
                 <!---->
                 <div class="form-group row">
-                    <label class="col-sm-4 col-lg-4">
-                       Symptoms
-                    </label>
+                    <label class="col-sm-4 col-lg-4">Symptoms</label>
                     <div class="col-sm-8 col-lg-8">
                         <textarea name="symptoms" id="symptoms" class="form-control" required></textarea>
                     </div>
@@ -137,7 +125,6 @@
                         </button>
                     </div>
                 </div>
-
               </form>
             <?php
 
@@ -182,18 +169,62 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
       var doc_day="";
-      var doc_time="";
-    function get_doc(e){
-      let doc_id=$(e).val();
-      $.getJSON( "doc_data.php", { id: doc_id } )
-        .done(function( json ) {
-          
-        })
-        .fail(function( jqxhr, textStatus, error ) {
-          var err = textStatus + ", " + error;
-          console.log( "Request Failed: " + err );
-      });
-    }
+      function get_doc(e){
+        let doc_id=$(e).val();
+        $.getJSON( "doc_data.php", { id: doc_id } )
+          .done(function( json ) {
+            if(!json.error){
+              doc_day=json.data.days;
+              $(".days").text(json.data.days);
+              $("#time").val(json.data.start_time);
+            }
+          })
+          .fail(function( jqxhr, textStatus, error ) {
+            var err = textStatus + ", " + error;
+            console.log( "Request Failed: " + err );
+        });
+      }
+
+      const validate = dateString => {
+        var days=doc_day.split(',');
+        const day = (new Date(dateString)).getDay();
+        for(i in days){
+          console.log(days[i])
+          if(days[i]=="Sat")
+            if (day==6) 
+              return true;
+          if(days[i]=="Sun")
+            if (day==0) 
+              return true;
+          if(days[i]=="Mon")
+            if (day==1) 
+              return true;
+          if(days[i]=="Tue")
+            if (day==2) 
+              return true;
+          if(days[i]=="Wed")
+            if (day==3) 
+              return true;
+          if(days[i]=="Thur")
+            if (day==4) 
+              return true;
+          if(days[i]=="Fri")
+            if (day==5) 
+              return true;
+            
+        }
+        
+        return false;
+      }
+
+      // Sets the value to '' in case of an invalid date
+      document.querySelector('#date').onchange = evt => {
+        $('#datemsg').text("")
+        if (!validate(evt.target.value)) {
+          evt.target.value = '';
+          $('#datemsg').text("This doctor is not available on this date.")
+        }
+      }
   </script>
   </body>
 </html>

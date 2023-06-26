@@ -73,27 +73,34 @@
                                         <label for="">Delete</label>
                                     </div>
                                 </div>
+                                <?php
+                                    $wp_test_des['p_test_id']=$_GET['id'];
+                                    $data=$mysqli->common_select('p_test_des','*',$wp_test_des);
+                                    if(!$data['error']){
+                                        foreach($data['data'] as $td){
+                                ?>
                                 <div class="row pt-3" data-repeater-item>
                                     <div class="col-sm-6">
-                                        <select onchange="get_test(this)" class="form-control" name="test_name">
+                                        <select onchange="get_test(this)" class="form-control" name="test_id">
                                             <option value="">Select Test</option>
                                             <?php
                                                 $data=$mysqli->common_select('test');
                                                 if(!$data['error']){
                                                     foreach($data['data'] as $t){
                                             ?>
-                                            <option <?= $d->id == $t->id ? "selected": ""?>
+                                            <option  data-price="<?= $t->price ?>" <?= $td->test_id == $t->id ? "selected": ""?>
                                         value="<?= $t->id ?>"><?= $t->test_name ?></option>
                                             <?php } } ?>
                                         </select>
                                     </div>
                                     <div class="col-sm-3">
-                                        <input type="text" name="amount" class="form-control testprice" value="<?= $t->price ?>">
+                                        <input type="text" name="amount" class="form-control testprice" value="<?= $td->amount ?>">
                                     </div>
                                     <div class="col-sm-3">
                                         <input class="btn btn-danger" data-repeater-delete type="button" value="Delete"/>
                                     </div>
                                 </div>
+                                <?php } } ?>
                             </div>
                             <div class="row">
                                 <div class="col-sm-1 pt-2">
@@ -131,8 +138,11 @@
 										</tr>
                                         <tr>
 											<td>Pay</td>
-											<td></td>
-											<td><input class="form-control" type="text" name="pay" id="pay" onkeyup="get_due(this.value)"></td>
+											<td class="already_pay">
+                                                Paid Amount: <?= $d->total -  $d->due ?>
+                                                <input type="hidden" id="oldpay" value="<?= $d->total -  $d->due ?>">
+                                            </td>
+											<td><input class="form-control" type="text" name="pay" id="pay" onkeyup="get_due()"></td>
 										</tr>
                                         <tr>
 											<td>Due</td>
@@ -154,10 +164,25 @@
                 </form>
                 <?php
                     if($_POST){
-                        $rs=$mysqli->common_update('p_test',$_POST,$where);
-                        print_r($rs);
+                        $ptdata['patient_id']=$_POST['patient_id'];
+                        $ptdata['bill_date']=$_POST['bill_date'];
+                        $ptdata['sub_total']=$_POST['sub_total'];
+                        $ptdata['discount']=$_POST['discount'];
+                        $ptdata['vat']=$_POST['vat'];
+                        $ptdata['service_charge']=$_POST['service_charge'];
+                        $ptdata['total']=$_POST['total'];
+                        $ptdata['due']=$_POST['due'];
+                        $rs=$mysqli->common_update('p_test',$ptdata,$where);
                         if(!$rs['error']){
-                        echo "<script>window.location='p_test_list.php'</script>";
+                            $mysqli->common_delete('p_test_des',$wp_test_des);
+                            if($_POST['test']){
+                                foreach($_POST['test'] as $m){
+                                    $m['p_test_id']=$_GET['id'];
+                                    $rsm=$mysqli->common_create('p_test_des',$m);
+                                }
+                            }
+                            echo "<script>window.location='p_test_list.php'
+                            </script>";
                         }else{
                             echo $rs['error'];
                         }
@@ -173,9 +198,11 @@
 <?php include_once('include/footer.php'); ?>
 <script src="<?= $base_url; ?>../assets/dist/js/repeater/jquery.repeater.min.js"></script>
 <script>
-    function get_due(e){
+    function get_due(){
         let total=$('#total').val()?parseFloat($('#total').val()):0;
-        let pay=e>0?parseFloat(e):0;
+        let pay=$('#pay').val()?parseFloat($('#pay').val()):0;
+        let oldpay=$('#oldpay').val()?parseFloat($('#oldpay').val()):0;
+        pay=pay+oldpay;
         if(total>pay)
             $("#due").val((total - pay));
         else
@@ -187,15 +214,17 @@
         check_total()
     }
     $(document).ready(function () {
+        check_total()
         $('.repeater').repeater({
             hide: function (deleteElement) {
                 $(this).hide(function(){
                     deleteElement();
-                    check_total();
+                    check_total();// check total amount
                 });
             }
         })
     });
+    
     function check_total(){
         let totalamt=0;
         $('.testprice').each(function(){
@@ -224,6 +253,7 @@
         let total=((rent + service_charge + vat) -discount)
         $(".total").text("BDT "+total);
         $("#total").val(total);
+        get_due()// check due amount
 
     }
 </script>

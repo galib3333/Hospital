@@ -4,9 +4,9 @@
 
  $data=$mysqli->common_select_single("doctors","*",$_GET);
  if(!$data['error'])
-     $d=$data['data'];
+     $d=array("error"=>false,"data"=>$data['data']);
  else
-     echo "<h2 class='text-danger text-center'>This url is not correct</h2>";
+     $d=array("error"=>true,"data"=>"this doctor is not found");
  
     echo json_encode($d);
 
