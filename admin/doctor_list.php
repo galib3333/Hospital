@@ -43,7 +43,6 @@
                                     <th>Email</th>
                                     <th>Department Name</th>
                                     <th>Designation Name</th>
-                                    <th>Visiting Days</th>
                                     <th>Specialist</th>
                                     <th>Education</th>
                                     <th>Fees</th>
@@ -66,7 +65,6 @@
                                         <td><?= $d->email ?></td>
                                         <td><?= $d->dep_name?></td>
                                         <td><?= $d->desig_name?></td>
-                                        <td><?= $d->days?></td>
                                         <td><?= $d->specialist ?></td>
                                         <td><?= $d->education ?></td>
                                         <td><?= $d->fees ?></td>
