@@ -81,29 +81,27 @@ session_start();
                         </div>
                     </form>
                     <?php
-                        if($_POST){
-                            $where['email']=$_POST['email'];
-                            $where['password']=sha1(md5($_POST['password']));
-                            
-                            $rs=$mysqli->common_select('users','*',$where);
-                            if(!$rs['error']){
-                                
-                                if(isset($rs['data'][0])){
-                                $_SESSION['userid']=$rs['data'][0]->id;
-                                $_SESSION['email']=$rs['data'][0]->email;
-                                $_SESSION['username']=$rs['data'][0]->name;
-                                $_SESSION['contact_no']=$rs['data'][0]->contact_no;
+                        if ($_POST) {
+                            $where['email'] = $_POST['email'];
+                            $where['password'] = sha1(md5($_POST['password']));
+
+                            $rs = $mysqli->common_select('users', '*', $where);
+                            if (!$rs['error']) {
+                                if (isset($rs['data'][0])) {
+                                    $_SESSION['userid'] = $rs['data'][0]->id;
+                                    $_SESSION['email'] = $rs['data'][0]->email;
+                                    $_SESSION['username'] = $rs['data'][0]->name;
+                                    $_SESSION['contact_no'] = $rs['data'][0]->contact_no;
+                                    echo "<script>window.location='dashboard.php'</script>";
+                                } else {
+                                    echo "<script>alert('Incorrect email or password. Please try again.');</script>";
                                 }
-                                print_r($rs['data']);
-                                echo "<script>window.location='dashboard.php'</script>";
-                            }else{
+                            } else {
                                 echo $rs['error'];
                             }
                         }
-
-                    ?>
+                        ?>
                 </div>
-                
             </div>
         </div>
         <!-- ============================================================== -->
