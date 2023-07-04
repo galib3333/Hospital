@@ -160,7 +160,6 @@
         </div>
     </div>
 </footer>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="assets/libs/jquery/dist/jquery.min.js"></script>
