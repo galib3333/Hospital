@@ -26,6 +26,66 @@
 <!-- ============================================================== -->
 <!-- Container fluid  -->
 <!-- ============================================================== -->
+<script>
+var doc_day = "";
+function get_doc(e) {
+  let doc_id = $(e).val();
+  $.getJSON("doc_data.php", { id: doc_id })
+    .done(function(json) {
+      if (!json.error) {
+        doc_day = json.data.days;
+        var days = doc_day.split(",");
+        var selectedDay = $(e).children("option:selected").text();
+        $(".days").text(selectedDay);
+        $("#time").val(json.data.start_time);
+      }
+    })
+    .fail(function(jqxhr, textStatus, error) {
+      var err = textStatus + ", " + error;
+      console.log("Request Failed: " + err);
+    });
+}
+
+const validate = dateString => {
+  var days = doc_day.split(",");
+  const day = (new Date(dateString)).getDay();
+  for (i in days) {
+    console.log(days[i]);
+    if (days[i] == "Sat") {
+      if (day == 6) return true;
+    }
+    if (days[i] == "Sun") {
+      if (day == 0) return true;
+    }
+    if (days[i] == "Mon") {
+      if (day == 1) return true;
+    }
+    if (days[i] == "Tue") {
+      if (day == 2) return true;
+    }
+    if (days[i] == "Wed") {
+      if (day == 3) return true;
+    }
+    if (days[i] == "Thur") {
+      if (day == 4) return true;
+    }
+    if (days[i] == "Fri") {
+      if (day == 5) return true;
+    }
+  }
+
+  return false;
+};
+
+// Sets the value to '' in case of an invalid date
+document.querySelector('#date').onchange = evt => {
+  $('#datemsg').text("");
+  if (!validate(evt.target.value)) {
+    evt.target.value = '';
+    $('#datemsg').text("This doctor is not available on this date.");
+  }
+};
+</script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -39,7 +99,6 @@
                                     <th>Contact</th>
                                     <th>Doctor</th>
                                     <th>Date</th>
-                                    <th>Appointment Day</th>
                                     <th>time</th>
                                     <th>Symptoms</th>
                                 </tr>
