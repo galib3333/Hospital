@@ -39,7 +39,7 @@
                                     <th>Contact</th>
                                     <th>Doctor</th>
                                     <th>Date</th>
-                                    <th>Day</th>
+                                    <th>Appointment Day</th>
                                     <th>time</th>
                                     <th>Symptoms</th>
                                 </tr>
