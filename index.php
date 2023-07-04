@@ -1,5 +1,4 @@
 <?php
-
     $protocol = isset($_SERVER['HTTPS']) ? 'https' : 'http';
     $base_url="$protocol://".$_SERVER['SERVER_NAME']."/".explode('/',$_SERVER['SCRIPT_NAME'])[1]."/";
     require_once('class/crud.php');
@@ -44,7 +43,6 @@
           </div>
       </div>
   </nav>
-   
 <!-- End Header -->    
    <!-- ======= Hero Section ======= -->
    <section id="hero" class="d-flex align-items-center" style="background-image:url('assets/images/doctor.jpg'); background-repeat:no-repeat; background-size:cover;">
@@ -70,6 +68,7 @@
                           placeholder="Name" required>
                       </div>
                   </div>
+                  <!---->
                   <div class="form-group row">
                     <label class="col-sm-4 col-lg-4">Contact</label>
                     <div class="col-sm-8 col-lg-8">
