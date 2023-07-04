@@ -70,7 +70,6 @@
                           placeholder="Name" required>
                       </div>
                   </div>
-                  <!---->
                   <div class="form-group row">
                     <label class="col-sm-4 col-lg-4">Contact</label>
                     <div class="col-sm-8 col-lg-8">
@@ -162,7 +161,7 @@
     </div>
 </footer>
 
-    
+    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
